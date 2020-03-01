@@ -24,11 +24,11 @@ public class UniversitiesFragment extends Fragment {
 
     private View view;
     private Bundle bundle;
-    private UniversitiesModel model;
-    private DetailsFragment fragment;
+    private Fragment fragment;
     private DatabaseReference reference;
     private ProgressDialog progressDialog;
     private Button mSattamUniversity, mSaudUniversity;
+    private UniversitiesModel Sattam, Saud;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,7 +44,6 @@ public class UniversitiesFragment extends Fragment {
 
     private void init() {
         bundle = new Bundle();
-        fragment = new DetailsFragment();
         mSaudUniversity = view.findViewById(R.id.SaudUniversity);
         reference = FirebaseDatabase.getInstance().getReference();
         mSattamUniversity = view.findViewById(R.id.SattamUniversity);
@@ -59,10 +58,12 @@ public class UniversitiesFragment extends Fragment {
     }
 
     private void DataBaseManagement() {
-        reference.child("SattamUniversity").addValueEventListener(new ValueEventListener() {
+
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                model = dataSnapshot.getValue(UniversitiesModel.class);
+                Saud = dataSnapshot.child("SaudUniversity").getValue(UniversitiesModel.class);
+                Sattam = dataSnapshot.child("SattamUniversity").getValue(UniversitiesModel.class);
                 progressDialog.dismiss();
             }
 
@@ -77,8 +78,10 @@ public class UniversitiesFragment extends Fragment {
         mSattamUniversity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bundle.putString("About", model.getAbout());
-                bundle.putString("Collage", model.getCollege());
+                fragment = new DetailsFragment();
+                bundle.putString("About", Sattam.getAbout());
+                bundle.putString("Collage", Sattam.getCollege());
+                bundle.putString("Logo", Sattam.getLogo());
                 fragment.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
@@ -89,6 +92,14 @@ public class UniversitiesFragment extends Fragment {
         mSaudUniversity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                fragment = new DetailsFragment();
+                bundle.putString("About", Saud.getAbout());
+                bundle.putString("Collage", Saud.getCollege());
+                bundle.putString("Logo", Saud.getLogo());
+                fragment.setArguments(bundle);
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
+                transaction.replace(R.id.Container, fragment).addToBackStack(null).commit();
             }
         });
     }

@@ -2,17 +2,9 @@ package com.ss.universitiesdirectory.Model;
 
 public class UniversitiesModel {
 
-    private String About, College;
+    private String About, College, Logo;
 
     public UniversitiesModel() {
-    }
-
-    public void setAbout(String about) {
-        About = about;
-    }
-
-    public void setCollege(String college) {
-        College = college;
     }
 
     public String getAbout() {
@@ -21,5 +13,9 @@ public class UniversitiesModel {
 
     public String getCollege() {
         return College;
+    }
+
+    public String getLogo() {
+        return Logo;
     }
 }
