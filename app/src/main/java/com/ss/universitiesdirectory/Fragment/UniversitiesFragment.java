@@ -47,7 +47,7 @@ public class UniversitiesFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 UniversitiesModel model = dataSnapshot.getValue(UniversitiesModel.class);
                 Log.d("CheckValue", model.getAbout());
-//                Log.d("CheckValue", model.getCollege());
+                Log.d("CheckValue", model.getCollege());
             }
 
             @Override
