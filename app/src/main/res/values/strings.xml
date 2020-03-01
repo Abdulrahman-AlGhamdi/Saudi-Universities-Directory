@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">دليل الجامعات السعوديه</string>
+
+    // App Strings
+    <string name="sattam_university">جامعة الامير سطام بن عبدالعزيز</string>
+    <string name="suad_university">جامعة الملك سعود</string>
+    <string name="news">أخبار</string>
+    <string name="location">موقع</string>
+    <string name="about">عن الجامعه:</string>
+    <string name="communication">تواصل</string>
+    <string name="college">الكليات:</string>
+    <string name="college_text">كلية إدارة الأعمال\n
+                                كلية التربية الأقسام الأدبية\n
+                                كلية التربية الأقسام العلمية\n
+                                كلية الصيدلة\n
+                                كلية الطب البشري\n
+                                كلية طب الأسنان\n
+                                كلية العلوم الطبية التطبيقية\n
+                                كلية العلوم والدراسات الإنسانية\n
+                                كلية المجتمع\n
+                                كلية الهندسة\n
+                                كلية هندسة وعلوم الحاسب</string>
+    <string name="about_text">جامعة الأمير سطام بن عبد العزيز بالخرج (جامعة الأمير سلمان بن عبدالعزيز وجامعة الخرج سابقًا) هي جامعة حكومية سعودية تقع في مدينة السيح بمحافظة الخرج بالمملكة العربية السعودية وهي تحت إشراف وزارة التعليم السعودية وتولى إدارة الجامعة منذ تأسيسها الدكتور عبد الرحمن بن محمد بن مصدي العاصمي وقد تعين بعد ذلك نائباً لوزير التعليم، وقد كلّف الدكتور عبدالعزيز عبدالله الحامد مديراً للجامعة</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
