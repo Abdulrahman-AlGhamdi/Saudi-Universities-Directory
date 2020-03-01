@@ -51,7 +51,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/questv_regular"
-                    android:text="@string/about_text"
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +74,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/questv_regular"
-                    android:text="@string/college_text"
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +95,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/About"
+                android:id="@+id/Location"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/location_button_design"
