@@ -79,9 +79,10 @@ public class UniversitiesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 fragment = new DetailsFragment();
+                bundle.putString("Logo", Sattam.getLogo());
                 bundle.putString("About", Sattam.getAbout());
                 bundle.putString("Collage", Sattam.getCollege());
-                bundle.putString("Logo", Sattam.getLogo());
+                bundle.putString("News", "https://www.psau.edu.sa/ar/rss.xml");
                 fragment.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
