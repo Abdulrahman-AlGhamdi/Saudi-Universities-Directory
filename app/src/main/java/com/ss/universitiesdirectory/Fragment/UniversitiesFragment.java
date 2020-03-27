@@ -82,7 +82,10 @@ public class UniversitiesFragment extends Fragment {
                 bundle.putString("Logo", Sattam.getLogo());
                 bundle.putString("About", Sattam.getAbout());
                 bundle.putString("Collage", Sattam.getCollege());
+                bundle.putString("Twitter", "https://twitter.com/itdl_psau");
                 bundle.putString("News", "https://www.psau.edu.sa/ar/rss.xml");
+                bundle.putString("Facebook", "https://www.facebook.com/psau.edu.sa");
+                bundle.putString("Location", "https://goo.gl/maps/rnMxSpaucC5N9Spp6");
                 fragment.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
@@ -94,9 +97,12 @@ public class UniversitiesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 fragment = new DetailsFragment();
+                bundle.putString("Logo", Saud.getLogo());
                 bundle.putString("About", Saud.getAbout());
                 bundle.putString("Collage", Saud.getCollege());
-                bundle.putString("Logo", Saud.getLogo());
+                bundle.putString("Twitter", "https://twitter.com/_KSU");
+                bundle.putString("Location", "https://goo.gl/maps/KQPSzajAsBfDRh5r9");
+                bundle.putString("Facebook", "https://www.facebook.com/King.Saud.University");
                 fragment.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
