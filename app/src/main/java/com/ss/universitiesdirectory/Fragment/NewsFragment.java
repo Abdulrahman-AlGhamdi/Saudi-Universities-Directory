@@ -11,25 +11,16 @@ import com.ss.universitiesdirectory.RSS.Downloader;
 
 public class NewsFragment extends Fragment {
 
-    private View view;
-    private Bundle bundle;
-    private ListView listView;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_news, container, false);
+        View view = inflater.inflate(R.layout.fragment_news, container, false);
 
-        init();
-
-        return view;
-    }
-
-    private void init() {
-        bundle = new Bundle();
-        bundle = this.getArguments();
-        listView =  view.findViewById(R.id.NewsList);
-        if(bundle != null){
+        Bundle bundle = this.getArguments();
+        ListView listView = view.findViewById(R.id.NewsList);
+        if(bundle.getString("News") != null){
             new Downloader(getActivity(), bundle.getString("News"), listView).execute();
         }
+
+        return view;
     }
 }

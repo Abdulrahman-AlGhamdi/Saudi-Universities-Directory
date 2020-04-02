@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,25 +12,24 @@ import java.net.HttpURLConnection;
 
 public class Downloader extends AsyncTask<Void,Void,Object> {
 
-    Context c;
-    String urlAddress;
-    ListView lv;
+    private Context context;
+    private String Address;
+    private ListView listView;
+    private ProgressDialog progressDialog;
 
-    ProgressDialog pd;
-
-    public Downloader(Context c, String urlAddress, ListView lv) {
-        this.c = c;
-        this.urlAddress = urlAddress;
-        this.lv = lv;
+    public Downloader(Context context, String Address, ListView listView) {
+        this.context = context;
+        this.Address = Address;
+        this.listView = listView;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        pd=new ProgressDialog(c);
-        pd.setTitle("Fetch data");
-        pd.setMessage("Fetching Data...Please wait");
-        pd.show();
+        progressDialog =new ProgressDialog(context);
+        progressDialog.setTitle("Fetch data");
+        progressDialog.setMessage("Fetching Data...Please wait");
+        progressDialog.show();
     }
 
     @Override
@@ -42,40 +40,32 @@ public class Downloader extends AsyncTask<Void,Void,Object> {
     @Override
     protected void onPostExecute(Object data) {
         super.onPostExecute(data);
-        pd.dismiss();
+        progressDialog.dismiss();
 
-        if(data.toString().startsWith("Error"))
-        {
-            Toast.makeText(c,data.toString(),Toast.LENGTH_SHORT).show();
-        }else {
-            //PARSE
-            new RSSParser(c, (InputStream) data,lv).execute();
+        if(data.toString().startsWith("Error")) {
+            Toast.makeText(context,data.toString(),Toast.LENGTH_SHORT).show();
+        }else{
+            new RSSParser(context, (InputStream) data, listView).execute();
         }
     }
 
-    private Object downloadData()
-    {
-        Object connection=Connector.connect(urlAddress);
-        if(connection.toString().startsWith("Error"))
-        {
+    private Object downloadData() {
+        Object connection=Connector.connect(Address);
+        if(connection.toString().startsWith("Error")) {
             return connection.toString();
         }
 
-        try
-        {
+        try{
             HttpURLConnection con= (HttpURLConnection) connection;
             int responseCode=con.getResponseCode();
-            if(responseCode==con.HTTP_OK)
-            {
-                InputStream is=new BufferedInputStream(con.getInputStream());
-                return is;
+            if(responseCode==con.HTTP_OK){
+                InputStream stream = new BufferedInputStream(con.getInputStream());
+                return stream;
             }
-
             return ErrorTracker.RESPONSE_ERROR+con.getResponseMessage();
-
         } catch (IOException e) {
             e.printStackTrace();
-            return ErrorTracker.IO_EROR;
+            return ErrorTracker.IO_ERROR;
         }
     }
 }

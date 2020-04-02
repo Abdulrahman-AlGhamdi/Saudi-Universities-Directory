@@ -7,19 +7,17 @@ import java.net.URL;
 
 public class Connector {
 
-    public static Object connect(String urlAddress)
-    {
-        try
-        {
+    public static Object connect(String urlAddress) {
+
+        try {
             URL url=new URL(urlAddress);
-            HttpURLConnection con= (HttpURLConnection) url.openConnection();
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-            con.setRequestMethod("GET");
-            con.setConnectTimeout(15000);
-            con.setReadTimeout(15000);
-            con.setDoInput(true);
-
-            return con;
+            connection.setRequestMethod("GET");
+            connection.setConnectTimeout(15000);
+            connection.setReadTimeout(15000);
+            connection.setDoInput(true);
+            return connection;
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

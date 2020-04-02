@@ -24,7 +24,6 @@ public class UniversitiesFragment extends Fragment {
 
     private View view;
     private Bundle bundle;
-    private Fragment fragment;
     private DatabaseReference reference;
     private ProgressDialog progressDialog;
     private Button mSattamUniversity, mSaudUniversity;
@@ -37,7 +36,7 @@ public class UniversitiesFragment extends Fragment {
         init();
         Progress();
         DataBaseManagement();
-        toUniversityDetails();
+        UniversityButtons();
 
         return view;
     }
@@ -58,7 +57,6 @@ public class UniversitiesFragment extends Fragment {
     }
 
     private void DataBaseManagement() {
-
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -74,40 +72,49 @@ public class UniversitiesFragment extends Fragment {
         });
     }
 
-    private void toUniversityDetails() {
+    private void UniversityButtons() {
         mSattamUniversity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragment = new DetailsFragment();
-                bundle.putString("Logo", Sattam.getLogo());
-                bundle.putString("About", Sattam.getAbout());
-                bundle.putString("Collage", Sattam.getCollege());
-                bundle.putString("Twitter", "https://twitter.com/itdl_psau");
-                bundle.putString("News", "https://www.psau.edu.sa/ar/rss.xml");
-                bundle.putString("Facebook", "https://www.facebook.com/psau.edu.sa");
-                bundle.putString("Location", "https://goo.gl/maps/rnMxSpaucC5N9Spp6");
-                fragment.setArguments(bundle);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
-                transaction.replace(R.id.Container, fragment).addToBackStack(null).commit();
+                getData(Sattam);
             }
         });
-
         mSaudUniversity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragment = new DetailsFragment();
-                bundle.putString("Logo", Saud.getLogo());
-                bundle.putString("About", Saud.getAbout());
-                bundle.putString("Collage", Saud.getCollege());
-                bundle.putString("Twitter", "https://twitter.com/_KSU");
-                bundle.putString("Location", "https://goo.gl/maps/KQPSzajAsBfDRh5r9");
-                bundle.putString("Facebook", "https://www.facebook.com/King.Saud.University");
-                fragment.setArguments(bundle);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
-                transaction.replace(R.id.Container, fragment).addToBackStack(null).commit();
+                getData(Saud);
             }
         });
+    }
+
+    private void getData(UniversitiesModel model) {
+        Fragment fragment = new DetailsFragment();
+        if(model.getLogo() != null){
+            bundle.putString("Logo", model.getLogo());
+        }
+        if(model.getNews() != null){
+            bundle.putString("News", model.getNews());;
+        }
+        if(model.getAbout() != null){
+            bundle.putString("About", model.getAbout());
+        }
+        if(model.getCollege() != null){
+            bundle.putString("Collage", model.getCollege());
+        }
+        if(model.getTwitter() != null){
+            bundle.putString("Twitter", model.getTwitter());
+        }
+        if(model.getFacebook() != null){
+            bundle.putString("Facebook", model.getFacebook());
+        }
+        if(model.getLocation() != null){
+            bundle.putString("Location", model.getLocation());
+        }
+        if(bundle != null){
+            fragment.setArguments(bundle);
+        }
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
+        transaction.replace(R.id.Container, fragment).addToBackStack(null).commit();
     }
 }

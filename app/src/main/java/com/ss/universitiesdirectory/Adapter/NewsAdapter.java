@@ -12,12 +12,12 @@ import com.ss.universitiesdirectory.R;
 
 import java.util.ArrayList;
 
-public class CustomAdapter extends BaseAdapter {
+public class NewsAdapter extends BaseAdapter {
 
     private Context context;
     private ArrayList<NewsModel> newsModels;
 
-    public CustomAdapter(Context context, ArrayList<NewsModel> newsModels) {
+    public NewsAdapter(Context context, ArrayList<NewsModel> newsModels) {
         this.context = context;
         this.newsModels = newsModels;
     }
