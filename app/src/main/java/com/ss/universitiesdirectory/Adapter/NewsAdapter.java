@@ -39,7 +39,7 @@ public class NewsAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = LayoutInflater.from(context).inflate(R.layout.news_raw_holder,parent,false);
+        convertView = LayoutInflater.from(context).inflate(R.layout.news_raw_holder, parent,false);
 
         final NewsModel model = (NewsModel) this.getItem(position);
         TextView Title = convertView.findViewById(R.id.NewsTitle);

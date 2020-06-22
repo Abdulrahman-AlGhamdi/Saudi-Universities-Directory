@@ -2,9 +2,13 @@ package com.ss.universitiesdirectory.Model;
 
 public class UniversitiesModel {
 
-    private String About, College, Logo, News, Location, Twitter, Facebook;
+    private String Name, About, College, Logo, News, Location, Twitter, Facebook;
 
     public UniversitiesModel() {
+    }
+
+    public String getName() {
+        return Name;
     }
 
     public String getAbout() {

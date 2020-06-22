@@ -9,7 +9,10 @@
 
     <ListView
         android:id="@+id/NewsList"
-        android:padding="10dp"
+        android:paddingTop="10dp"
+        android:paddingHorizontal="10dp"
+        android:divider="@color/Beige"
+        android:dividerHeight="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>
