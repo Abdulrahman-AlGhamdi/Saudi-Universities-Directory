@@ -26,8 +26,8 @@ public class UniversitiesFragment extends Fragment {
     private Bundle bundle;
     private DatabaseReference reference;
     private ProgressDialog progressDialog;
-    private Button mSattamUniversity, mSaudUniversity;
-    private UniversitiesModel Sattam, Saud;
+    private Button mSattamUniversity, mSaudUniversity, mAlQura, mNoraUniversity, mImamUniversity;
+    private UniversitiesModel Sattam, Saud, AlQura, Nora, Imam;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,7 +43,10 @@ public class UniversitiesFragment extends Fragment {
 
     private void init() {
         bundle = new Bundle();
+        mAlQura = view.findViewById(R.id.AlQuraUniversity);
+        mNoraUniversity = view.findViewById(R.id.NoraUniversity);
         mSaudUniversity = view.findViewById(R.id.SaudUniversity);
+        mImamUniversity = view.findViewById(R.id.ImamUniversity);
         reference = FirebaseDatabase.getInstance().getReference();
         mSattamUniversity = view.findViewById(R.id.SattamUniversity);
     }
@@ -61,7 +64,10 @@ public class UniversitiesFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Saud = dataSnapshot.child("SaudUniversity").getValue(UniversitiesModel.class);
+                Nora = dataSnapshot.child("NoraUniversity").getValue(UniversitiesModel.class);
+                Imam = dataSnapshot.child("ImamUniversity").getValue(UniversitiesModel.class);
                 Sattam = dataSnapshot.child("SattamUniversity").getValue(UniversitiesModel.class);
+                AlQura = dataSnapshot.child("UmmAlQuraUniversity").getValue(UniversitiesModel.class);
                 progressDialog.dismiss();
             }
 
@@ -83,6 +89,24 @@ public class UniversitiesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getData(Saud);
+            }
+        });
+        mAlQura.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getData(AlQura);
+            }
+        });
+        mNoraUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getData(Nora);
+            }
+        });
+        mImamUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getData(Imam);
             }
         });
     }
