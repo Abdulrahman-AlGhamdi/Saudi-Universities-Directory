@@ -6,10 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
 import com.ss.universitiesdirectory.Model.NewsModel;
 import com.ss.universitiesdirectory.R;
-
 import java.util.ArrayList;
 
 public class NewsAdapter extends BaseAdapter {

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.UniversitiesFragment"
-    android:padding="15dp">
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/textView"
@@ -21,87 +21,94 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/SattamUniversity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/universities_button_design"
-        android:fontFamily="@font/questv_regular"
-        android:padding="10dp"
-        android:text="@string/sattam_university"
-        android:textAllCaps="false"
-        android:textColor="@color/Beige"
-        android:textSize="20sp"
+    <ScrollView
+        android:id="@+id/HomeScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
-    <Button
-        android:id="@+id/SaudUniversity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/universities_button_design"
-        android:fontFamily="@font/questv_regular"
-        android:padding="10dp"
-        android:text="@string/suad_university"
-        android:textAllCaps="false"
-        android:textColor="@color/Beige"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SattamUniversity"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/AlQuraUniversity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="95dp"
-        android:background="@drawable/universities_button_design"
-        android:fontFamily="@font/questv_regular"
-        android:padding="10dp"
-        android:text="@string/alqura_university"
-        android:textAllCaps="false"
-        android:textColor="@color/Beige"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SattamUniversity"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/NoraUniversity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="170dp"
-        android:background="@drawable/universities_button_design"
-        android:fontFamily="@font/questv_regular"
-        android:padding="10dp"
-        android:text="@string/nora_university"
-        android:textAllCaps="false"
-        android:textColor="@color/Beige"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SattamUniversity"/>
+                <Button
+                    android:id="@+id/SaudUniversity"
+                    style="@style/UniversityButton"
+                    android:background="@drawable/universities_button_design"
+                    android:text="@string/suad_university"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/AlQuraUniversity"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/ImamUniversity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="245dp"
-        android:background="@drawable/universities_button_design"
-        android:fontFamily="@font/questv_regular"
-        android:padding="10dp"
-        android:text="@string/imam_university"
-        android:textAllCaps="false"
-        android:textColor="@color/Beige"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SattamUniversity"/>
+                <Button
+                    android:id="@+id/AlQuraUniversity"
+                    style="@style/UniversityButton"
+                    android:background="@drawable/universities_button_design"
+                    android:text="@string/alqura_university"
+                    app:layout_constraintEnd_toStartOf="@+id/SaudUniversity"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/SattamUniversity"
+                    style="@style/UniversityButton"
+                    android:background="@drawable/universities_button_design"
+                    android:text="@string/sattam_university"
+                    app:layout_constraintEnd_toStartOf="@+id/NoraUniversity"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/NoraUniversity"
+                    style="@style/UniversityButton"
+                    android:background="@drawable/universities_button_design"
+                    android:text="@string/nora_university"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/SattamUniversity"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/ImamUniversity"
+                    style="@style/UniversityButton"
+                    android:background="@drawable/universities_button_design"
+                    android:text="@string/imam_university"
+                    app:layout_constraintEnd_toStartOf="@+id/QassimUniversity"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/QassimUniversity"
+                    style="@style/UniversityButton"
+                    android:background="@drawable/universities_button_design"
+                    android:text="@string/qassim_university"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ImamUniversity"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

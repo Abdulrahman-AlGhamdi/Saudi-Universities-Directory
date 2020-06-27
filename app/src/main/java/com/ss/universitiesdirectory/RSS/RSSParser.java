@@ -54,10 +54,8 @@ public class RSSParser extends AsyncTask<Void,Void,Boolean> {
         }
     }
 
-    private Boolean parseRSS()
-    {
-        try
-        {
+    private Boolean parseRSS() {
+        try {
             XmlPullParserFactory factory=XmlPullParserFactory.newInstance();
             XmlPullParser parser=factory.newPullParser();
 

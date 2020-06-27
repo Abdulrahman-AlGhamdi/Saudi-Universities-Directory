@@ -2,14 +2,15 @@
     <string name="app_name">دليل الجامعات السعوديه</string>
 
     // App Strings
-    <string name="sattam_university">جامعة الامير سطام</string>
-    <string name="suad_university">جامعة الملك سعود</string>
-    <string name="alqura_university">جامعة أم القرى</string>
-    <string name="nora_university">جامعة الأميرة نورة</string>
-    <string name="imam_university">جامعة الإمام الإسلامية</string>
     <string name="news">أخبار</string>
     <string name="location">موقع</string>
+    <string name="college">الكليات:</string>
     <string name="about">عن الجامعه:</string>
     <string name="communication">تواصل</string>
-    <string name="college">الكليات:</string>
+    <string name="qassim_university">جامعة القصيم</string>
+    <string name="alqura_university">جامعة أم القرى</string>
+    <string name="nora_university">جامعة الأميرة نورة</string>
+    <string name="suad_university">جامعة الملك سعود</string>
+    <string name="sattam_university">جامعة الامير سطام</string>
+    <string name="imam_university">جامعة الإمام</string>
 </resources>

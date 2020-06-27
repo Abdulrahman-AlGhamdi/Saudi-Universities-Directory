@@ -26,8 +26,8 @@ public class UniversitiesFragment extends Fragment {
     private Bundle bundle;
     private DatabaseReference reference;
     private ProgressDialog progressDialog;
-    private Button mSattamUniversity, mSaudUniversity, mAlQura, mNoraUniversity, mImamUniversity;
-    private UniversitiesModel Sattam, Saud, AlQura, Nora, Imam;
+    private UniversitiesModel Sattam, Saud, AlQura, Nora, Imam, Qassim;
+    private Button mSattamUniversity, mSaudUniversity, mAlQura, mNoraUniversity, mImamUniversity, mQassimUniversity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class UniversitiesFragment extends Fragment {
         mImamUniversity = view.findViewById(R.id.ImamUniversity);
         reference = FirebaseDatabase.getInstance().getReference();
         mSattamUniversity = view.findViewById(R.id.SattamUniversity);
+        mQassimUniversity = view.findViewById(R.id.QassimUniversity);
     }
 
     private void Progress() {
@@ -66,6 +67,7 @@ public class UniversitiesFragment extends Fragment {
                 Saud = dataSnapshot.child("SaudUniversity").getValue(UniversitiesModel.class);
                 Nora = dataSnapshot.child("NoraUniversity").getValue(UniversitiesModel.class);
                 Imam = dataSnapshot.child("ImamUniversity").getValue(UniversitiesModel.class);
+                Qassim = dataSnapshot.child("QassimUniversity").getValue(UniversitiesModel.class);
                 Sattam = dataSnapshot.child("SattamUniversity").getValue(UniversitiesModel.class);
                 AlQura = dataSnapshot.child("UmmAlQuraUniversity").getValue(UniversitiesModel.class);
                 progressDialog.dismiss();
@@ -79,18 +81,6 @@ public class UniversitiesFragment extends Fragment {
     }
 
     private void UniversityButtons() {
-        mSattamUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Sattam);
-            }
-        });
-        mSaudUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Saud);
-            }
-        });
         mAlQura.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +97,24 @@ public class UniversitiesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getData(Imam);
+            }
+        });
+        mSaudUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getData(Saud);
+            }
+        });
+        mSattamUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getData(Sattam);
+            }
+        });
+        mQassimUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getData(Qassim);
             }
         });
     }

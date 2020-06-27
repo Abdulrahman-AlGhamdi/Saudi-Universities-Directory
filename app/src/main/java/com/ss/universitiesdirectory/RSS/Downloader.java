@@ -12,8 +12,8 @@ import java.net.HttpURLConnection;
 
 public class Downloader extends AsyncTask<Void,Void,Object> {
 
-    private Context context;
     private String Address;
+    private Context context;
     private ListView listView;
     private ProgressDialog progressDialog;
 
@@ -26,7 +26,8 @@ public class Downloader extends AsyncTask<Void,Void,Object> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progressDialog =new ProgressDialog(context);
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setCancelable(false);
         progressDialog.setTitle("Fetch data");
         progressDialog.setMessage("Fetching Data...Please wait");
         progressDialog.show();
