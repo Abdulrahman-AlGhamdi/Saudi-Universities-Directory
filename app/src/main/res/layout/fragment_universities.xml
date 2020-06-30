@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.UniversitiesFragment"
-    android:padding="10dp">
+    tools:context=".Fragment.UniversitiesFragment">
 
     <TextView
         android:id="@+id/textView"
@@ -28,87 +27,448 @@
         android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="جامعات المنطقة الوسطى"
+                android:textSize="20sp"
+                android:layoutDirection="rtl"
+                android:fontFamily="@font/questv_regular"
+                android:layout_gravity="end"/>
+
+            <HorizontalScrollView
+                android:id="@+id/CentreScroll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:scrollbars="none">
 
-                <Button
-                    android:id="@+id/SaudUniversity"
-                    style="@style/UniversityButton"
-                    android:background="@drawable/universities_button_design"
-                    android:text="@string/suad_university"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/AlQuraUniversity"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/AlQuraUniversity"
-                    style="@style/UniversityButton"
-                    android:background="@drawable/universities_button_design"
-                    android:text="@string/alqura_university"
-                    app:layout_constraintEnd_toStartOf="@+id/SaudUniversity"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+                        <Button
+                            android:id="@+id/SaudiElectronicUniversity"
+                            style="@style/UniversityButton"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/saudi_electronic_university" />
+
+                        <Button
+                            android:id="@+id/SaudHealthUniversity"
+                            style="@style/UniversityButton"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/saud_health_university" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/ShaqraUniversity"
+                            style="@style/UniversityButton"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/shaqra_university" />
+
+                        <Button
+                            android:id="@+id/MajmaahUniversity"
+                            style="@style/UniversityButton"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/majmaah_university" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/QassimUniversity"
+                            style="@style/UniversityButton"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/qassim_university" />
+
+                        <Button
+                            android:id="@+id/HailUniversity"
+                            style="@style/UniversityButton"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/hail_university" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/NoraUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/nora_university" />
+
+                        <Button
+                            android:id="@+id/ImamUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/imam_university"
+                            style="@style/UniversityButton"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/SaudUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/suad_university"
+                            android:background="@drawable/universities_button_design"/>
+
+                        <Button
+                            android:id="@+id/SattamUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sattam_university"
+                            android:background="@drawable/universities_button_design"
+                            style="@style/UniversityButton"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="جامعات المنطقة الغربية"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layoutDirection="rtl"
+                android:fontFamily="@font/questv_regular"
+                android:layout_gravity="end"/>
+
+            <HorizontalScrollView
+                android:id="@+id/WestScroll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:scrollbars="none">
 
-                <Button
-                    android:id="@+id/SattamUniversity"
-                    style="@style/UniversityButton"
-                    android:background="@drawable/universities_button_design"
-                    android:text="@string/sattam_university"
-                    app:layout_constraintEnd_toStartOf="@+id/NoraUniversity"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/NoraUniversity"
-                    style="@style/UniversityButton"
-                    android:background="@drawable/universities_button_design"
-                    android:text="@string/nora_university"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/SattamUniversity"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+                        <Button
+                            android:id="@+id/TaibahUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/taibah_university"
+                            android:background="@drawable/universities_button_design"/>
+
+                        <Button
+                            android:id="@+id/IslamicUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/islamic_university"
+                            android:background="@drawable/universities_button_design"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/AlQuraUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/alqura_university"
+                            android:background="@drawable/universities_button_design"/>
+
+                        <Button
+                            android:id="@+id/TaifUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/taif_university"
+                            android:background="@drawable/universities_button_design"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/JeddahUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/jeddah_university"
+                            android:background="@drawable/universities_button_design"/>
+
+                        <Button
+                            android:id="@+id/AbdulazizUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/abdulaziz_university"
+                            android:background="@drawable/universities_button_design"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="جامعات المنطقة الشرقية"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layoutDirection="rtl"
+                android:fontFamily="@font/questv_regular"
+                android:layout_gravity="end"/>
+
+            <HorizontalScrollView
+                android:id="@+id/EastScroll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:scrollbars="none">
 
-                <Button
-                    android:id="@+id/ImamUniversity"
-                    style="@style/UniversityButton"
-                    android:background="@drawable/universities_button_design"
-                    android:text="@string/imam_university"
-                    app:layout_constraintEnd_toStartOf="@+id/QassimUniversity"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="right">
 
-                <Button
-                    android:id="@+id/QassimUniversity"
-                    style="@style/UniversityButton"
-                    android:background="@drawable/universities_button_design"
-                    android:text="@string/qassim_university"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/ImamUniversity"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                        <Button
+                            android:id="@+id/ImamAbdulrahmanUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/imam_abdulrahman_university"
+                            android:background="@drawable/universities_button_design"/>
 
+                        <Button
+                            android:id="@+id/HafrBatinUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/hafr_batin_university"
+                            android:background="@drawable/universities_button_design"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/FahdUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/fahd_university"
+                            android:background="@drawable/universities_button_design"/>
+
+                        <Button
+                            android:id="@+id/FaisalUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/faisal_university"
+                            android:background="@drawable/universities_button_design"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="جامعات المنطقة الشمالية"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layoutDirection="rtl"
+                android:fontFamily="@font/questv_regular"
+                android:layout_gravity="end"/>
+
+            <HorizontalScrollView
+                android:id="@+id/NorthScroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="right">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/NorthernBordersUniversity"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/northern_borders_university"
+                            android:background="@drawable/universities_button_design"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/JoufUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/jouf_university"
+                            android:background="@drawable/universities_button_design"/>
+
+                        <Button
+                            android:id="@+id/TabukUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/tabuk_university"
+                            android:background="@drawable/universities_button_design"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="جامعات المنطقة الجنوبية"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layoutDirection="rtl"
+                android:fontFamily="@font/questv_regular"
+                android:layout_gravity="end"/>
+
+            <HorizontalScrollView
+                android:id="@+id/SouthScroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="right">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/BishaUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/bisha_university"
+                            android:background="@drawable/universities_button_design"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/KhalidUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/khalid_university"
+                            android:background="@drawable/universities_button_design"/>
+
+                        <Button
+                            android:id="@+id/JazanUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/jazan_university"
+                            android:background="@drawable/universities_button_design"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/AlbahaUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/albaha_university"
+                            android:background="@drawable/universities_button_design"/>
+
+                        <Button
+                            android:id="@+id/NajranUniversity"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            style="@style/UniversityButton"
+                            android:text="@string/najran_university"
+                            android:background="@drawable/universities_button_design"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
         </LinearLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

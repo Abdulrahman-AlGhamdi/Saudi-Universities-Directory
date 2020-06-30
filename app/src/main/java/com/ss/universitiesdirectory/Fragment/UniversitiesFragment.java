@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,6 +52,46 @@ public class UniversitiesFragment extends Fragment {
         reference = FirebaseDatabase.getInstance().getReference();
         mSattamUniversity = view.findViewById(R.id.SattamUniversity);
         mQassimUniversity = view.findViewById(R.id.QassimUniversity);
+
+        final HorizontalScrollView centralScrollView = view.findViewById(R.id.CentreScroll);
+        view.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                centralScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+            }
+        }, 0);
+
+        final HorizontalScrollView westScrollView = view.findViewById(R.id.WestScroll);
+        view.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                westScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+            }
+        }, 0);
+
+        final HorizontalScrollView eastScrollView = view.findViewById(R.id.EastScroll);
+        view.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                eastScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+            }
+        }, 0);
+
+        final HorizontalScrollView northScrollView = view.findViewById(R.id.NorthScroll);
+        view.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                northScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+            }
+        }, 0);
+
+        final HorizontalScrollView southScrollView = view.findViewById(R.id.SouthScroll);
+        view.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                southScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+            }
+        }, 0);
     }
 
     private void Progress() {
