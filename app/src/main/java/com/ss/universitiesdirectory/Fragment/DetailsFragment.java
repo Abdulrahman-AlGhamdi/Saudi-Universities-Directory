@@ -20,8 +20,8 @@ public class DetailsFragment extends Fragment {
     private Bundle bundle;
     private ImageView mLogo;
     private Fragment fragment;
-    private TextView mAbout, mCollage;
-    private Button mRSS, mLocation, mCommunication;
+    private TextView mAbout;
+    private Button mCollage, mRSS, mLocation, mCommunication;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,22 +38,33 @@ public class DetailsFragment extends Fragment {
         mRSS = view.findViewById(R.id.RSS);
         mLogo = view.findViewById(R.id.Logo);
         mAbout = view.findViewById(R.id.AboutText);
+        mCollage = view.findViewById(R.id.College);
         mLocation = view.findViewById(R.id.Location);
-        mCollage = view.findViewById(R.id.CollegeText);
         mCommunication = view.findViewById(R.id.Communication);
     }
 
     private void ShowData() {
+        if(bundle.getString("Logo") != null){
+            Picasso.get().load(bundle.getString("Logo")).into(mLogo);
+        }
+
         if(bundle.getString("About") != null){
             mAbout.setText(bundle.getString("About"));
         }
 
-        if(bundle.getString("Collage") != null){
-            mCollage.setText(bundle.getString("Collage"));
-        }
-
-        if(bundle.getString("Logo") != null){
-            Picasso.get().load(bundle.getString("Logo")).into(mLogo);
+        if(bundle.getString("College") != null){
+            mCollage.setVisibility(View.VISIBLE);
+            mCollage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    fragment = new CollegeFragment();
+                    bundle.putString("College", bundle.getString("College"));
+                    fragment.setArguments(bundle);
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
+                    transaction.replace(R.id.Container, fragment).addToBackStack(null).commit();
+                }
+            });
         }
 
         if(bundle.getString("News") != null){

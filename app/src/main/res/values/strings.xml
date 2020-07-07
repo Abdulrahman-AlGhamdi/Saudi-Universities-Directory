@@ -5,7 +5,7 @@
     <string name="news">أخبار</string>
     <string name="location">موقع</string>
     <string name="about">عن الجامعه:</string>
-    <string name="college">الكليات:</string>
+    <string name="college">الكليات</string>
     <string name="communication">تواصل</string>
 
     // Region Strings
@@ -44,4 +44,6 @@
     <string name="northern_borders_university">جامعة الحدود الشمالية</string>
     <string name="imam_abdulrahman_university">جامعة الإمام عبدالرحمن</string>
     <string name="saudi_electronic_university">الجامعة السعودية الإلكترونية</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

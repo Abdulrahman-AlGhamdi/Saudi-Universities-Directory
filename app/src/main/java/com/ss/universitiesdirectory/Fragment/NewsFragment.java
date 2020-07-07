@@ -17,6 +17,7 @@ public class NewsFragment extends Fragment {
 
         Bundle bundle = this.getArguments();
         ListView listView = view.findViewById(R.id.NewsList);
+
         if(bundle.getString("News") != null){
             new Downloader(getActivity(), bundle.getString("News"), listView).execute();
         }
