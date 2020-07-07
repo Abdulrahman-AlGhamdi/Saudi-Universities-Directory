@@ -41,9 +41,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="جامعات المنطقة الوسطى"
+                android:text="@string/CentralRegion"
                 android:textSize="20sp"
-                android:layoutDirection="rtl"
                 android:fontFamily="@font/questv_regular"
                 android:layout_gravity="end"/>
 
@@ -173,10 +172,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="جامعات المنطقة الغربية"
+                android:text="@string/WestRegion"
                 android:textSize="20sp"
                 android:layout_marginTop="20dp"
-                android:layoutDirection="rtl"
                 android:fontFamily="@font/questv_regular"
                 android:layout_gravity="end"/>
 
@@ -262,10 +260,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="جامعات المنطقة الشرقية"
+                android:text="@string/EastRegion"
                 android:textSize="20sp"
                 android:layout_marginTop="20dp"
-                android:layoutDirection="rtl"
                 android:fontFamily="@font/questv_regular"
                 android:layout_gravity="end"/>
 
@@ -330,10 +327,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="جامعات المنطقة الشمالية"
+                android:text="@string/NorthRegion"
                 android:textSize="20sp"
                 android:layout_marginTop="20dp"
-                android:layoutDirection="rtl"
                 android:fontFamily="@font/questv_regular"
                 android:layout_gravity="end"/>
 
@@ -390,10 +386,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="جامعات المنطقة الجنوبية"
+                android:text="@string/SouthRegion"
                 android:textSize="20sp"
                 android:layout_marginTop="20dp"
-                android:layoutDirection="rtl"
                 android:fontFamily="@font/questv_regular"
                 android:layout_gravity="end"/>
 

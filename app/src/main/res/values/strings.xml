@@ -7,32 +7,41 @@
     <string name="about">عن الجامعه:</string>
     <string name="college">الكليات:</string>
     <string name="communication">تواصل</string>
-    <string name="imam_university">جامعة الإمام الإسلامية</string>
+
+    // Region Strings
+    <string name="WestRegion">جامعات المنطقة الغربية</string>
+    <string name="EastRegion">جامعات المنطقة الشرقية</string>
+    <string name="SouthRegion">جامعات المنطقة الجنوبية</string>
+    <string name="NorthRegion">جامعات المنطقة الشمالية</string>
+    <string name="CentralRegion">جامعات المنطقة الوسطى</string>
+
+    // Universities Strings
+    <string name="hail_university">جامعة حائل</string>
+    <string name="bisha_university">جامعة بيشة</string>
+    <string name="jouf_university">جامعة الجوف</string>
+    <string name="tabuk_university">جامعة تبوك</string>
+    <string name="taif_university">جامعة الطائف</string>
+    <string name="jazan_university">جامعة جازان</string>
+    <string name="jeddah_university">جامعة جدة</string>
+    <string name="fahd_university">جامعة الملك فهد</string>
+    <string name="taibah_university">جامعة طيبه</string>
     <string name="qassim_university">جامعة القصيم</string>
     <string name="suad_university">جامعة الملك سعود</string>
-    <string name="nora_university">جامعة الأميرة نورة</string>
-    <string name="alqura_university">جامعة أم القرى</string>
-    <string name="sattam_university">جامعة الامير سطام</string>
-    <string name="taif_university">جامعة الطائف</string>
-    <string name="jeddah_university">جامعة جدة</string>
-    <string name="abdulaziz_university">جامعة الملك عبدالعزيز</string>
-    <string name="fahd_university">جامعة الملك فهد</string>
-    <string name="faisal_university">جامعة الملك فيصل</string>
-    <string name="khalid_university">جامعة الملك خالد</string>
-    <string name="taibah_university">جامعة طيبه</string>
-    <string name="hail_university">جامعة حائل</string>
-    <string name="jazan_university">جامعة جازان</string>
-    <string name="jouf_university">جامعة الجوف</string>
     <string name="albaha_university">جامعة الباحة</string>
-    <string name="tabuk_university">جامعة تبوك</string>
     <string name="najran_university">جامعة نجران</string>
-    <string name="islamic_university">الجامعة الإسلامية</string>
-    <string name="northern_borders_university">الجامعة الإسلامية</string>
-    <string name="imam_abdulrahman_university">جامعة الإمام عبدالرحمن</string>
     <string name="shaqra_university">جامعة شقراء</string>
     <string name="majmaah_university">جامعة المجمعة</string>
-    <string name="saudi_electronic_university">الجامعة السعودية الإلكترونية</string>
+    <string name="nora_university">جامعة الأميرة نورة</string>
+    <string name="alqura_university">جامعة أم القرى</string>
+    <string name="khalid_university">جامعة الملك خالد</string>
+    <string name="faisal_university">جامعة الملك فيصل</string>
+    <string name="islamic_university">الجامعة الإسلامية</string>
+    <string name="imam_university">جامعة الإمام الإسلامية</string>
+    <string name="sattam_university">جامعة الامير سطام</string>
     <string name="hafr_batin_university">جامعة حفر الباطن</string>
-    <string name="bisha_university">جامعة بيشة</string>
+    <string name="abdulaziz_university">جامعة الملك عبدالعزيز</string>
     <string name="saud_health_university">جامعة الملك سعود الصحية</string>
+    <string name="northern_borders_university">جامعة الحدود الشمالية</string>
+    <string name="imam_abdulrahman_university">جامعة الإمام عبدالرحمن</string>
+    <string name="saudi_electronic_university">الجامعة السعودية الإلكترونية</string>
 </resources>
