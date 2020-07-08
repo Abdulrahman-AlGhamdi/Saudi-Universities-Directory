@@ -2,7 +2,7 @@ package com.ss.universitiesdirectory.Model;
 
 public class UniversitiesModel {
 
-    private String Name, About, College, Logo, News, Location, Twitter, Facebook;
+    private String Name, About, College, Website, Logo, News, Location, Twitter, Facebook;
 
     public UniversitiesModel() {
     }
@@ -17,6 +17,10 @@ public class UniversitiesModel {
 
     public String getCollege() {
         return College;
+    }
+
+    public String getWebsite() {
+        return Website;
     }
 
     public String getLogo() {

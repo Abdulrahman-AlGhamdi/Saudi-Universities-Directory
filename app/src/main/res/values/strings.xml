@@ -2,11 +2,12 @@
     <string name="app_name">دليل الجامعات السعوديه</string>
 
     // App Strings
-    <string name="news">أخبار</string>
-    <string name="location">موقع</string>
-    <string name="about">عن الجامعه:</string>
+    <string name="news">الأخبار</string>
+    <string name="website">الموقع</string>
     <string name="college">الكليات</string>
-    <string name="communication">تواصل</string>
+    <string name="location">الخريطة</string>
+    <string name="about">عن الجامعه:</string>
+    <string name="communication">التواصل</string>
 
     // Region Strings
     <string name="WestRegion">جامعات المنطقة الغربية</string>

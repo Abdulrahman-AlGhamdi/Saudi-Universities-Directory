@@ -21,7 +21,7 @@ public class DetailsFragment extends Fragment {
     private ImageView mLogo;
     private Fragment fragment;
     private TextView mAbout;
-    private Button mCollage, mRSS, mLocation, mCommunication;
+    private Button mCollage, mWebsite, mRSS, mLocation, mCommunication;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class DetailsFragment extends Fragment {
         mLogo = view.findViewById(R.id.Logo);
         mAbout = view.findViewById(R.id.AboutText);
         mCollage = view.findViewById(R.id.College);
+        mWebsite = view.findViewById(R.id.Website);
         mLocation = view.findViewById(R.id.Location);
         mCommunication = view.findViewById(R.id.Communication);
     }
@@ -52,12 +53,27 @@ public class DetailsFragment extends Fragment {
             mAbout.setText(bundle.getString("About"));
         }
 
+        if(bundle.getString("Website") != null){
+            mWebsite.setVisibility(View.VISIBLE);
+            mWebsite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    fragment = new WebsiteFragment();
+                    bundle.putString("Website", bundle.getString("Website"));
+                    fragment.setArguments(bundle);
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
+                    transaction.replace(R.id.Container, fragment).addToBackStack(null).commit();
+                }
+            });
+        }
+
         if(bundle.getString("College") != null){
             mCollage.setVisibility(View.VISIBLE);
             mCollage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    fragment = new CollegeFragment();
+                    fragment = new WebsiteFragment();
                     bundle.putString("College", bundle.getString("College"));
                     fragment.setArguments(bundle);
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();

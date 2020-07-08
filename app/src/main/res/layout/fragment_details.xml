@@ -59,6 +59,20 @@
 
             <Button
                 android:layout_marginTop="20dp"
+                android:id="@+id/Website"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/college_button_design"
+                android:text="@string/website"
+                android:visibility="gone"
+                android:textColor="@color/Beige"
+                android:textSize="20sp"
+                android:fontFamily="@font/questv_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:layout_marginTop="20dp"
                 android:id="@+id/College"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

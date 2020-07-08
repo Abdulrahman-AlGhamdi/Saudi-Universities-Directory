@@ -357,11 +357,14 @@ public class UniversitiesFragment extends Fragment {
         if(model.getAbout() != null){
             bundle.putString("About", model.getAbout());
         }
-        if(model.getCollege() != null){
-            bundle.putString("College", model.getCollege());
+        if(model.getWebsite() != null){
+            bundle.putString("Website", model.getWebsite());
         }
         if(model.getTwitter() != null){
             bundle.putString("Twitter", model.getTwitter());
+        }
+        if(model.getCollege() != null){
+            bundle.putString("College", model.getCollege());
         }
         if(model.getFacebook() != null){
             bundle.putString("Facebook", model.getFacebook());
