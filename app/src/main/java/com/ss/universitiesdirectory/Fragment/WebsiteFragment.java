@@ -13,20 +13,23 @@ public class WebsiteFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_college, container, false);
+        View view = inflater.inflate(R.layout.fragment_website, container, false);
 
         Bundle bundle = this.getArguments();
-        WebView mWebsiteView = view.findViewById(R.id.WebsiteView);
-        mWebsiteView.setWebViewClient(new WebViewClient());
-        mWebsiteView.getSettings().setJavaScriptEnabled(true);
+        WebView mWebView = view.findViewById(R.id.WebsiteView);
+        mWebView.setWebViewClient(new WebViewClient());
+        mWebView.getSettings().setJavaScriptEnabled(true);
 
-        if(bundle.getString("Website") != null){
-            mWebsiteView.loadUrl(bundle.getString("Website"));
+        if(bundle != null){
+            if(bundle.getString("WebsiteShow") != null){
+                mWebView.loadUrl(bundle.getString("WebsiteShow"));
+            }
+
+            if(bundle.getString("CollegeShow") != null){
+                mWebView.loadUrl(bundle.getString("CollegeShow"));
+            }
         }
 
-        if(bundle.getString("College") != null){
-            mWebsiteView.loadUrl(bundle.getString("College"));
-        }
 
         return view;
     }

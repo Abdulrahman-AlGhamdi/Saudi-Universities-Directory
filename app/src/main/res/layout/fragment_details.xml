@@ -62,7 +62,7 @@
                 android:id="@+id/Website"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/college_button_design"
+                android:background="@drawable/website_button_design"
                 android:text="@string/website"
                 android:visibility="gone"
                 android:textColor="@color/Beige"
@@ -81,9 +81,7 @@
                 android:visibility="gone"
                 android:textColor="@color/Beige"
                 android:textSize="20sp"
-                android:fontFamily="@font/questv_regular"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:fontFamily="@font/questv_regular" />
 
             <Button
                 android:layout_marginTop="20dp"
@@ -95,9 +93,7 @@
                 android:visibility="gone"
                 android:textColor="@color/Beige"
                 android:textSize="20sp"
-                android:fontFamily="@font/questv_regular"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:fontFamily="@font/questv_regular"/>
 
             <Button
                 android:id="@+id/Location"
@@ -109,24 +105,57 @@
                 android:textSize="20sp"
                 android:visibility="gone"
                 android:fontFamily="@font/questv_regular"
-                android:layout_marginTop="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                android:layout_marginTop="20dp"/>
 
-            <Button
+            <LinearLayout
                 android:id="@+id/Communication"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/communication"
-                android:textColor="@color/Beige"
-                android:textSize="20sp"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:fontFamily="@font/questv_regular"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
                 android:background="@drawable/communication_button_design"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:orientation="vertical">
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/communication"
+                    android:textColor="@color/Beige"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:fontFamily="@font/questv_regular"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/Twitter"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="5dp"
+                        android:visibility="gone"
+                        android:src="@drawable/twitter_logo"
+                        app:civ_circle_background_color="#1da1f2" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/Facebook"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:visibility="visible"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/facebook_logo"
+                        app:civ_circle_background_color="#1da1f2" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

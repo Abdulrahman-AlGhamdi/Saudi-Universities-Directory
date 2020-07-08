@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.ss.universitiesdirectory.R;
@@ -19,9 +20,11 @@ public class DetailsFragment extends Fragment {
     private View view;
     private Bundle bundle;
     private ImageView mLogo;
-    private Fragment fragment;
     private TextView mAbout;
-    private Button mCollage, mWebsite, mRSS, mLocation, mCommunication;
+    private Fragment fragment;
+    private LinearLayout mCommunication;
+    private ImageView Twitter, Facebook;
+    private Button mCollage, mWebsite, mRSS, mLocation;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,9 +40,11 @@ public class DetailsFragment extends Fragment {
         bundle = this.getArguments();
         mRSS = view.findViewById(R.id.RSS);
         mLogo = view.findViewById(R.id.Logo);
+        Twitter = view.findViewById(R.id.Twitter);
         mAbout = view.findViewById(R.id.AboutText);
         mCollage = view.findViewById(R.id.College);
         mWebsite = view.findViewById(R.id.Website);
+        Facebook = view.findViewById(R.id.Facebook);
         mLocation = view.findViewById(R.id.Location);
         mCommunication = view.findViewById(R.id.Communication);
     }
@@ -59,7 +64,7 @@ public class DetailsFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     fragment = new WebsiteFragment();
-                    bundle.putString("Website", bundle.getString("Website"));
+                    bundle.putString("WebsiteShow", bundle.getString("Website"));
                     fragment.setArguments(bundle);
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
                     transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
@@ -74,7 +79,7 @@ public class DetailsFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     fragment = new WebsiteFragment();
-                    bundle.putString("College", bundle.getString("College"));
+                    bundle.putString("CollegeShow", bundle.getString("College"));
                     fragment.setArguments(bundle);
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
                     transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
@@ -108,18 +113,27 @@ public class DetailsFragment extends Fragment {
             });
         }
 
-        if(bundle.getString("Twitter") != null || bundle.getString("Facebook") != null){
+        if(bundle.getString("Twitter") != null){
             mCommunication.setVisibility(View.VISIBLE);
-            mCommunication.setOnClickListener(new View.OnClickListener() {
+            Twitter.setVisibility(View.VISIBLE);
+            Twitter.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CommunicationFragment fragment = new CommunicationFragment();
-                    bundle.putString("Twitter", bundle.getString("Twitter"));
-                    bundle.putString("Facebook", bundle.getString("Facebook"));
-                    fragment.setArguments(bundle);
-                    fragment.show(getFragmentManager(), null);
+                    startActivity(new Intent(Intent.ACTION_VIEW , Uri.parse(bundle.getString("Twitter"))));
                 }
             });
+        }
+
+        if(bundle.getString("Facebook") != null){
+            mCommunication.setVisibility(View.VISIBLE);
+            Facebook.setVisibility(View.VISIBLE);
+            Facebook.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_VIEW , Uri.parse(bundle.getString("Facebook"))));
+                }
+            });
+
         }
     }
 }
