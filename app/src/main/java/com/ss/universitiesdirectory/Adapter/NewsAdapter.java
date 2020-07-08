@@ -1,18 +1,28 @@
 package com.ss.universitiesdirectory.Adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.ss.universitiesdirectory.Fragment.WebsiteFragment;
 import com.ss.universitiesdirectory.Model.NewsModel;
 import com.ss.universitiesdirectory.R;
 import java.util.ArrayList;
 
 public class NewsAdapter extends BaseAdapter {
 
+    private Bundle bundle;
     private Context context;
+    private Fragment fragment;
     private ArrayList<NewsModel> newsModels;
 
     public NewsAdapter(Context context, ArrayList<NewsModel> newsModels) {
@@ -39,6 +49,7 @@ public class NewsAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = LayoutInflater.from(context).inflate(R.layout.news_raw_holder, parent,false);
 
+        bundle = new Bundle();
         final NewsModel model = (NewsModel) this.getItem(position);
         TextView Title = convertView.findViewById(R.id.NewsTitle);
         TextView Date = convertView.findViewById(R.id.NewsDate);
@@ -135,6 +146,21 @@ public class NewsAdapter extends BaseAdapter {
             }else
                 Date.setText(model.getDate());
         }
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment = new WebsiteFragment();
+                FragmentManager manager = ((AppCompatActivity) context).getSupportFragmentManager();
+                if(model.getLink() != null){
+                    bundle.putString("NewsShow", model.getLink());
+                    fragment.setArguments(bundle);
+                }
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
+                transaction.replace(R.id.Container, fragment).addToBackStack(null).commit();
+            }
+        });
 
         return convertView;
     }

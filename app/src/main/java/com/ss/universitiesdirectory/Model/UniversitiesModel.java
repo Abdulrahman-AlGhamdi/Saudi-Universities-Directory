@@ -2,7 +2,8 @@ package com.ss.universitiesdirectory.Model;
 
 public class UniversitiesModel {
 
-    private String Name, About, College, Website, Logo, News, Location, Twitter, Facebook;
+    private String Name, About, College, Website, Logo, News, Location, Twitter, Facebook, Youtube,
+            Instagram, Snapchat;
 
     public UniversitiesModel() {
     }
@@ -41,5 +42,17 @@ public class UniversitiesModel {
 
     public String getFacebook() {
         return Facebook;
+    }
+
+    public String getYoutube() {
+        return Youtube;
+    }
+
+    public String getSnapchat() {
+        return Snapchat;
+    }
+
+    public String getInstagram() {
+        return Instagram;
     }
 }

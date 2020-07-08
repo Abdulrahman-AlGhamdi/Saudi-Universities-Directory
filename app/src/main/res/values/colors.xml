@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorAccent">#000000</color>
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#000000</color>
 
     // App Colors
-    <color name="Black">#000000</color>
-    <color name="Yellow">#e6a835</color>
-    <color name="Beige">#fafafa</color>
-    <color name="Blue">#00949b</color>
     <color name="Red">#e84c3d</color>
-    <color name="Brown">#5d250a</color>
-    <color name="Purple">#576f9e</color>
+    <color name="Blue">#00949b</color>
     <color name="Gray">#666666</color>
+    <color name="Black">#000000</color>
+    <color name="Brown">#5d250a</color>
+    <color name="Beige">#fafafa</color>
+    <color name="Purple">#576f9e</color>
+    <color name="Yellow">#e6a835</color>
+
+    // Social Media Colors
+    <color name="Twitter">#3fa9f5</color>
+    <color name="Youtube">#e81c24</color>
+    <color name="Snapchat">#fffc00</color>
+    <color name="Facebook">#3b5999</color>
+    <color name="Instagram">#cc066e</color>
 </resources>

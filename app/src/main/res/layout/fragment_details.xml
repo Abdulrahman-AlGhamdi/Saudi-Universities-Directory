@@ -138,22 +138,54 @@
                     android:gravity="center">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/Instagram"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:visibility="gone"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/instagram_logo"
+                        app:civ_circle_background_color="@color/Instagram" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/Twitter"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginEnd="5dp"
+                        android:layout_marginStart="5dp"
                         android:visibility="gone"
                         android:src="@drawable/twitter_logo"
-                        app:civ_circle_background_color="#1da1f2" />
+                        app:civ_circle_background_color="@color/Twitter" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/Youtube"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:visibility="gone"
+                        android:src="@drawable/youtube_logo"
+                        app:civ_circle_background_color="@color/Youtube" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/Facebook"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:visibility="visible"
+                        android:visibility="gone"
+                        android:layout_marginEnd="5dp"
                         android:layout_marginStart="5dp"
                         android:src="@drawable/facebook_logo"
-                        app:civ_circle_background_color="#1da1f2" />
+                        app:civ_circle_background_color="@color/Facebook" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/Snapchat"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:visibility="gone"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/snapchat_logo"
+                        app:civ_circle_background_color="@color/Snapchat" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

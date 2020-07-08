@@ -23,8 +23,8 @@ public class DetailsFragment extends Fragment {
     private TextView mAbout;
     private Fragment fragment;
     private LinearLayout mCommunication;
-    private ImageView Twitter, Facebook;
     private Button mCollage, mWebsite, mRSS, mLocation;
+    private ImageView Twitter, Facebook, Youtube, Instagram, Snapchat;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,11 +41,14 @@ public class DetailsFragment extends Fragment {
         mRSS = view.findViewById(R.id.RSS);
         mLogo = view.findViewById(R.id.Logo);
         Twitter = view.findViewById(R.id.Twitter);
+        Youtube = view.findViewById(R.id.Youtube);
         mAbout = view.findViewById(R.id.AboutText);
         mCollage = view.findViewById(R.id.College);
         mWebsite = view.findViewById(R.id.Website);
+        Snapchat = view.findViewById(R.id.Snapchat);
         Facebook = view.findViewById(R.id.Facebook);
         mLocation = view.findViewById(R.id.Location);
+        Instagram = view.findViewById(R.id.Instagram);
         mCommunication = view.findViewById(R.id.Communication);
     }
 
@@ -133,7 +136,39 @@ public class DetailsFragment extends Fragment {
                     startActivity(new Intent(Intent.ACTION_VIEW , Uri.parse(bundle.getString("Facebook"))));
                 }
             });
+        }
 
+        if(bundle.getString("Youtube") != null){
+            mCommunication.setVisibility(View.VISIBLE);
+            Youtube.setVisibility(View.VISIBLE);
+            Youtube.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_VIEW , Uri.parse(bundle.getString("Youtube"))));
+                }
+            });
+        }
+
+        if(bundle.getString("Instagram") != null){
+            mCommunication.setVisibility(View.VISIBLE);
+            Instagram.setVisibility(View.VISIBLE);
+            Instagram.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_VIEW , Uri.parse(bundle.getString("Instagram"))));
+                }
+            });
+        }
+
+        if(bundle.getString("Snapchat") != null){
+            mCommunication.setVisibility(View.VISIBLE);
+            Snapchat.setVisibility(View.VISIBLE);
+            Snapchat.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_VIEW , Uri.parse(bundle.getString("Snapchat"))));
+                }
+            });
         }
     }
 }

@@ -28,6 +28,10 @@ public class WebsiteFragment extends Fragment {
             if(bundle.getString("CollegeShow") != null){
                 mWebView.loadUrl(bundle.getString("CollegeShow"));
             }
+
+            if(bundle.getString("NewsShow") != null){
+                mWebView.loadUrl(bundle.getString("NewsShow"));
+            }
         }
 
 
