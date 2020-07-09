@@ -7,18 +7,33 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.UniversitiesFragment">
 
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:id="@+id/MainImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:repeatCount="infinite"
+        android:repeatMode="restart"
+        android:src="@drawable/main_animation_image"
+        android:tint="@color/Black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription"/>
+
     <TextView
         android:id="@+id/textView"
-        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/questv_regular"
         android:text="@string/app_name"
-        android:textSize="30sp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/Black"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/MainImage" />
 
     <ScrollView
         android:id="@+id/HomeScrollView"
@@ -27,10 +42,10 @@
         android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,10 +56,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/CentralRegion"
-                android:textSize="20sp"
+                android:layout_gravity="end"
                 android:fontFamily="@font/questv_regular"
-                android:layout_gravity="end"/>
+                android:text="@string/CentralRegion"
+                android:textSize="20sp" />
 
             <HorizontalScrollView
                 android:id="@+id/CentreScroll"
@@ -130,19 +145,19 @@
 
                         <Button
                             android:id="@+id/NoraUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/nora_university" />
 
                         <Button
                             android:id="@+id/ImamUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
                             android:background="@drawable/universities_button_design"
-                            android:text="@string/imam_university"
-                            style="@style/UniversityButton"/>
+                            android:text="@string/imam_university" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -152,19 +167,19 @@
 
                         <Button
                             android:id="@+id/SaudUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/suad_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/suad_university" />
 
                         <Button
                             android:id="@+id/SattamUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            android:text="@string/sattam_university"
                             android:background="@drawable/universities_button_design"
-                            style="@style/UniversityButton"/>
+                            android:text="@string/sattam_university" />
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
@@ -172,11 +187,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/WestRegion"
-                android:textSize="20sp"
+                android:layout_gravity="end"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/questv_regular"
-                android:layout_gravity="end"/>
+                android:text="@string/WestRegion"
+                android:textSize="20sp" />
 
             <HorizontalScrollView
                 android:id="@+id/WestScroll"
@@ -196,19 +211,19 @@
 
                         <Button
                             android:id="@+id/TaibahUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/taibah_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/taibah_university" />
 
                         <Button
                             android:id="@+id/IslamicUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/islamic_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/islamic_university" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -218,19 +233,19 @@
 
                         <Button
                             android:id="@+id/AlQuraUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/alqura_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/alqura_university" />
 
                         <Button
                             android:id="@+id/TaifUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/taif_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/taif_university" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -240,19 +255,19 @@
 
                         <Button
                             android:id="@+id/JeddahUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/jeddah_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/jeddah_university" />
 
                         <Button
                             android:id="@+id/AbdulazizUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/abdulaziz_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/abdulaziz_university" />
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
@@ -260,11 +275,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/EastRegion"
-                android:textSize="20sp"
+                android:layout_gravity="end"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/questv_regular"
-                android:layout_gravity="end"/>
+                android:text="@string/EastRegion"
+                android:textSize="20sp" />
 
             <HorizontalScrollView
                 android:id="@+id/EastScroll"
@@ -275,8 +290,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="right">
+                    android:layout_gravity="right"
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -285,19 +300,19 @@
 
                         <Button
                             android:id="@+id/ImamAbdulrahmanUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/imam_abdulrahman_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/imam_abdulrahman_university" />
 
                         <Button
                             android:id="@+id/HafrBatinUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/hafr_batin_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/hafr_batin_university" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -307,19 +322,19 @@
 
                         <Button
                             android:id="@+id/FahdUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/fahd_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/fahd_university" />
 
                         <Button
                             android:id="@+id/FaisalUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/faisal_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/faisal_university" />
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
@@ -327,11 +342,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/NorthRegion"
-                android:textSize="20sp"
+                android:layout_gravity="end"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/questv_regular"
-                android:layout_gravity="end"/>
+                android:text="@string/NorthRegion"
+                android:textSize="20sp" />
 
             <HorizontalScrollView
                 android:id="@+id/NorthScroll"
@@ -342,8 +357,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="right">
+                    android:layout_gravity="right"
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -352,11 +367,11 @@
 
                         <Button
                             android:id="@+id/NorthernBordersUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/northern_borders_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/northern_borders_university" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -366,19 +381,19 @@
 
                         <Button
                             android:id="@+id/JoufUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/jouf_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/jouf_university" />
 
                         <Button
                             android:id="@+id/TabukUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/tabuk_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/tabuk_university" />
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
@@ -386,11 +401,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/SouthRegion"
-                android:textSize="20sp"
+                android:layout_gravity="end"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/questv_regular"
-                android:layout_gravity="end"/>
+                android:text="@string/SouthRegion"
+                android:textSize="20sp" />
 
             <HorizontalScrollView
                 android:id="@+id/SouthScroll"
@@ -401,8 +416,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="right">
+                    android:layout_gravity="right"
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -411,11 +426,11 @@
 
                         <Button
                             android:id="@+id/BishaUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/bisha_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/bisha_university" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -425,19 +440,19 @@
 
                         <Button
                             android:id="@+id/KhalidUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/khalid_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/khalid_university" />
 
                         <Button
                             android:id="@+id/JazanUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/jazan_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/jazan_university" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -447,19 +462,19 @@
 
                         <Button
                             android:id="@+id/AlbahaUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/albaha_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/albaha_university" />
 
                         <Button
                             android:id="@+id/NajranUniversity"
+                            style="@style/UniversityButton"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            style="@style/UniversityButton"
-                            android:text="@string/najran_university"
-                            android:background="@drawable/universities_button_design"/>
+                            android:background="@drawable/universities_button_design"
+                            android:text="@string/najran_university" />
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>

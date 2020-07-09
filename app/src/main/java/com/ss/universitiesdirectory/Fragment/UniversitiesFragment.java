@@ -2,7 +2,10 @@ package com.ss.universitiesdirectory.Fragment;
 
 import android.app.ProgressDialog;
 import android.graphics.Color;
+import android.graphics.drawable.Animatable2;
+import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -11,8 +14,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,12 +31,11 @@ public class UniversitiesFragment extends Fragment {
 
     private View view;
     private Bundle bundle;
+    private String[] University;
+    private ImageView mMainImage;
     private DatabaseReference reference;
     private ProgressDialog progressDialog;
-    private UniversitiesModel Sattam, Saud, AlQura, Nora, ImamIslamic, Qassim, Hail, Shaqra, Majmaah,
-            SaudiElectronic, SaudHealth, Jeddah, Abdulaziz, Taif, Taibah, Islamic, Fahd, Faisal,
-            ImamAbdulrahman, HafrBatin, Jouf, Tabuk, NorthernBorders, Albaha, Najran, Khalid, Jazan,
-            Bisha;
+    private AnimatedVectorDrawable vectorDrawable;
     private Button mSattamUniversity, mSaudUniversity, mAlQuraUniversity, mNoraUniversity, mImamUniversity,
             mQassimUniversity, mHailUniversity, mShaqraUniversity, mMajmaahUniversity,
             mSaudiElectronicUniversity, mSaudHealthUniversity, mJeddahUniversity, mAbdulazizUniversity,
@@ -44,8 +49,7 @@ public class UniversitiesFragment extends Fragment {
         view =  inflater.inflate(R.layout.fragment_universities, container, false);
 
         init();
-        Progress();
-        DataBaseManagement();
+        Animation();
         UniversityButtons();
 
         return view;
@@ -53,7 +57,14 @@ public class UniversitiesFragment extends Fragment {
 
     private void init() {
         bundle = new Bundle();
+        mMainImage = view.findViewById(R.id.MainImage);
         reference = FirebaseDatabase.getInstance().getReference();
+        Animation appearAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.appear_animation);
+        mMainImage.setAnimation(appearAnimation);
+        University = new String[] {"Saud", "Sattam", "Nora", "Imam", "Qassim", "Hail", "Shaqra", "Majmaah", "SaudiElectronic",
+                "SaudHealth", "Jeddah", "Abdulaziz", "UmmAlQura", "Taif", "Taibah", "Islamic", "Fahd", "Faisal",
+                "ImamAbdulrahman", "HafrBatin", "Jouf", "Tabuk", "NorthernBorders", "Albaha", "Najran", "Khalid", "Jazan",
+                "Bisha"};
 
         mAlQuraUniversity = view.findViewById(R.id.AlQuraUniversity);
         mFahdUniversity = view.findViewById(R.id.FahdUniversity);
@@ -125,223 +136,210 @@ public class UniversitiesFragment extends Fragment {
         }, 0);
     }
 
-    private void Progress() {
-        progressDialog = new ProgressDialog(getActivity());
-        progressDialog.show();
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("Please Wait...");
-        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.GRAY));
-    }
-
-    private void DataBaseManagement() {
-        reference.addValueEventListener(new ValueEventListener() {
+    private void Animation() {
+        vectorDrawable = (AnimatedVectorDrawable) mMainImage.getDrawable();
+        vectorDrawable.start();
+        vectorDrawable.registerAnimationCallback(new Animatable2.AnimationCallback() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Taif = dataSnapshot.child("TaifUniversity").getValue(UniversitiesModel.class);
-                Jouf = dataSnapshot.child("JoufUniversity").getValue(UniversitiesModel.class);
-                Hail = dataSnapshot.child("HailUniversity").getValue(UniversitiesModel.class);
-                Saud = dataSnapshot.child("SaudUniversity").getValue(UniversitiesModel.class);
-                Nora = dataSnapshot.child("NoraUniversity").getValue(UniversitiesModel.class);
-                Fahd = dataSnapshot.child("FahdUniversity").getValue(UniversitiesModel.class);
-                Bisha = dataSnapshot.child("BishaUniversity").getValue(UniversitiesModel.class);
-                Tabuk = dataSnapshot.child("TabukUniversity").getValue(UniversitiesModel.class);
-                Jazan = dataSnapshot.child("JazanUniversity").getValue(UniversitiesModel.class);
-                Taibah = dataSnapshot.child("TaibahUniversity").getValue(UniversitiesModel.class);
-                Khalid = dataSnapshot.child("KhalidUniversity").getValue(UniversitiesModel.class);
-                Najran = dataSnapshot.child("NajranUniversity").getValue(UniversitiesModel.class);
-                Albaha = dataSnapshot.child("AlbahaUniversity").getValue(UniversitiesModel.class);
-                Faisal = dataSnapshot.child("FaisalUniversity").getValue(UniversitiesModel.class);
-                Qassim = dataSnapshot.child("QassimUniversity").getValue(UniversitiesModel.class);
-                Sattam = dataSnapshot.child("SattamUniversity").getValue(UniversitiesModel.class);
-                Shaqra = dataSnapshot.child("ShaqraUniversity").getValue(UniversitiesModel.class);
-                Jeddah = dataSnapshot.child("JeddahUniversity").getValue(UniversitiesModel.class);
-                Majmaah = dataSnapshot.child("MajmaahUniversity").getValue(UniversitiesModel.class);
-                Islamic = dataSnapshot.child("IslamicUniversity").getValue(UniversitiesModel.class);
-                ImamIslamic = dataSnapshot.child("ImamUniversity").getValue(UniversitiesModel.class);
-                AlQura = dataSnapshot.child("UmmAlQuraUniversity").getValue(UniversitiesModel.class);
-                Abdulaziz = dataSnapshot.child("AbdulazizUniversity").getValue(UniversitiesModel.class);
-                HafrBatin = dataSnapshot.child("HafrBatinUniversity").getValue(UniversitiesModel.class);
-                SaudHealth = dataSnapshot.child("SaudHealthUniversity").getValue(UniversitiesModel.class);
-                ImamAbdulrahman = dataSnapshot.child("ImamAbdulrahmanUniversity").getValue(UniversitiesModel.class);
-                NorthernBorders = dataSnapshot.child("NorthernBordersUniversity").getValue(UniversitiesModel.class);
-                SaudiElectronic = dataSnapshot.child("SaudiElectronicUniversity").getValue(UniversitiesModel.class);
-                progressDialog.dismiss();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d("DatabaseError", databaseError.getMessage());
+            public void onAnimationEnd(Drawable drawable) {
+                vectorDrawable.start();
             }
         });
     }
 
     private void UniversityButtons() {
-        mHailUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Hail);
-            }
-        });
         mSaudUniversity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData(Saud);
-            }
-        });
-        mTaifUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Taif);
-            }
-        });
-        mFahdUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Fahd);
-            }
-        });
-        mJoufUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Jouf);
-            }
-        });
-        mNoraUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Nora);
-            }
-        });
-        mBishaUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Bisha);
-            }
-        });
-        mJazanUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Jazan);
-            }
-        });
-        mTabukUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Tabuk);
-            }
-        });
-        mShaqraUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Shaqra);
+                DatabaseManagement(University[0]);
             }
         });
         mSattamUniversity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData(Sattam);
+                DatabaseManagement(University[1]);
             }
         });
-        mQassimUniversity.setOnClickListener(new View.OnClickListener() {
+        mNoraUniversity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData(Qassim);
-            }
-        });
-        mAlQuraUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(AlQura);
-            }
-        });
-        mKhalidUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Khalid);
-            }
-        });
-        mNajranUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Najran);
-            }
-        });
-        mAlbahaUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Albaha);
-            }
-        });
-        mFaisalUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Faisal);
-            }
-        });
-        mTaibahUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Taibah);
-            }
-        });
-        mJeddahUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Jeddah);
-            }
-        });
-        mIslamicUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Islamic);
-            }
-        });
-        mMajmaahUniversity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(Majmaah);
+                DatabaseManagement(University[2]);
             }
         });
         mImamUniversity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData(ImamIslamic);
+                DatabaseManagement(University[3]);
             }
         });
-        mHafrBatinUniversity.setOnClickListener(new View.OnClickListener() {
+        mQassimUniversity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData(HafrBatin);
+                DatabaseManagement(University[4]);
             }
         });
-        mAbdulazizUniversity.setOnClickListener(new View.OnClickListener() {
+        mHailUniversity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData(Abdulaziz);
+                DatabaseManagement(University[5]);
             }
         });
-        mSaudHealthUniversity.setOnClickListener(new View.OnClickListener() {
+        mShaqraUniversity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData(SaudHealth);
+                DatabaseManagement(University[6]);
+            }
+        });
+        mMajmaahUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManagement(University[7]);
             }
         });
         mSaudiElectronicUniversity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData(SaudiElectronic);
+                DatabaseManagement(University[8]);
+            }
+        });
+        mSaudHealthUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManagement(University[9]);
+            }
+        });
+        mJeddahUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManagement(University[10]);
+            }
+        });
+        mAbdulazizUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManagement(University[11]);
+            }
+        });
+        mAlQuraUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManagement(University[12]);
+            }
+        });
+        mTaifUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManagement(University[13]);
+            }
+        });
+        mTaibahUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManagement(University[14]);
+            }
+        });
+        mIslamicUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManagement(University[15]);
+            }
+        });
+        mFahdUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManagement(University[16]);
+            }
+        });
+        mFaisalUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManagement(University[17]);
             }
         });
         mImamAbdulrahmanUniversity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData(ImamAbdulrahman);
+                DatabaseManagement(University[18]);
+            }
+        });
+        mHafrBatinUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManagement(University[19]);
+            }
+        });
+        mJoufUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManagement(University[20]);
+            }
+        });
+        mTabukUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManagement(University[21]);
             }
         });
         mNorthernBordersUniversity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData(NorthernBorders);
+                DatabaseManagement(University[22]);
+            }
+        });
+        mAlbahaUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManagement(University[23]);
+            }
+        });
+        mNajranUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManagement(University[24]);
+            }
+        });
+        mKhalidUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManagement(University[25]);
+            }
+        });
+        mJazanUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManagement(University[26]);
+            }
+        });
+        mBishaUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManagement(University[27]);
+            }
+        });
+    }
+
+    private void DatabaseManagement(final String model) {
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                progressDialog = new ProgressDialog(getActivity());
+                progressDialog.show();
+                progressDialog.setCancelable(false);
+                progressDialog.setMessage("Please Wait...");
+                progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.GRAY));
+
+                UniversitiesModel University;
+                University = dataSnapshot.child(model+"University").getValue(UniversitiesModel.class);
+
+                progressDialog.dismiss();
+                if(University != null){
+                    getData(University);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("DatabaseError", databaseError.getMessage());
             }
         });
     }
