@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/SplashImage"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:src="@drawable/splash_animation_image"/>
 
     <TextView

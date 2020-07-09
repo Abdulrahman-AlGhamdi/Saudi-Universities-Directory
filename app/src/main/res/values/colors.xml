@@ -6,6 +6,7 @@
 
     // App Colors
     <color name="Red">#e84c3d</color>
+    <color name="Pink">#bb6883</color>
     <color name="Blue">#00949b</color>
     <color name="Gray">#666666</color>
     <color name="Black">#000000</color>

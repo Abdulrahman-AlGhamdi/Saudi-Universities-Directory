@@ -8,8 +8,8 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="UniversityButton">
-        <item name="android:layout_width">0dp</item>
+    <style name="UniversityButtonStyle">
+        <item name="android:layout_width">250dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="textAllCaps">false</item>
         <item name="android:padding">10dp</item>
@@ -19,7 +19,24 @@
         <item name="android:layout_marginRight">5dp</item>
         <item name="android:textColor">@color/Beige</item>
         <item name="fontFamily">@font/questv_regular</item>
-        <item name="background">@drawable/universities_button_design</item>
+    </style>
+
+    <style name="InfoButtonStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:textColor">@color/Beige</item>
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/questv_regular</item>
+    </style>
+
+    <style name="SocialMediaImageStyle">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
     </style>
 
 </resources>

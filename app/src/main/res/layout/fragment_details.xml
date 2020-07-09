@@ -58,54 +58,34 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
-                android:layout_marginTop="20dp"
                 android:id="@+id/Website"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/website_button_design"
                 android:text="@string/website"
-                android:visibility="gone"
-                android:textColor="@color/Beige"
-                android:textSize="20sp"
-                android:fontFamily="@font/questv_regular"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                style="@style/InfoButtonStyle"
+                android:background="@drawable/website_button_design"/>
 
             <Button
-                android:layout_marginTop="20dp"
                 android:id="@+id/College"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/college_button_design"
                 android:text="@string/college"
-                android:visibility="gone"
-                android:textColor="@color/Beige"
-                android:textSize="20sp"
-                android:fontFamily="@font/questv_regular" />
+                style="@style/InfoButtonStyle"
+                android:background="@drawable/college_button_design" />
 
             <Button
-                android:layout_marginTop="20dp"
                 android:id="@+id/RSS"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/news_button_design"
                 android:text="@string/news"
-                android:visibility="gone"
-                android:textColor="@color/Beige"
-                android:textSize="20sp"
-                android:fontFamily="@font/questv_regular"/>
+                style="@style/InfoButtonStyle"
+                android:background="@drawable/news_button_design" />
+
+            <Button
+                android:id="@+id/Application"
+                android:text="@string/Application"
+                style="@style/InfoButtonStyle"
+                android:background="@drawable/application_button_design" />
 
             <Button
                 android:id="@+id/Location"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/location_button_design"
                 android:text="@string/location"
-                android:textColor="@color/Beige"
-                android:textSize="20sp"
-                android:visibility="gone"
-                android:fontFamily="@font/questv_regular"
-                android:layout_marginTop="20dp"/>
+                style="@style/InfoButtonStyle"
+                android:background="@drawable/location_button_design"/>
 
             <LinearLayout
                 android:id="@+id/Communication"
@@ -138,51 +118,31 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/Instagram"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:visibility="gone"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginStart="5dp"
+                        style="@style/SocialMediaImageStyle"
                         android:src="@drawable/instagram_logo"
                         app:civ_circle_background_color="@color/Instagram" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/Twitter"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginStart="5dp"
-                        android:visibility="gone"
+                        style="@style/SocialMediaImageStyle"
                         android:src="@drawable/twitter_logo"
                         app:civ_circle_background_color="@color/Twitter" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/Youtube"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:visibility="gone"
+                        style="@style/SocialMediaImageStyle"
                         android:src="@drawable/youtube_logo"
                         app:civ_circle_background_color="@color/Youtube" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/Facebook"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:visibility="gone"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginStart="5dp"
+                        style="@style/SocialMediaImageStyle"
                         android:src="@drawable/facebook_logo"
                         app:civ_circle_background_color="@color/Facebook" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/Snapchat"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:visibility="gone"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginStart="5dp"
+                        style="@style/SocialMediaImageStyle"
                         android:src="@drawable/snapchat_logo"
                         app:civ_circle_background_color="@color/Snapchat" />
                 </LinearLayout>

@@ -23,7 +23,7 @@ public class DetailsFragment extends Fragment {
     private TextView mAbout;
     private Fragment fragment;
     private LinearLayout mCommunication;
-    private Button mCollage, mWebsite, mRSS, mLocation;
+    private Button mCollage, mWebsite, mRSS, mLocation, mApplication;
     private ImageView Twitter, Facebook, Youtube, Instagram, Snapchat;
 
     @Override
@@ -49,6 +49,7 @@ public class DetailsFragment extends Fragment {
         Facebook = view.findViewById(R.id.Facebook);
         mLocation = view.findViewById(R.id.Location);
         Instagram = view.findViewById(R.id.Instagram);
+        mApplication = view.findViewById(R.id.Application);
         mCommunication = view.findViewById(R.id.Communication);
     }
 
@@ -59,21 +60,6 @@ public class DetailsFragment extends Fragment {
 
         if(bundle.getString("About") != null){
             mAbout.setText(bundle.getString("About"));
-        }
-
-        if(bundle.getString("Website") != null){
-            mWebsite.setVisibility(View.VISIBLE);
-            mWebsite.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    fragment = new WebsiteFragment();
-                    bundle.putString("WebsiteShow", bundle.getString("Website"));
-                    fragment.setArguments(bundle);
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
-                    transaction.replace(R.id.Container, fragment).addToBackStack(null).commit();
-                }
-            });
         }
 
         if(bundle.getString("College") != null){
@@ -102,6 +88,26 @@ public class DetailsFragment extends Fragment {
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
                     transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
                     transaction.replace(R.id.Container, fragment).addToBackStack(null).commit();
+                }
+            });
+        }
+
+        if(bundle.getString("Website") != null){
+            mWebsite.setVisibility(View.VISIBLE);
+            mWebsite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_VIEW , Uri.parse(bundle.getString("Website"))));
+                }
+            });
+        }
+
+        if(bundle.getString("Application") != null){
+            mApplication.setVisibility(View.VISIBLE);
+            mApplication.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_VIEW , Uri.parse(bundle.getString("Application"))));
                 }
             });
         }

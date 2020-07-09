@@ -1,10 +1,7 @@
 package com.ss.universitiesdirectory.Fragment;
 
-import android.app.ProgressDialog;
-import android.graphics.Color;
 import android.graphics.drawable.Animatable2;
 import android.graphics.drawable.AnimatedVectorDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -34,7 +31,6 @@ public class UniversitiesFragment extends Fragment {
     private String[] University;
     private ImageView mMainImage;
     private DatabaseReference reference;
-    private ProgressDialog progressDialog;
     private AnimatedVectorDrawable vectorDrawable;
     private Button mSattamUniversity, mSaudUniversity, mAlQuraUniversity, mNoraUniversity, mImamUniversity,
             mQassimUniversity, mHailUniversity, mShaqraUniversity, mMajmaahUniversity,
@@ -322,16 +318,10 @@ public class UniversitiesFragment extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                progressDialog = new ProgressDialog(getActivity());
-                progressDialog.show();
-                progressDialog.setCancelable(false);
-                progressDialog.setMessage("Please Wait...");
-                progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.GRAY));
 
                 UniversitiesModel University;
                 University = dataSnapshot.child(model+"University").getValue(UniversitiesModel.class);
 
-                progressDialog.dismiss();
                 if(University != null){
                     getData(University);
                 }
@@ -378,6 +368,9 @@ public class UniversitiesFragment extends Fragment {
         }
         if(model.getInstagram() != null){
             bundle.putString("Instagram", model.getInstagram());
+        }
+        if(model.getApplication() != null){
+            bundle.putString("Application", model.getApplication());
         }
         if(bundle != null){
             fragment.setArguments(bundle);
