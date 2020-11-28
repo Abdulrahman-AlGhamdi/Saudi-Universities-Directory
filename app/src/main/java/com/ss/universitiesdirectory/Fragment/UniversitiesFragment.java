@@ -16,6 +16,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -54,6 +56,7 @@ public class UniversitiesFragment extends Fragment {
     private void init() {
         bundle = new Bundle();
         mMainImage = view.findViewById(R.id.MainImage);
+        FirebaseApp.initializeApp(getContext());
         reference = FirebaseDatabase.getInstance().getReference();
         Animation appearAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.appear_animation);
         mMainImage.setAnimation(appearAnimation);
