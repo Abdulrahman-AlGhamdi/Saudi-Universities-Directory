@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,22 +7,21 @@
     tools:context=".Fragment.UniversitiesFragment">
 
     <ImageView
-        android:layout_marginTop="20dp"
-        android:id="@+id/MainImage"
+        android:id="@+id/university_logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:repeatCount="infinite"
         android:repeatMode="restart"
         android:src="@drawable/main_animation_image"
-        android:tint="@color/Black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription"/>
+        tools:ignore="ContentDescription" />
 
     <ScrollView
-        android:id="@+id/HomeScrollView"
+        android:id="@+id/university_scrollview"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="25dp"
@@ -31,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MainImage"
+        app:layout_constraintTop_toBottomOf="@+id/university_logo"
         app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
@@ -49,7 +47,7 @@
                 android:textSize="20sp" />
 
             <HorizontalScrollView
-                android:id="@+id/CentreScroll"
+                android:id="@+id/centre_universities_scrollview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none">
@@ -65,13 +63,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/SaudiElectronicUniversity"
+                            android:id="@+id/saudi_electronic_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/saudi_electronic_university" />
 
                         <Button
-                            android:id="@+id/SaudHealthUniversity"
+                            android:id="@+id/saud_health_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/saud_health_university" />
@@ -83,13 +81,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/ShaqraUniversity"
+                            android:id="@+id/shaqra_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/shaqra_university" />
 
                         <Button
-                            android:id="@+id/MajmaahUniversity"
+                            android:id="@+id/majmaah_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/majmaah_university" />
@@ -101,13 +99,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/QassimUniversity"
+                            android:id="@+id/qassim_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/qassim_university" />
 
                         <Button
-                            android:id="@+id/HailUniversity"
+                            android:id="@+id/hail_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/hail_university" />
@@ -119,13 +117,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/NoraUniversity"
+                            android:id="@+id/nora_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/nora_university" />
 
                         <Button
-                            android:id="@+id/ImamUniversity"
+                            android:id="@+id/imam_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/imam_university" />
@@ -137,13 +135,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/SaudUniversity"
+                            android:id="@+id/saud_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/suad_university" />
 
                         <Button
-                            android:id="@+id/SattamUniversity"
+                            android:id="@+id/sattam_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/sattam_university" />
@@ -161,7 +159,7 @@
                 android:textSize="20sp" />
 
             <HorizontalScrollView
-                android:id="@+id/WestScroll"
+                android:id="@+id/west_universities_scrollview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none">
@@ -177,13 +175,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/TaibahUniversity"
+                            android:id="@+id/taibah_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/taibah_university" />
 
                         <Button
-                            android:id="@+id/IslamicUniversity"
+                            android:id="@+id/islamic_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/islamic_university" />
@@ -195,13 +193,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/AlQuraUniversity"
+                            android:id="@+id/alqura_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/alqura_university" />
 
                         <Button
-                            android:id="@+id/TaifUniversity"
+                            android:id="@+id/taif_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/taif_university" />
@@ -213,13 +211,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/JeddahUniversity"
+                            android:id="@+id/jeddah_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/jeddah_university" />
 
                         <Button
-                            android:id="@+id/AbdulazizUniversity"
+                            android:id="@+id/abdulaziz_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/abdulaziz_university" />
@@ -237,7 +235,7 @@
                 android:textSize="20sp" />
 
             <HorizontalScrollView
-                android:id="@+id/EastScroll"
+                android:id="@+id/east_universities_scrollview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none">
@@ -253,13 +251,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/ImamAbdulrahmanUniversity"
+                            android:id="@+id/imam_abdulrahman_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/imam_abdulrahman_university" />
 
                         <Button
-                            android:id="@+id/HafrBatinUniversity"
+                            android:id="@+id/hafr_batin_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/hafr_batin_university" />
@@ -271,13 +269,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/FahdUniversity"
+                            android:id="@+id/fahd_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/fahd_university" />
 
                         <Button
-                            android:id="@+id/FaisalUniversity"
+                            android:id="@+id/faisal_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/faisal_university" />
@@ -295,7 +293,7 @@
                 android:textSize="20sp" />
 
             <HorizontalScrollView
-                android:id="@+id/NorthScroll"
+                android:id="@+id/north_universities_scrollview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none">
@@ -311,7 +309,7 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/NorthernBordersUniversity"
+                            android:id="@+id/norhern_borders_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/northern_borders_university" />
@@ -323,13 +321,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/JoufUniversity"
+                            android:id="@+id/jouf_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/jouf_university" />
 
                         <Button
-                            android:id="@+id/TabukUniversity"
+                            android:id="@+id/tabuk_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/tabuk_university" />
@@ -347,7 +345,7 @@
                 android:textSize="20sp" />
 
             <HorizontalScrollView
-                android:id="@+id/SouthScroll"
+                android:id="@+id/south_universities_scrollview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none">
@@ -363,7 +361,7 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/BishaUniversity"
+                            android:id="@+id/bisha_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/bisha_university" />
@@ -375,13 +373,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/KhalidUniversity"
+                            android:id="@+id/khalid_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/khalid_university" />
 
                         <Button
-                            android:id="@+id/JazanUniversity"
+                            android:id="@+id/jazan_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/jazan_university" />
@@ -393,13 +391,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/AlbahaUniversity"
+                            android:id="@+id/albaha_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/albaha_university" />
 
                         <Button
-                            android:id="@+id/NajranUniversity"
+                            android:id="@+id/najran_university"
                             style="@style/UniversityButtonStyle"
                             android:background="@drawable/universities_button_design"
                             android:text="@string/najran_university" />

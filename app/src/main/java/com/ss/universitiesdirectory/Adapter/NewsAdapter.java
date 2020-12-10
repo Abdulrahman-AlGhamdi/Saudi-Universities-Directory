@@ -156,9 +156,9 @@ public class NewsAdapter extends BaseAdapter {
                     bundle.putString("NewsShow", model.getLink());
                     fragment.setArguments(bundle);
                 }
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
-                transaction.replace(R.id.Container, fragment).addToBackStack(null).commit();
+//                FragmentTransaction transaction = manager.beginTransaction();
+//                transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
+//                transaction.replace(R.id.Container, fragment).addToBackStack(null).commit();
             }
         });
 
