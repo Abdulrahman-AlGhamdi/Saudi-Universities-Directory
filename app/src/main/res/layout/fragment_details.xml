@@ -8,7 +8,7 @@
     tools:context=".Fragment.DetailsFragment">
 
     <ImageView
-        android:id="@+id/Logo"
+        android:id="@+id/details_logo"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +22,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Logo">
+        app:layout_constraintTop_toBottomOf="@+id/details_logo">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/AboutUniversity"
+                    android:id="@+id/about_university"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/about"
@@ -46,7 +46,7 @@
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
-                    android:id="@+id/AboutText"
+                    android:id="@+id/details_about"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -54,41 +54,41 @@
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/AboutUniversity" />
+                    app:layout_constraintTop_toBottomOf="@+id/about_university" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
-                android:id="@+id/Website"
+                android:id="@+id/details_website"
                 android:text="@string/website"
                 style="@style/InfoButtonStyle"
                 android:background="@drawable/website_button_design"/>
 
             <Button
-                android:id="@+id/College"
+                android:id="@+id/details_college"
                 android:text="@string/college"
                 style="@style/InfoButtonStyle"
                 android:background="@drawable/college_button_design" />
 
             <Button
-                android:id="@+id/RSS"
+                android:id="@+id/details_rss"
                 android:text="@string/news"
                 style="@style/InfoButtonStyle"
                 android:background="@drawable/news_button_design" />
 
             <Button
-                android:id="@+id/Application"
+                android:id="@+id/details_application"
                 android:text="@string/Application"
                 style="@style/InfoButtonStyle"
                 android:background="@drawable/application_button_design" />
 
             <Button
-                android:id="@+id/Location"
+                android:id="@+id/details_location"
                 android:text="@string/location"
                 style="@style/InfoButtonStyle"
                 android:background="@drawable/location_button_design"/>
 
             <LinearLayout
-                android:id="@+id/Communication"
+                android:id="@+id/details_communication"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
@@ -117,31 +117,31 @@
                     android:gravity="center">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/Instagram"
+                        android:id="@+id/details_instagram"
                         style="@style/SocialMediaImageStyle"
                         android:src="@drawable/instagram_logo"
                         app:civ_circle_background_color="@color/Instagram" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/Twitter"
+                        android:id="@+id/details_twitter"
                         style="@style/SocialMediaImageStyle"
                         android:src="@drawable/twitter_logo"
                         app:civ_circle_background_color="@color/Twitter" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/Youtube"
+                        android:id="@+id/details_youtube"
                         style="@style/SocialMediaImageStyle"
                         android:src="@drawable/youtube_logo"
                         app:civ_circle_background_color="@color/Youtube" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/Facebook"
+                        android:id="@+id/details_facebook"
                         style="@style/SocialMediaImageStyle"
                         android:src="@drawable/facebook_logo"
                         app:civ_circle_background_color="@color/Facebook" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/Snapchat"
+                        android:id="@+id/details_snapchat"
                         style="@style/SocialMediaImageStyle"
                         android:src="@drawable/snapchat_logo"
                         app:civ_circle_background_color="@color/Snapchat" />

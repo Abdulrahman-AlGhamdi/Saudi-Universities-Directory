@@ -10,7 +10,6 @@
         android:id="@+id/university_logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:repeatCount="infinite"
         android:repeatMode="restart"
@@ -22,26 +21,25 @@
 
     <ScrollView
         android:id="@+id/university_scrollview"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/university_logo"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/university_logo">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
                 android:fontFamily="@font/questv_regular"
                 android:text="@string/CentralRegion"
                 android:textSize="20sp" />
@@ -154,6 +152,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
                 android:fontFamily="@font/questv_regular"
                 android:text="@string/WestRegion"
                 android:textSize="20sp" />
@@ -230,6 +229,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
                 android:fontFamily="@font/questv_regular"
                 android:text="@string/EastRegion"
                 android:textSize="20sp" />
@@ -288,6 +288,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
                 android:fontFamily="@font/questv_regular"
                 android:text="@string/NorthRegion"
                 android:textSize="20sp" />
@@ -340,6 +341,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
                 android:fontFamily="@font/questv_regular"
                 android:text="@string/SouthRegion"
                 android:textSize="20sp" />
@@ -348,6 +350,7 @@
                 android:id="@+id/south_universities_scrollview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:scrollbars="none">
 
                 <LinearLayout

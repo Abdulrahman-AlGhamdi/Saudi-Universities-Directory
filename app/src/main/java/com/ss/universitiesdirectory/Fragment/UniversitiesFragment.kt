@@ -4,7 +4,6 @@ import android.graphics.drawable.Animatable2
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,11 +44,21 @@ class UniversitiesFragment : Fragment() {
                 "Majmaah", "SaudiElectronic", "SaudHealth", "Jeddah", "Abdulaziz", "UmmAlQura",
                 "Taif", "Taibah", "Islamic", "Fahd", "Faisal", "ImamAbdulrahman", "HafrBatin",
                 "Jouf", "Tabuk", "NorthernBorders", "Albaha", "Najran", "Khalid", "Jazan", "Bisha")
-        binding.centreUniversitiesScrollview.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
-        binding.westUniversitiesScrollview.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
-        binding.eastUniversitiesScrollview.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
-        binding.northUniversitiesScrollview.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
-        binding.southUniversitiesScrollview.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
+        binding.centreUniversitiesScrollview.postDelayed({
+            binding.centreUniversitiesScrollview.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
+        }, 100L)
+        binding.westUniversitiesScrollview.postDelayed({
+            binding.westUniversitiesScrollview.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
+        }, 100L)
+        binding.eastUniversitiesScrollview.postDelayed({
+            binding.eastUniversitiesScrollview.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
+        }, 100L)
+        binding.northUniversitiesScrollview.postDelayed({
+            binding.northUniversitiesScrollview.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
+        }, 100L)
+        binding.southUniversitiesScrollview.postDelayed({
+            binding.southUniversitiesScrollview.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
+        }, 100L)
     }
 
     private fun animations() {
@@ -153,9 +162,11 @@ class UniversitiesFragment : Fragment() {
         reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 findNavController().navigate(
-                        UniversitiesFragmentDirections.actionUniversitiesFragment3ToDetailsFragment(
-                                snapshot.child(model + "University").getValue(UniversitiesModel::class.java)!!
-                        )
+                        UniversitiesFragmentDirections
+                                .actionUniversitiesFragment3ToDetailsFragment(
+                                        snapshot.child(model + "University")
+                                                .getValue(UniversitiesModel::class.java)!!
+                                )
                 )
             }
 

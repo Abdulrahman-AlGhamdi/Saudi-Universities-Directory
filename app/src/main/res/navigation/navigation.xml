@@ -22,5 +22,17 @@
         <argument
             android:name="university"
             app:argType="com.ss.universitiesdirectory.Model.UniversitiesModel" />
+        <action
+            android:id="@+id/action_detailsFragment_to_websiteFragment"
+            app:destination="@id/websiteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/websiteFragment"
+        android:name="com.ss.universitiesdirectory.Fragment.WebsiteFragment"
+        android:label="fragment_website"
+        tools:layout="@layout/fragment_website" >
+        <argument
+            android:name="url"
+            app:argType="string" />
     </fragment>
 </navigation>
