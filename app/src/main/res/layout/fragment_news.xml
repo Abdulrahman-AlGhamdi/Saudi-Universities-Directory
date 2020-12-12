@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.NewsFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".UI.Fragment.NewsFragment">
 
-    <ListView
-        android:id="@+id/NewsList"
-        android:paddingTop="10dp"
-        android:paddingHorizontal="10dp"
-        android:divider="@color/Beige"
-        android:dividerHeight="10dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/news_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 </LinearLayout>

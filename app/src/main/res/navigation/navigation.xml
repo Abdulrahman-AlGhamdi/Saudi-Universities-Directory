@@ -9,7 +9,7 @@
         android:id="@+id/splashFragment"
         android:name="com.ss.universitiesdirectory.Fragment.SplashFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_universitiesFragment"
             app:destination="@id/universitiesFragment"
@@ -21,7 +21,7 @@
         android:id="@+id/universitiesFragment"
         android:name="com.ss.universitiesdirectory.Fragment.UniversitiesFragment"
         android:label="fragment_universities"
-        tools:layout="@layout/fragment_universities" >
+        tools:layout="@layout/fragment_universities">
         <action
             android:id="@+id/action_universitiesFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
@@ -30,21 +30,33 @@
         android:id="@+id/detailsFragment"
         android:name="com.ss.universitiesdirectory.Fragment.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" >
+        tools:layout="@layout/fragment_details">
         <argument
             android:name="university"
             app:argType="com.ss.universitiesdirectory.Model.UniversitiesModel" />
         <action
             android:id="@+id/action_detailsFragment_to_websiteFragment"
             app:destination="@id/websiteFragment" />
+        <action
+            android:id="@+id/action_detailsFragment_to_newsFragment"
+            app:destination="@id/newsFragment" />
     </fragment>
     <fragment
         android:id="@+id/websiteFragment"
         android:name="com.ss.universitiesdirectory.Fragment.WebsiteFragment"
         android:label="fragment_website"
-        tools:layout="@layout/fragment_website" >
+        tools:layout="@layout/fragment_website">
         <argument
             android:name="url"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.ss.universitiesdirectory.UI.Fragment.NewsFragment"
+        android:label="NewsFragment"
+        tools:layout="@layout/fragment_news" >
+        <argument
+            android:name="rssUrl"
             app:argType="string" />
     </fragment>
 </navigation>

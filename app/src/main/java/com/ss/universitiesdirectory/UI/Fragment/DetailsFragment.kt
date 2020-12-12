@@ -47,7 +47,7 @@ class DetailsFragment : Fragment() {
             binding.detailsRss.visibility = View.VISIBLE
             binding.detailsRss.setOnClickListener {
                 findNavController().navigate(
-                        DetailsFragmentDirections.actionDetailsFragmentToWebsiteFragment(
+                        DetailsFragmentDirections.actionDetailsFragmentToNewsFragment(
                                 university.News
                         )
                 )
