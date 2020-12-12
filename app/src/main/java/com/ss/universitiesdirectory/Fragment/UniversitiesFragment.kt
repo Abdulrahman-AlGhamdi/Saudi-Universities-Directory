@@ -163,7 +163,7 @@ class UniversitiesFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 findNavController().navigate(
                         UniversitiesFragmentDirections
-                                .actionUniversitiesFragment3ToDetailsFragment(
+                                .actionUniversitiesFragmentToDetailsFragment(
                                         snapshot.child(model + "University")
                                                 .getValue(UniversitiesModel::class.java)!!
                                 )

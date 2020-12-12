@@ -6,7 +6,7 @@
     <string name="website">الموقع</string>
     <string name="college">الكليات</string>
     <string name="location">الخريطة</string>
-    <string name="about">عن الجامعه:</string>
+    <string name="about">عن الجامعة:</string>
     <string name="Application">التطبيق</string>
     <string name="communication">التواصل</string>
 
@@ -46,6 +46,4 @@
     <string name="northern_borders_university">جامعة الحدود الشمالية</string>
     <string name="imam_abdulrahman_university">جامعة الإمام عبدالرحمن</string>
     <string name="saudi_electronic_university">الجامعة السعودية الإلكترونية</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

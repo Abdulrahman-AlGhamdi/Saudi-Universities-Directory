@@ -3,15 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/universitiesFragment3">
+    app:startDestination="@id/splashFragment">
 
     <fragment
-        android:id="@+id/universitiesFragment3"
+        android:id="@+id/splashFragment"
+        android:name="com.ss.universitiesdirectory.Fragment.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_universitiesFragment"
+            app:destination="@id/universitiesFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/universitiesFragment"
         android:name="com.ss.universitiesdirectory.Fragment.UniversitiesFragment"
         android:label="fragment_universities"
         tools:layout="@layout/fragment_universities" >
         <action
-            android:id="@+id/action_universitiesFragment3_to_detailsFragment"
+            android:id="@+id/action_universitiesFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
