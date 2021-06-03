@@ -1,49 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">دليل الجامعات السعودية</string>
+    <!-- Application Name -->
+    <string name="app_name">Universities Directory</string>
 
-    // App Strings
-    <string name="news">الأخبار</string>
-    <string name="website">الموقع</string>
-    <string name="college">الكليات</string>
-    <string name="location">الخريطة</string>
-    <string name="about">عن الجامعة:</string>
-    <string name="Application">التطبيق</string>
-    <string name="communication">التواصل</string>
+    <!-- Fragments Names -->
+    <string name="fragment_universities">Universities</string>
+    <string name="fragment_details">Details</string>
+    <string name="fragment_website">Website</string>
+    <string name="fragment_news">News</string>
+    <string name="fragment_settings">Settings</string>
 
-    // Region Strings
-    <string name="WestRegion">جامعات المنطقة الغربية</string>
-    <string name="EastRegion">جامعات المنطقة الشرقية</string>
-    <string name="SouthRegion">جامعات المنطقة الجنوبية</string>
-    <string name="NorthRegion">جامعات المنطقة الشمالية</string>
-    <string name="CentralRegion">جامعات المنطقة الوسطى</string>
+    <!-- Details Strings -->
+    <string name="news">News</string>
+    <string name="website">Website</string>
+    <string name="colleges">Colleges</string>
+    <string name="location">Location</string>
+    <string name="about">About University:</string>
+    <string name="Application">Application</string>
+    <string name="communication">Communication:</string>
+    <string name="search">Search</string>
+    <string name="settings">Settings</string>
+    <string name="message">Made with %1$s Abdulrahman Al-Ghamdi</string>
 
-    // Universities Strings
-    <string name="hail_university">جامعة حائل</string>
-    <string name="bisha_university">جامعة بيشة</string>
-    <string name="jouf_university">جامعة الجوف</string>
-    <string name="tabuk_university">جامعة تبوك</string>
-    <string name="taif_university">جامعة الطائف</string>
-    <string name="jazan_university">جامعة جازان</string>
-    <string name="jeddah_university">جامعة جدة</string>
-    <string name="fahd_university">جامعة الملك فهد</string>
-    <string name="taibah_university">جامعة طيبه</string>
-    <string name="qassim_university">جامعة القصيم</string>
-    <string name="suad_university">جامعة الملك سعود</string>
-    <string name="albaha_university">جامعة الباحة</string>
-    <string name="najran_university">جامعة نجران</string>
-    <string name="shaqra_university">جامعة شقراء</string>
-    <string name="majmaah_university">جامعة المجمعة</string>
-    <string name="nora_university">جامعة الأميرة نورة</string>
-    <string name="alqura_university">جامعة أم القرى</string>
-    <string name="khalid_university">جامعة الملك خالد</string>
-    <string name="faisal_university">جامعة الملك فيصل</string>
-    <string name="islamic_university">الجامعة الإسلامية</string>
-    <string name="imam_university">جامعة الإمام الإسلامية</string>
-    <string name="sattam_university">جامعة الامير سطام</string>
-    <string name="hafr_batin_university">جامعة حفر الباطن</string>
-    <string name="abdulaziz_university">جامعة الملك عبدالعزيز</string>
-    <string name="saud_health_university">جامعة الملك سعود الصحية</string>
-    <string name="northern_borders_university">جامعة الحدود الشمالية</string>
-    <string name="imam_abdulrahman_university">جامعة الإمام عبدالرحمن</string>
-    <string name="saudi_electronic_university">الجامعة السعودية الإلكترونية</string>
+    <!-- Settings Preference Strings -->
+    <string name="preference_application_configuration">Application Configuration</string>
+    <string name="preference_about">About</string>
+    <string name="preference_dark_mode_title">Dark Mode</string>
+    <string name="preference_dark_mode_key" translatable="false">dark mode key</string>
+    <string name="preference_dark_mode_summary_on">Dark mode is enabled</string>
+    <string name="preference_dark_mode_summary_off">Dark mode is disabled</string>
+    <string name="preference_language_title">Language</string>
+    <string name="preference_language_key" translatable="false">language key</string>
+    <string name="preference_language_summary_on">Arabic</string>
+    <string name="preference_language_summary_off">English</string>
+    <string name="preference_contact_me_key" translatable="false">contact me</string>
+    <string name="preference_contact_me_title">Contact Me</string>
+    <string name="preference_contact_me_summary">Any suggestions or issues please don\'t hesitate to contact me</string>
+    <string name="preference_version_key" translatable="false">version key</string>
+    <string name="preference_version_summary">%1$s (%2$d)</string>
+    <string name="preference_version_title">Application Version</string>
 </resources>
