@@ -1,6 +1,6 @@
 # Universities Directory
 
-The student is advised to know about the Saudi public universities affiliated to the Ministry of Education and it includes some information about these universities and their specialties.
+Get to know the saudi public universities affiliated to the ministry of education which includes informations about these universities and their specialties.
 
 The application contains:
 * 27 public universities.
