@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.SplashFragment"
-    android:orientation="vertical"
     android:gravity="center"
-    android:padding="15dp">
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".ui.splash.SplashFragment">
 
     <ImageView
         android:id="@+id/splash_logo"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/splash_animation_image"/>
+        android:src="@drawable/splash_animation_image"
+        app:layout_constraintBottom_toTopOf="@+id/splash_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/splash_title"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="@string/app_name"
-        android:fontFamily="@font/questv_regular"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="#000000"
-        android:textSize="30sp"/>
-</LinearLayout>
+        android:text="@string/app_name"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

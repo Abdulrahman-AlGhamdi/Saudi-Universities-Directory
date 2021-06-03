@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Application Name -->
+    <string name="app_name">دليل الجامعات السعودية</string>
+
+    <!-- Fragments Names -->
+    <string name="fragment_universities">الجامعات</string>
+    <string name="fragment_details">تفاصيل</string>
+    <string name="fragment_website">الموقع</string>
+    <string name="fragment_news">أخبار</string>
+    <string name="fragment_settings">الإعدادات</string>
+
+    <!-- Fragments Names -->
+    <string name="news">الأخبار</string>
+    <string name="website">الموقع</string>
+    <string name="colleges">الكليات</string>
+    <string name="location">الخريطة</string>
+    <string name="about">عن الجامعة:</string>
+    <string name="Application">التطبيق</string>
+    <string name="communication">التواصل:</string>
+    <string name="search">بحث</string>
+    <string name="settings">الإعدادات</string>
+    <string name="message">صنع بـ %1$s عبدالرحمن الغامدي</string>
+
+    <!-- Settings Preference Strings -->
+    <string name="preference_application_configuration">إعدادات التطبيق</string>
+    <string name="preference_about">حول</string>
+    <string name="preference_dark_mode_title">الوضع الليلي</string>
+    <string name="preference_dark_mode_summary_on">الوضع الليلي مفعل</string>
+    <string name="preference_dark_mode_summary_off">الوضع الليلي غير مفعل</string>
+    <string name="preference_language_title">اللغة</string>
+    <string name="preference_language_summary_on">عربي</string>
+    <string name="preference_language_summary_off">إنجليزي</string>
+    <string name="preference_contact_me_title">تواصل معي</string>
+    <string name="preference_contact_me_summary">أي اقتراحات او مشاكل من فضلك لا تتردد في التواصل معي</string>
+    <string name="preference_version_summary">%1$s (%2$d)</string>
+    <string name="preference_version_title">اصدار التطبيق</string>
+</resources>

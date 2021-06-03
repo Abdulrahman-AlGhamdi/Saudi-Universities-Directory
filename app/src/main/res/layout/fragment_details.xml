@@ -1,152 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.DetailsFragment">
+    tools:context=".ui.details.DetailsFragment">
 
     <ImageView
         android:id="@+id/details_logo"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:padding="10dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/details_logo">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:id="@+id/about_header"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:text="@string/about"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/about_university"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/about"
-                    android:textSize="20sp"
-                    android:textColor="@color/Black"
-                    android:fontFamily="@font/questv_regular"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <TextView
-                    android:id="@+id/details_about"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/questv_regular"
-                    android:textSize="15sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/about_university" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quest_regular"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/about_header" />
 
             <Button
-                android:id="@+id/details_website"
+                android:id="@+id/website"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/red"
                 android:text="@string/website"
-                style="@style/InfoButtonStyle"
-                android:background="@drawable/website_button_design"/>
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/about" />
 
             <Button
-                android:id="@+id/details_college"
-                android:text="@string/college"
-                style="@style/InfoButtonStyle"
-                android:background="@drawable/college_button_design" />
+                android:id="@+id/colleges"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple"
+                android:text="@string/colleges"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/website" />
 
             <Button
-                android:id="@+id/details_rss"
+                android:id="@+id/rss"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/yellow"
                 android:text="@string/news"
-                style="@style/InfoButtonStyle"
-                android:background="@drawable/news_button_design" />
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/colleges" />
 
             <Button
                 android:id="@+id/details_application"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/pink"
                 android:text="@string/Application"
-                style="@style/InfoButtonStyle"
-                android:background="@drawable/application_button_design" />
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rss" />
 
             <Button
                 android:id="@+id/details_location"
-                android:text="@string/location"
-                style="@style/InfoButtonStyle"
-                android:background="@drawable/location_button_design"/>
-
-            <LinearLayout
-                android:id="@+id/details_communication"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/blue"
+                android:text="@string/location"
                 android:visibility="gone"
-                android:layout_marginTop="20dp"
-                android:padding="10dp"
-                android:background="@drawable/communication_button_design"
-                android:orientation="vertical">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_application" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/communication"
-                    android:textColor="@color/Beige"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:fontFamily="@font/questv_regular"
-                    app:layout_constraintStart_toStartOf="parent"/>
+            <TextView
+                android:id="@+id/communication_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/communication"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_location" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+            <ImageButton
+                android:id="@+id/instagram"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/instagram"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_instagram"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/twitter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/communication_header" />
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/details_instagram"
-                        style="@style/SocialMediaImageStyle"
-                        android:src="@drawable/instagram_logo"
-                        app:civ_circle_background_color="@color/Instagram" />
+            <ImageButton
+                android:id="@+id/twitter"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/twitter"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_twitter"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/youtube"
+                app:layout_constraintStart_toEndOf="@+id/instagram"
+                app:layout_constraintTop_toBottomOf="@+id/communication_header" />
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/details_twitter"
-                        style="@style/SocialMediaImageStyle"
-                        android:src="@drawable/twitter_logo"
-                        app:civ_circle_background_color="@color/Twitter" />
+            <ImageButton
+                android:id="@+id/youtube"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/youtube"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_youtube"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/facebook"
+                app:layout_constraintStart_toEndOf="@+id/twitter"
+                app:layout_constraintTop_toBottomOf="@+id/communication_header" />
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/details_youtube"
-                        style="@style/SocialMediaImageStyle"
-                        android:src="@drawable/youtube_logo"
-                        app:civ_circle_background_color="@color/Youtube" />
+            <ImageButton
+                android:id="@+id/facebook"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/facebook"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_facebook"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/snapchat"
+                app:layout_constraintStart_toEndOf="@+id/youtube"
+                app:layout_constraintTop_toBottomOf="@+id/communication_header" />
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/details_facebook"
-                        style="@style/SocialMediaImageStyle"
-                        android:src="@drawable/facebook_logo"
-                        app:civ_circle_background_color="@color/Facebook" />
+            <ImageButton
+                android:id="@+id/snapchat"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/snapchat"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_snapchat"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/facebook"
+                app:layout_constraintTop_toBottomOf="@+id/communication_header" />
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/details_snapchat"
-                        style="@style/SocialMediaImageStyle"
-                        android:src="@drawable/snapchat_logo"
-                        app:civ_circle_background_color="@color/Snapchat" />
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
