@@ -2,6 +2,7 @@ package com.ss.universitiesdirectory.ui.universities
 
 import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.ConnectivityManager
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
@@ -15,6 +16,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.databinding.FragmentUniversitiesBinding
 import com.ss.universitiesdirectory.model.UniversityModel
+import com.ss.universitiesdirectory.ui.universities.UniversitiesFragment.ViewState.NO_INTERNET
+import com.ss.universitiesdirectory.ui.universities.UniversitiesFragment.ViewState.WITH_INTERNET
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
@@ -42,18 +45,10 @@ class UniversitiesFragment : Fragment() {
 
     private fun init() {
         val manager = requireActivity().getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
-        val capabilities = manager.getNetworkCapabilities(manager.activeNetwork)
-
-        if (capabilities != null) {
-            binding.noNetwork.visibility = View.GONE
-            binding.progress.visibility = View.VISIBLE
-            binding.message.text = getString(R.string.message, String(Character.toChars(0x2764)))
-            getUniversities()
-        } else {
-            binding.progress.visibility = View.GONE
-            binding.noNetwork.visibility = View.VISIBLE
-            binding.noNetwork.setOnClickListener { init() }
-        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val capabilities = manager.getNetworkCapabilities(manager.activeNetwork)
+            if (capabilities != null) customView(WITH_INTERNET) else customView(NO_INTERNET)
+        } else if (manager.activeNetworkInfo != null)  customView(WITH_INTERNET) else customView(NO_INTERNET)
     }
 
     private fun getUniversities() {
@@ -85,6 +80,27 @@ class UniversitiesFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun customView(state: ViewState) {
+        when (state) {
+            NO_INTERNET -> {
+                binding.progress.visibility = View.GONE
+                binding.noNetwork.visibility = View.VISIBLE
+                binding.noNetwork.setOnClickListener { init() }
+            }
+            WITH_INTERNET -> {
+                binding.noNetwork.visibility = View.GONE
+                binding.progress.visibility = View.VISIBLE
+                binding.message.text = getString(R.string.message, String(Character.toChars(0x2764)))
+                getUniversities()
+            }
+        }
+    }
+
+    enum class ViewState {
+        NO_INTERNET,
+        WITH_INTERNET
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
