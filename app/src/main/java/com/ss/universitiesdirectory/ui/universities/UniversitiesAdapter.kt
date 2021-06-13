@@ -70,8 +70,7 @@ class UniversitiesAdapter(
     override fun getItemCount() = universityList.size
 
     override fun getItemViewType(position: Int): Int {
-        return if (universityList[position]?.Province == true)
-            HEADER else LIST
+        return if (universityList[position]?.Province == true) HEADER else LIST
     }
 
     companion object {

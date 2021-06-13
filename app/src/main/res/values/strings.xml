@@ -20,6 +20,7 @@
     <string name="communication">Communication:</string>
     <string name="search">Search</string>
     <string name="settings">Settings</string>
+    <string name="no_result_found">No Result Found</string>
     <string name="message">Made with %1$s Abdulrahman Al-Ghamdi</string>
 
     <!-- Settings Preference Strings -->
