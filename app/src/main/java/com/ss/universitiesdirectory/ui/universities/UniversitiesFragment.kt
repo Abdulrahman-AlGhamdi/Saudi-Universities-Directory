@@ -51,7 +51,7 @@ class UniversitiesFragment : Fragment() {
 
         lifecycleScope.launchWhenCreated {
             viewModel.getUniversities().collect {
-                when(it) {
+                when (it) {
                     is UniversitiesRepository.UniversitiesState.Failed -> {
                         Snackbar.make(requireView(), it.message, Snackbar.LENGTH_SHORT).show()
                     }
@@ -85,7 +85,15 @@ class UniversitiesFragment : Fragment() {
                 val searchedList = universitiesList.filter {
                     it?.Name?.lowercase()?.contains(query)!!
                 }
-                binding.universitiesList.adapter = UniversitiesAdapter(searchedList)
+                if (searchedList.isEmpty()) {
+                    binding.noSearch.visibility = View.VISIBLE
+                    binding.universitiesList.visibility = View.GONE
+                }
+                else {
+                    binding.noSearch.visibility = View.GONE
+                    binding.universitiesList.visibility = View.VISIBLE
+                    binding.universitiesList.adapter = UniversitiesAdapter(searchedList)
+                }
                 return false
             }
 
@@ -93,14 +101,22 @@ class UniversitiesFragment : Fragment() {
                 val searchedList = universitiesList.filter {
                     it?.Name?.lowercase()?.contains(newText)!!
                 }
-                binding.universitiesList.adapter = UniversitiesAdapter(searchedList)
+                if (searchedList.isEmpty()) {
+                    binding.noSearch.visibility = View.VISIBLE
+                    binding.universitiesList.visibility = View.GONE
+                }
+                else {
+                    binding.noSearch.visibility = View.GONE
+                    binding.universitiesList.visibility = View.VISIBLE
+                    binding.universitiesList.adapter = UniversitiesAdapter(searchedList)
+                }
                 return false
             }
         })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_settings){
+        if (item.itemId == R.id.menu_settings) {
             val directions = UniversitiesFragmentDirections
             val action = directions.actionUniversitiesFragmentToSettingsFragment()
             findNavController().navigate(action)
