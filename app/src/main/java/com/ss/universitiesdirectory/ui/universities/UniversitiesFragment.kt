@@ -1,5 +1,7 @@
 package com.ss.universitiesdirectory.ui.universities
 
+import android.content.Context.CONNECTIVITY_SERVICE
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
@@ -39,8 +41,19 @@ class UniversitiesFragment : Fragment() {
     }
 
     private fun init() {
-        binding.message.text = getString(R.string.message, String(Character.toChars(0x2764)))
-        getUniversities()
+        val manager = requireActivity().getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val capabilities = manager.getNetworkCapabilities(manager.activeNetwork)
+
+        if (capabilities != null) {
+            binding.noNetwork.visibility = View.GONE
+            binding.progress.visibility = View.VISIBLE
+            binding.message.text = getString(R.string.message, String(Character.toChars(0x2764)))
+            getUniversities()
+        } else {
+            binding.progress.visibility = View.GONE
+            binding.noNetwork.visibility = View.VISIBLE
+            binding.noNetwork.setOnClickListener { init() }
+        }
     }
 
     private fun getUniversities() {

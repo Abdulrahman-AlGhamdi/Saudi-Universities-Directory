@@ -65,4 +65,18 @@
         android:visibility="gone"
         app:constraint_referenced_ids="no_search_image, no_search_text" />
 
+    <Button
+        android:id="@+id/no_network"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/no_internet_connection_retry"
+        android:src="@drawable/icon_no_search"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/colorPrimary" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
