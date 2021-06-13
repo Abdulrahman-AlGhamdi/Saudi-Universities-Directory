@@ -22,6 +22,7 @@
     <string name="settings">الإعدادات</string>
     <string name="message">صنع بـ %1$s عبدالرحمن الغامدي</string>
     <string name="no_result_found">لا توجد نتائج</string>
+    <string name="no_internet_connection_retry">لا يوجد إتصال بالإنترنت, أعد المحاولة…</string>
 
     <!-- Settings Preference Strings -->
     <string name="preference_application_configuration">إعدادات التطبيق</string>
