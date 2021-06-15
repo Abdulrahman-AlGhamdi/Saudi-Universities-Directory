@@ -1,5 +1,7 @@
 package com.ss.universitiesdirectory.ui.news
 
+import android.content.Context
+import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.model.NewsModel
 import com.ss.universitiesdirectory.utils.connectTo
 import kotlinx.coroutines.Dispatchers
@@ -10,7 +12,7 @@ import org.xmlpull.v1.XmlPullParserFactory
 import java.io.BufferedInputStream
 import java.net.HttpURLConnection
 
-class NewsRepository {
+class NewsRepository(private val context: Context) {
 
     fun downloadRssData(address: String) = flow {
         emit(NewsStatus.NewsLoading)
@@ -21,7 +23,7 @@ class NewsRepository {
                 emit(NewsStatus.NewsList(parseRssData(BufferedInputStream(httpConnection.inputStream))))
             }
             else emit(NewsStatus.NewsFailed(httpConnection.responseMessage))
-        } else emit(NewsStatus.NewsFailed("Connection Failed"))
+        } else emit(NewsStatus.NewsFailed(context.getString(R.string.connection_failed)))
     }.flowOn(Dispatchers.IO)
 
     private fun parseRssData(inputStream: BufferedInputStream) : List<NewsModel> {

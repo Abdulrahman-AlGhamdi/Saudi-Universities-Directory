@@ -40,7 +40,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
             intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("Abdulrahman.SS.AlGhamdi@Gmail.Com"))
             intent.putExtra(Intent.EXTRA_SUBJECT, "${requireContext().packageName}: suggestion/issue email")
             intent.type = "message/rfc822"
-            startActivity(Intent.createChooser(intent, "Sending Email"))
+            if (intent.resolveActivity(requireActivity().packageManager) != null)
+                startActivity(Intent.createChooser(intent, "Sending Email"))
             true
         }
     }
