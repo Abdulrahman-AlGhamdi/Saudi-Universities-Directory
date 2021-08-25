@@ -2,14 +2,14 @@ package com.ss.universitiesdirectory.ui.splash
 
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.ss.universitiesdirectory.databinding.FragmentSplashBinding
+import kotlinx.coroutines.delay
 
 class SplashFragment : Fragment() {
 
@@ -31,10 +31,12 @@ class SplashFragment : Fragment() {
     }
 
     private fun endSplash() {
-        Handler(Looper.getMainLooper()).postDelayed({
-            val action = SplashFragmentDirections.actionSplashFragmentToUniversitiesFragment()
+        lifecycleScope.launchWhenCreated {
+            delay(3500)
+            val directions = SplashFragmentDirections
+            val action = directions.actionSplashFragmentToUniversitiesFragment()
             findNavController().navigate(action)
-        }, 3500)
+        }
     }
 
     override fun onDestroyView() {
