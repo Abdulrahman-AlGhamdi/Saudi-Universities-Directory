@@ -1,6 +1,7 @@
-# Universities Directory
+# Saudi Universities Directory - Android
 
-Get to know the saudi public universities affiliated to the ministry of education which includes informations about these universities and their specialties.
+Get to know the saudi public universities affiliated to the ministry of education<br>
+which includes informations about these universities and their specialties.
 
 The application contains:
 * 27 public universities.
