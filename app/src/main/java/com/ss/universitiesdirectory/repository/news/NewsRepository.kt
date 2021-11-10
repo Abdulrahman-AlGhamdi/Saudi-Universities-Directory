@@ -1,4 +1,4 @@
-package com.ss.universitiesdirectory.ui.news
+package com.ss.universitiesdirectory.repository.news
 
 import android.content.Context
 import com.ss.universitiesdirectory.R

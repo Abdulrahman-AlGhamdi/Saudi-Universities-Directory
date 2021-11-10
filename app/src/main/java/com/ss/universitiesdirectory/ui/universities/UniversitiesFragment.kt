@@ -2,9 +2,11 @@ package com.ss.universitiesdirectory.ui.universities
 
 import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.ConnectivityManager
-import android.os.Build
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,40 +17,33 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.databinding.FragmentUniversitiesBinding
-import com.ss.universitiesdirectory.model.UniversityModel
+import com.ss.universitiesdirectory.model.UniversityModelItem
+import com.ss.universitiesdirectory.repository.universities.UniversitiesRepository.UniversitiesState
 import com.ss.universitiesdirectory.ui.universities.UniversitiesFragment.ViewState.NO_INTERNET
 import com.ss.universitiesdirectory.ui.universities.UniversitiesFragment.ViewState.WITH_INTERNET
+import com.ss.universitiesdirectory.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class UniversitiesFragment : Fragment() {
+class UniversitiesFragment : Fragment(R.layout.fragment_universities) {
 
-    private var _binding: FragmentUniversitiesBinding? = null
-    private val binding get() = _binding!!
+    private val binding by viewBinding(FragmentUniversitiesBinding::bind)
     private val viewModel: UniversitiesViewModel by viewModels()
-    private var universitiesList = mutableListOf<UniversityModel?>()
+    private var universities = mutableListOf<UniversityModelItem>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentUniversitiesBinding.inflate(inflater, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         init()
-
-        return binding.root
     }
 
     private fun init() {
         val manager = requireActivity().getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val capabilities = manager.getNetworkCapabilities(manager.activeNetwork)
-            if (capabilities != null) customView(WITH_INTERNET) else customView(NO_INTERNET)
-        } else if (manager.activeNetworkInfo != null)  customView(WITH_INTERNET) else customView(NO_INTERNET)
+        val capabilities = manager.getNetworkCapabilities(manager.activeNetwork)
+        if (capabilities != null) customView(WITH_INTERNET) else customView(NO_INTERNET)
     }
 
     private fun getUniversities() {
@@ -58,26 +53,25 @@ class UniversitiesFragment : Fragment() {
         binding.universitiesList.addItemDecoration(itemDecoration)
 
         lifecycleScope.launchWhenCreated {
-            viewModel.getUniversities().collect {
+            viewModel.getAllUniversities().collect {
                 when (it) {
-                    is UniversitiesRepository.UniversitiesState.Failed -> {
-                        Snackbar.make(requireView(), it.message, Snackbar.LENGTH_SHORT).show()
-                    }
-                    is UniversitiesRepository.UniversitiesState.List -> {
-                        setHasOptionsMenu(true)
-                        binding.progress.visibility = View.GONE
-                        binding.universitiesList.visibility = View.VISIBLE
-                        universitiesList.clear()
-                        it.universitiesList.forEach { item ->
-                            universitiesList.add(item.getValue(UniversityModel::class.java))
-                        }
-                        binding.universitiesList.adapter = UniversitiesAdapter(universitiesList)
-                    }
-                    UniversitiesRepository.UniversitiesState.Loading -> {
+                    UniversitiesState.Loading -> {
                         binding.progress.visibility = View.VISIBLE
                         binding.universitiesList.visibility = View.GONE
                     }
+                    is UniversitiesState.Successful -> {
+                        setHasOptionsMenu(true)
+                        binding.progress.visibility = View.GONE
+                        binding.universitiesList.visibility = View.VISIBLE
+                        universities.clear()
+                        universities.addAll(it.universities)
+                        binding.universitiesList.adapter = UniversitiesAdapter(universities)
+                    }
+                    is UniversitiesState.Failed -> {
+                        Snackbar.make(requireView(), it.message, Snackbar.LENGTH_SHORT).show()
+                    }
                 }
+                binding.universitiesList.adapter = UniversitiesAdapter(universities)
             }
         }
     }
@@ -111,34 +105,32 @@ class UniversitiesFragment : Fragment() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                val searchedList = universitiesList.filter {
-                    it?.Name?.lowercase()?.contains(query)!!
-                }
+                val searchedList = universities.filter { it.name.lowercase().contains(query) }
+
                 if (searchedList.isEmpty()) {
-                    binding.noSearch.visibility = View.VISIBLE
+                    binding.noSearch.visibility         = View.VISIBLE
                     binding.universitiesList.visibility = View.GONE
-                }
-                else {
-                    binding.noSearch.visibility = View.GONE
+                } else {
+                    binding.noSearch.visibility         = View.GONE
                     binding.universitiesList.visibility = View.VISIBLE
-                    binding.universitiesList.adapter = UniversitiesAdapter(searchedList)
+                    binding.universitiesList.adapter    = UniversitiesAdapter(searchedList)
                 }
+
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                val searchedList = universitiesList.filter {
-                    it?.Name?.lowercase()?.contains(newText)!!
-                }
+                val searchedList = universities.filter { it.name.lowercase().contains(newText) }
+
                 if (searchedList.isEmpty()) {
-                    binding.noSearch.visibility = View.VISIBLE
+                    binding.noSearch.visibility         = View.VISIBLE
                     binding.universitiesList.visibility = View.GONE
-                }
-                else {
-                    binding.noSearch.visibility = View.GONE
+                } else {
+                    binding.noSearch.visibility         = View.GONE
                     binding.universitiesList.visibility = View.VISIBLE
-                    binding.universitiesList.adapter = UniversitiesAdapter(searchedList)
+                    binding.universitiesList.adapter    = UniversitiesAdapter(searchedList)
                 }
+
                 return false
             }
         })
@@ -151,10 +143,5 @@ class UniversitiesFragment : Fragment() {
             findNavController().navigate(action)
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
