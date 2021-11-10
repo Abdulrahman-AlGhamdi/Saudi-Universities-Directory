@@ -8,17 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.databinding.RawUniversityHeaderBinding
 import com.ss.universitiesdirectory.databinding.RawUniversityItemBinding
-import com.ss.universitiesdirectory.model.UniversityModelItem
+import com.ss.universitiesdirectory.model.UniversityModel
 
 class UniversitiesAdapter(
-    private val universityList: List<UniversityModelItem>
+    private val universityList: List<UniversityModel>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class HeaderViewHolder(
         private val binding: RawUniversityHeaderBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: UniversityModelItem) {
+        fun bind(data: UniversityModel) {
             if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO)
                 binding.header.setTextColor(itemView.resources.getColor(R.color.black, null))
             else binding.header.setTextColor(itemView.resources.getColor(R.color.white, null))
@@ -37,7 +37,7 @@ class UniversitiesAdapter(
         private val binding: RawUniversityItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: UniversityModelItem) {
+        fun bind(data: UniversityModel) {
             binding.name.text = data.name
 
             binding.root.setOnClickListener {

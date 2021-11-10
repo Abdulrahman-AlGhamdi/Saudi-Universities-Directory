@@ -14,13 +14,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.databinding.FragmentUniversitiesBinding
-import com.ss.universitiesdirectory.model.UniversityModelItem
+import com.ss.universitiesdirectory.model.UniversityModel
 import com.ss.universitiesdirectory.repository.universities.UniversitiesRepository.UniversitiesState
 import com.ss.universitiesdirectory.ui.universities.UniversitiesFragment.ViewState.NO_INTERNET
 import com.ss.universitiesdirectory.ui.universities.UniversitiesFragment.ViewState.WITH_INTERNET
+import com.ss.universitiesdirectory.utils.showSnackBar
 import com.ss.universitiesdirectory.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -32,7 +32,7 @@ class UniversitiesFragment : Fragment(R.layout.fragment_universities) {
 
     private val binding by viewBinding(FragmentUniversitiesBinding::bind)
     private val viewModel: UniversitiesViewModel by viewModels()
-    private var universities = mutableListOf<UniversityModelItem>()
+    private var universities = mutableListOf<UniversityModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -67,9 +67,7 @@ class UniversitiesFragment : Fragment(R.layout.fragment_universities) {
                         universities.addAll(it.universities)
                         binding.universitiesList.adapter = UniversitiesAdapter(universities)
                     }
-                    is UniversitiesState.Failed -> {
-                        Snackbar.make(requireView(), it.message, Snackbar.LENGTH_SHORT).show()
-                    }
+                    is UniversitiesState.Failed -> requireView().showSnackBar(it.message)
                 }
                 binding.universitiesList.adapter = UniversitiesAdapter(universities)
             }
