@@ -1,7 +1,7 @@
 package com.ss.universitiesdirectory.di
 
 import com.ss.universitiesdirectory.repository.common.ApiService
-import com.ss.universitiesdirectory.utils.Constants.BASE_URL
+import com.ss.universitiesdirectory.repository.common.ApiService.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
