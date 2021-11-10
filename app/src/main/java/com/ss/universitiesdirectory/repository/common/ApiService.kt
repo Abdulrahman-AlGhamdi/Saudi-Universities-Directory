@@ -12,4 +12,6 @@ interface ApiService {
         @Query("language") language: String,
         @Query("region") region: String
     ): Response<List<UniversityModel>>
+
+    companion object { const val BASE_URL = "https://saudiuniversitiesdirectory.herokuapp.com/" }
 }
