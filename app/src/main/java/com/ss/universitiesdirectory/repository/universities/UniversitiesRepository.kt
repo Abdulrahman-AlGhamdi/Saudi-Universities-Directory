@@ -1,6 +1,6 @@
 package com.ss.universitiesdirectory.repository.universities
 
-import com.ss.universitiesdirectory.model.UniversityModelItem
+import com.ss.universitiesdirectory.model.UniversityModel
 import com.ss.universitiesdirectory.repository.common.ApiService
 import kotlinx.coroutines.flow.flow
 import java.util.*
@@ -20,8 +20,8 @@ class UniversitiesRepository @Inject constructor(
     }
 
     sealed class UniversitiesState {
-        object Loading                                                     : UniversitiesState()
-        data class Successful(val universities: List<UniversityModelItem>) : UniversitiesState()
-        data class Failed(val message: String)                             : UniversitiesState()
+        object Loading                                                : UniversitiesState()
+        data class Successful(val universities: List<UniversityModel>) : UniversitiesState()
+        data class Failed(val message: String)                        : UniversitiesState()
     }
 }

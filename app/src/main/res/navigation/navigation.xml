@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/universitiesFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/splashFragment"
@@ -44,7 +44,7 @@
             app:destination="@id/newsFragment" />
         <argument
             android:name="university"
-            app:argType="com.ss.universitiesdirectory.model.UniversityModelItem" />
+            app:argType="com.ss.universitiesdirectory.model.UniversityModel" />
     </fragment>
 
     <fragment
