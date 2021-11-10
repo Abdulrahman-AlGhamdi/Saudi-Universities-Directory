@@ -15,10 +15,11 @@ import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
+import javax.net.ssl.HttpsURLConnection
 
 fun connectTo(address: String): Any {
     return try {
-        (URL(address).openConnection() as HttpURLConnection).apply {
+        (URL(address).openConnection() as HttpsURLConnection).apply {
             this.requestMethod = "GET"
             this.connectTimeout = 15000
             this.readTimeout = 15000

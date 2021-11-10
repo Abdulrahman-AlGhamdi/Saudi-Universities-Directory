@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.flowOn
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
 import java.io.BufferedInputStream
-import java.net.HttpURLConnection
+import javax.net.ssl.HttpsURLConnection
 
 class NewsRepository(private val context: Context) {
 
@@ -18,11 +18,11 @@ class NewsRepository(private val context: Context) {
         emit(NewsStatus.NewsLoading)
         val connection = connectTo(address)
         if (!connection.toString().lowercase().startsWith("error")) {
-            val httpConnection = connection as HttpURLConnection
-            if (httpConnection.responseCode == HttpURLConnection.HTTP_OK) {
-                emit(NewsStatus.NewsList(parseRssData(BufferedInputStream(httpConnection.inputStream))))
+            val httpsConnection = connection as HttpsURLConnection
+            if (httpsConnection.responseCode == HttpsURLConnection.HTTP_OK) {
+                emit(NewsStatus.NewsList(parseRssData(BufferedInputStream(httpsConnection.inputStream))))
             }
-            else emit(NewsStatus.NewsFailed(httpConnection.responseMessage))
+            else emit(NewsStatus.NewsFailed(httpsConnection.responseMessage))
         } else emit(NewsStatus.NewsFailed(context.getString(R.string.connection_failed)))
     }.flowOn(Dispatchers.IO)
 
