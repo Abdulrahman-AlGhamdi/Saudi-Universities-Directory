@@ -10,104 +10,94 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
+import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.databinding.FragmentDetailsBinding
+import com.ss.universitiesdirectory.utils.viewBinding
 
-class DetailsFragment : Fragment() {
+class DetailsFragment : Fragment(R.layout.fragment_details) {
 
-    private var _binding: FragmentDetailsBinding? = null
-    private val binding get() = _binding!!
+    private val binding by viewBinding(FragmentDetailsBinding::bind)
     private val argument by navArgs<DetailsFragmentArgs>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         showData()
-
-        return binding.root
     }
 
     private fun showData() {
         val university = argument.university
         val directions = DetailsFragmentDirections
-        binding.detailsLogo.load(university.Logo)
-        binding.about.text = university.About
+        binding.detailsLogo.load(university.logo)
+        binding.about.text = university.about
 
-        if (university.Colleges.isNotEmpty()) {
+        if (university.colleges.isNotEmpty()) {
             binding.colleges.visibility = View.VISIBLE
             binding.colleges.setOnClickListener {
-                val action = directions.actionDetailsFragmentToWebsiteFragment(university.Colleges)
+                val action = directions.actionDetailsFragmentToWebsiteFragment(university.colleges)
                 findNavController().navigate(action)
             }
         }
-        if (university.News.isNotEmpty()) {
+        if (university.news.isNotEmpty()) {
             binding.rss.visibility = View.VISIBLE
             binding.rss.setOnClickListener {
-                val action = directions.actionDetailsFragmentToNewsFragment(university.News)
+                val action = directions.actionDetailsFragmentToNewsFragment(university.news)
                 findNavController().navigate(action)
             }
         }
-        if (university.Website.isNotEmpty()) {
+        if (university.website.isNotEmpty()) {
             binding.website.visibility = View.VISIBLE
             binding.website.setOnClickListener {
-                val action = directions.actionDetailsFragmentToWebsiteFragment(university.Website)
+                val action = directions.actionDetailsFragmentToWebsiteFragment(university.website)
                 findNavController().navigate(action)
             }
         }
-        if (university.Application.isNotEmpty()) {
+        if (university.application.isNotEmpty()) {
             binding.detailsApplication.visibility = View.VISIBLE
             binding.detailsApplication.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.Application)))
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.application)))
             }
         }
-        if (university.Location.isNotEmpty()) {
+        if (university.location.isNotEmpty()) {
             binding.detailsLocation.visibility = View.VISIBLE
             binding.detailsLocation.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.Location)))
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.location)))
             }
         }
-        if (university.Twitter.isNotEmpty()) {
+        if (university.twitter.isNotEmpty()) {
             binding.communicationHeader.visibility = View.VISIBLE
             binding.twitter.visibility = View.VISIBLE
             binding.twitter.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.Twitter)))
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.twitter)))
             }
         }
-        if (university.Facebook.isNotEmpty()) {
+        if (university.facebook.isNotEmpty()) {
             binding.communicationHeader.visibility = View.VISIBLE
             binding.facebook.visibility = View.VISIBLE
             binding.facebook.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.Facebook)))
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.facebook)))
             }
         }
-        if (university.Youtube.isNotEmpty()) {
+        if (university.youtube.isNotEmpty()) {
             binding.communicationHeader.visibility = View.VISIBLE
             binding.youtube.visibility = View.VISIBLE
             binding.youtube.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.Youtube)))
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.youtube)))
             }
         }
-        if (university.Instagram.isNotEmpty()) {
+        if (university.instagram.isNotEmpty()) {
             binding.communicationHeader.visibility = View.VISIBLE
             binding.instagram.visibility = View.VISIBLE
             binding.instagram.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.Instagram)))
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.instagram)))
             }
         }
-        if (university.Snapchat.isNotEmpty()) {
+        if (university.snapchat.isNotEmpty()) {
             binding.communicationHeader.visibility = View.VISIBLE
             binding.snapchat.visibility = View.VISIBLE
             binding.snapchat.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.Snapchat)))
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.snapchat)))
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

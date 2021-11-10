@@ -1,8 +1,9 @@
-package com.ss.universitiesdirectory.hilt
+package com.ss.universitiesdirectory.di
 
 import android.content.Context
-import com.ss.universitiesdirectory.ui.news.NewsRepository
-import com.ss.universitiesdirectory.ui.universities.UniversitiesRepository
+import com.ss.universitiesdirectory.repository.common.ApiService
+import com.ss.universitiesdirectory.repository.news.NewsRepository
+import com.ss.universitiesdirectory.repository.universities.UniversitiesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,9 +19,9 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNewsRepository(@ApplicationContext context: Context) = NewsRepository(context)
+    fun provideUniversities(apiService: ApiService) = UniversitiesRepository(apiService)
 
     @Provides
     @Singleton
-    fun provideUniversities() = UniversitiesRepository()
+    fun provideNewsRepository(@ApplicationContext context: Context) = NewsRepository(context)
 }

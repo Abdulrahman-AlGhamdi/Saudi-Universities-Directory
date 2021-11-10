@@ -1,15 +1,15 @@
 package com.ss.universitiesdirectory.ui.universities
 
 import androidx.lifecycle.ViewModel
+import com.ss.universitiesdirectory.repository.universities.UniversitiesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
-@ExperimentalCoroutinesApi
 @HiltViewModel
 class UniversitiesViewModel @Inject constructor(
-    private val repository: UniversitiesRepository
+    private val universitiesRepository: UniversitiesRepository
 ) : ViewModel() {
 
-    fun getUniversities() = repository.getUniversities()
+    fun getAllUniversities(region: String = "") =
+        universitiesRepository.getAllUniversities(region)
 }
