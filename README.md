@@ -1,7 +1,13 @@
-# Saudi Universities Directory - Android
+<p align="center">
+    <img align="center" src="https://i.ibb.co/mNRtFcB/icon.png" width="10%">
+</p>
+<h1 align="center">Saudi Universities Directory - Android</h1>
 
-Get to know the saudi public universities affiliated to the ministry of education<br>
-which includes informations about these universities and their specialties.
+<h3 align="center">About Application</h3>
+
+<p align="center">
+    Get to know the saudi public universities affiliated to the ministry of education<br>
+    which includes informations about these universities and their specialties.
 
 The application contains:
 * 27 public universities.
@@ -11,23 +17,32 @@ The application contains:
 * News of the University (if available).
 * The official electronic services application of the university for its students (if available).
 * Communicate with the university through social media accounts.
+</p>
 
-<a href='https://play.google.com/store/apps/details?id=com.ss.universitiesdirectory'><img alt='Get it on Google Play' 
-src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height='80px'/></a>
+<p align="center">
+    <a href='https://play.google.com/store/apps/details?id=com.ss.universitiesdirectory'>
+        <img height="80px" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/>
+    </a>
+</p>
 
-## Application Images
 
-<div style="display:flex;">
-<img alt="App image" src="https://i.ibb.co/Cb9yBF4/1.png" width="10%">
-<img alt="App image" src="https://i.ibb.co/TMzGP6X/2.png" width="10%">
-<img alt="App image" src="https://i.ibb.co/SBQGLPZ/3.png" width="10%">
-<img alt="App image" src="https://i.ibb.co/CKdDVPg/4.png" width="10%">
-<img alt="App image" src="https://i.ibb.co/LtzgqLW/5.png" width="10%">
-<img alt="App image" src="https://i.ibb.co/NV3MvFj/6.png" width="10%">
-<img alt="App image" src="https://i.ibb.co/C5hM77S/7.png" width="10%">
+##
+
+<h3 align="center">Application Images</h3>
+
+<div align="center" style="display:flex;">
+<img src="https://i.ibb.co/Cb9yBF4/1.png" width="10%">
+<img src="https://i.ibb.co/TMzGP6X/2.png" width="10%">
+<img src="https://i.ibb.co/SBQGLPZ/3.png" width="10%">
+<img src="https://i.ibb.co/CKdDVPg/4.png" width="10%">
+<img src="https://i.ibb.co/LtzgqLW/5.png" width="10%">
+<img src="https://i.ibb.co/NV3MvFj/6.png" width="10%">
+<img src="https://i.ibb.co/C5hM77S/7.png" width="10%">
 </div>
 
-## License
+##
+
+<h3 align="center">License</h3>
 
 ```
 Copyright 2021 Abdulrahman Al-Ghamdi
