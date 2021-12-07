@@ -1,43 +1,44 @@
-<p align="center">
-    <img align="center" src="https://i.ibb.co/mNRtFcB/icon.png" width="10%">
-</p>
+<p align="center"><img src="https://i.ibb.co/mNRtFcB/icon.png" width="20%"></p>
+
 <h1 align="center">Saudi Universities Directory - Android</h1>
 
 <h3 align="center">About Application</h3>
 
-<p align="center">
+<div align="center">
     Get to know the saudi public universities affiliated to the ministry of education<br>
     which includes informations about these universities and their specialties.
+</div>
 
-The application contains:
-* 27 public universities.
-* A simple history of each university and when it was established.
-* University location if you want to go to university using (Google Maps).
-* Colleges affiliated with the university (if available).
-* News of the University (if available).
-* The official electronic services application of the university for its students (if available).
-* Communicate with the university through social media accounts.
-</p>
+<h3 align="center">Application Contains</h3>
 
-<p align="center">
+<table align="center">
+    <tr><td align="center">1</td><td>27 Saudi public universities.</td></tr>
+    <tr><td align="center">2</td><td>A simple history of each university and when it was established.</td></tr>
+    <tr><td align="center">3</td><td>University location if you want to go to university using (Google Maps).</td></tr>
+    <tr><td align="center">4</td><td>Colleges affiliated with the university (if available).</td></tr>
+    <tr><td align="center">4</td><td>News of the University (if available).</td></tr>
+    <tr><td align="center">5</td><td>The official electronic services application of the university for its students (if available).</td></tr>
+    <tr><td align="center">6</td><td>Communicate with the university through social media accounts.</td></tr>
+</table>
+
+<div align="center">
     <a href='https://play.google.com/store/apps/details?id=com.ss.universitiesdirectory'>
         <img height="80px" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/>
     </a>
-</p>
-
+</div>
 
 ##
 
 <h3 align="center">Application Images</h3>
 
-<div align="center" style="display:flex;">
-<img src="https://i.ibb.co/Cb9yBF4/1.png" width="10%">
-<img src="https://i.ibb.co/TMzGP6X/2.png" width="10%">
-<img src="https://i.ibb.co/SBQGLPZ/3.png" width="10%">
-<img src="https://i.ibb.co/CKdDVPg/4.png" width="10%">
-<img src="https://i.ibb.co/LtzgqLW/5.png" width="10%">
-<img src="https://i.ibb.co/NV3MvFj/6.png" width="10%">
-<img src="https://i.ibb.co/C5hM77S/7.png" width="10%">
+<div align="center" >
+    <img src="https://i.ibb.co/Cb9yBF4/1.png" width="10%">
+    <img src="https://i.ibb.co/TMzGP6X/2.png" width="10%">
+    <img src="https://i.ibb.co/SBQGLPZ/3.png" width="10%">
+    <img src="https://i.ibb.co/CKdDVPg/4.png" width="10%">
+    <img src="https://i.ibb.co/LtzgqLW/5.png" width="10%">
+    <img src="https://i.ibb.co/NV3MvFj/6.png" width="10%">
+    <img src="https://i.ibb.co/C5hM77S/7.png" width="10%">
 </div>
 
 ##
