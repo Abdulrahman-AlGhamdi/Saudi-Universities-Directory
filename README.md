@@ -1,13 +1,12 @@
 <div align="center"><img src="https://i.ibb.co/mNRtFcB/icon.png" width="20%"></div>
 
-<h1 align="center">Saudi Universities Directory - Android</h1>
+<h3 align="center">Saudi Universities Directory - Android</h3>
 
-<h3 align="center">About Application</h3>
+<p align="justify">
+    Get to know the saudi public universities affiliated to the ministry of educationn which includes informations about these universities and their specialties.
+</p>
 
-<div align="center">
-    Get to know the saudi public universities affiliated to the ministry of education<br>
-    which includes informations about these universities and their specialties.
-</div>
+##
 
 <h3 align="center">Application Contains</h3>
 
@@ -16,9 +15,9 @@
     <tr><td align="center">2</td><td>A simple history of each university and when it was established.</td></tr>
     <tr><td align="center">3</td><td>University location if you want to go to university using (Google Maps).</td></tr>
     <tr><td align="center">4</td><td>Colleges affiliated with the university (if available).</td></tr>
-    <tr><td align="center">4</td><td>News of the University (if available).</td></tr>
-    <tr><td align="center">5</td><td>The official electronic services application of the university for its students (if available).</td></tr>
-    <tr><td align="center">6</td><td>Communicate with the university through social media accounts.</td></tr>
+    <tr><td align="center">5</td><td>News of the University (if available).</td></tr>
+    <tr><td align="center">6</td><td>The official electronic services application of the university for its students (if available).</td></tr>
+    <tr><td align="center">7</td><td>Communicate with the university through social media accounts.</td></tr>
 </table>
 
 <div align="center">
