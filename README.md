@@ -1,4 +1,4 @@
-<p align="center"><img src="https://i.ibb.co/mNRtFcB/icon.png" width="20%"></p>
+<div align="center"><img src="https://i.ibb.co/mNRtFcB/icon.png" width="20%"></div>
 
 <h1 align="center">Saudi Universities Directory - Android</h1>
 
