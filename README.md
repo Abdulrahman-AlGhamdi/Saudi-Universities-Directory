@@ -2,7 +2,7 @@
 
 <h3 align="center">Saudi Universities Directory - Android</h3>
 
-<p align="justify">
+<p align="center">
     Get to know the saudi public universities affiliated to the ministry of educationn which includes informations about these universities and their specialties.
 </p>
 
