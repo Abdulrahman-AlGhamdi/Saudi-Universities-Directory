@@ -3,13 +3,14 @@ package com.ss.universitiesdirectory.repository.common
 import com.ss.universitiesdirectory.model.UniversityModel
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("api/v1/universities")
+    @GET("api/v1/universities/{language}")
     suspend fun getAllUniversities(
-        @Query("language") language: String,
+        @Path("language") language: String,
         @Query("region") region: String
     ): Response<List<UniversityModel>>
 
