@@ -48,8 +48,7 @@ class WebsiteFragment : Fragment(R.layout.fragment_website) {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_website)
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(argument.url)))
+        if (item.itemId == R.id.menu_website) startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(argument.url)))
         return super.onOptionsItemSelected(item)
     }
 }

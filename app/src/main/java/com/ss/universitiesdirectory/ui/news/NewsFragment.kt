@@ -12,7 +12,9 @@ import com.ss.universitiesdirectory.repository.news.NewsRepository.NewsStatus
 import com.ss.universitiesdirectory.utils.showSnackBar
 import com.ss.universitiesdirectory.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class NewsFragment : Fragment(R.layout.fragment_news) {
@@ -27,7 +29,7 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
         showData()
     }
 
-    private fun showData() = lifecycleScope.launchWhenCreated {
+    private fun showData() = lifecycleScope.launch(Dispatchers.Main) {
         viewModel.getNews(argument.rssUrl).collect {
             when (it) {
                 NewsStatus.NewsLoading -> {

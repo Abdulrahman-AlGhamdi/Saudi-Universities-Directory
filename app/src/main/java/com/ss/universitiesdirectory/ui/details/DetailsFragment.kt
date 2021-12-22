@@ -3,15 +3,14 @@ package com.ss.universitiesdirectory.ui.details
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.databinding.FragmentDetailsBinding
+import com.ss.universitiesdirectory.utils.navigateTo
 import com.ss.universitiesdirectory.utils.viewBinding
 
 class DetailsFragment : Fragment(R.layout.fragment_details) {
@@ -35,21 +34,21 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
             binding.colleges.visibility = View.VISIBLE
             binding.colleges.setOnClickListener {
                 val action = directions.actionDetailsFragmentToWebsiteFragment(university.colleges)
-                findNavController().navigate(action)
+                findNavController().navigateTo(action, R.id.detailsFragment)
             }
         }
         if (university.news.isNotEmpty()) {
             binding.rss.visibility = View.VISIBLE
             binding.rss.setOnClickListener {
                 val action = directions.actionDetailsFragmentToNewsFragment(university.news)
-                findNavController().navigate(action)
+                findNavController().navigateTo(action, R.id.detailsFragment)
             }
         }
         if (university.website.isNotEmpty()) {
             binding.website.visibility = View.VISIBLE
             binding.website.setOnClickListener {
                 val action = directions.actionDetailsFragmentToWebsiteFragment(university.website)
-                findNavController().navigate(action)
+                findNavController().navigateTo(action, R.id.detailsFragment)
             }
         }
         if (university.application.isNotEmpty()) {
