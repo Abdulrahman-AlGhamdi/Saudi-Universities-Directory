@@ -2,12 +2,12 @@ package com.ss.universitiesdirectory.ui.news
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.ss.universitiesdirectory.model.NewsModel
 import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.databinding.RawNewsItemBinding
+import com.ss.universitiesdirectory.model.NewsModel
+import com.ss.universitiesdirectory.utils.navigateTo
 
 class NewsAdapter(
     private val newsList: List<NewsModel>
@@ -24,7 +24,7 @@ class NewsAdapter(
             binding.root.setOnClickListener {
                 val directions = NewsFragmentDirections
                 val action = directions.actionNewsFragmentToWebsiteFragment(news.link)
-                itemView.findNavController().navigate(action)
+                itemView.findNavController().navigateTo(action, R.id.newsFragment)
             }
         }
     }

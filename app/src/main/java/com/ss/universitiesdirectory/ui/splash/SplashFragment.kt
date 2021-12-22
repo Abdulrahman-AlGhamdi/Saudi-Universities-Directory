@@ -8,8 +8,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.databinding.FragmentSplashBinding
+import com.ss.universitiesdirectory.utils.navigateTo
 import com.ss.universitiesdirectory.utils.viewBinding
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SplashFragment : Fragment(R.layout.fragment_splash) {
 
@@ -27,10 +30,10 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
         vectorDrawable.start()
     }
 
-    private fun endSplash() = lifecycleScope.launchWhenCreated {
+    private fun endSplash() = lifecycleScope.launch(Dispatchers.Main) {
         delay(3500)
         val directions = SplashFragmentDirections
         val action = directions.actionSplashFragmentToUniversitiesFragment()
-        findNavController().navigate(action)
+        findNavController().navigateTo(action, R.id.splashFragment)
     }
 }

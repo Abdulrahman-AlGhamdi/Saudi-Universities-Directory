@@ -19,9 +19,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun onPreferenceClick() {
-        val darkMode = findPreference(getString(R.string.preference_dark_mode_key)) as? Preference
+        val darkMode  = findPreference(getString(R.string.preference_dark_mode_key)) as? Preference
         val contactMe = findPreference(getString(R.string.preference_contact_me_key)) as? Preference
-        val language = findPreference(getString(R.string.preference_language_key)) as? Preference
+        val language  = findPreference(getString(R.string.preference_language_key)) as? Preference
 
         darkMode?.setOnPreferenceChangeListener { _, newValue ->
             if (newValue as Boolean) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -40,8 +40,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("Abdulrahman.SS.AlGhamdi@Gmail.Com"))
             intent.putExtra(Intent.EXTRA_SUBJECT, "${requireContext().packageName}: suggestion/issue email")
             intent.type = "message/rfc822"
-            if (intent.resolveActivity(requireActivity().packageManager) != null)
-                startActivity(Intent.createChooser(intent, "Sending Email"))
+            startActivity(Intent.createChooser(intent, "Sending Email"))
             true
         }
     }

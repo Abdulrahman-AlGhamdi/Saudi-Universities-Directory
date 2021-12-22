@@ -20,8 +20,9 @@ class UniversitiesRepository @Inject constructor(
     }
 
     sealed class UniversitiesState {
-        object Loading                                                : UniversitiesState()
+        object Idle                                                    : UniversitiesState()
+        object Loading                                                 : UniversitiesState()
         data class Successful(val universities: List<UniversityModel>) : UniversitiesState()
-        data class Failed(val message: String)                        : UniversitiesState()
+        data class Failed(val message: String)                         : UniversitiesState()
     }
 }

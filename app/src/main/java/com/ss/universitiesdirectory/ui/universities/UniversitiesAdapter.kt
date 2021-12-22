@@ -9,6 +9,7 @@ import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.databinding.RawUniversityHeaderBinding
 import com.ss.universitiesdirectory.databinding.RawUniversityItemBinding
 import com.ss.universitiesdirectory.model.UniversityModel
+import com.ss.universitiesdirectory.utils.navigateTo
 
 class UniversitiesAdapter(
     private val universityList: List<UniversityModel>
@@ -24,12 +25,6 @@ class UniversitiesAdapter(
             else binding.header.setTextColor(itemView.resources.getColor(R.color.white, null))
 
             binding.header.text = data.name
-
-            binding.root.setOnClickListener {
-                val action = UniversitiesFragmentDirections
-                val directions = action.actionUniversitiesFragmentToDetailsFragment(data)
-                itemView.findNavController().navigate(directions)
-            }
         }
     }
 
@@ -43,7 +38,7 @@ class UniversitiesAdapter(
             binding.root.setOnClickListener {
                 val action     = UniversitiesFragmentDirections
                 val directions = action.actionUniversitiesFragmentToDetailsFragment(data)
-                itemView.findNavController().navigate(directions)
+                itemView.findNavController().navigateTo(directions, R.id.universitiesFragment)
             }
         }
     }
