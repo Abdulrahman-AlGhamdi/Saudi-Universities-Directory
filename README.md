@@ -1,4 +1,4 @@
-<div align="center"><img src="https://i.ibb.co/mNRtFcB/icon.png" width="20%"></div>
+<div align="center"><img src="./googlePlayAssets/icon/icon.png" width="20%"></div>
 
 <h3 align="center">Saudi Universities Directory - Android</h3>
 
@@ -31,13 +31,13 @@
 <h3 align="center">Application Images</h3>
 
 <div align="center" >
-    <img src="https://i.ibb.co/Cb9yBF4/1.png" width="10%">
-    <img src="https://i.ibb.co/TMzGP6X/2.png" width="10%">
-    <img src="https://i.ibb.co/SBQGLPZ/3.png" width="10%">
-    <img src="https://i.ibb.co/CKdDVPg/4.png" width="10%">
-    <img src="https://i.ibb.co/LtzgqLW/5.png" width="10%">
-    <img src="https://i.ibb.co/NV3MvFj/6.png" width="10%">
-    <img src="https://i.ibb.co/C5hM77S/7.png" width="10%">
+    <img src="./googlePlayAssets/screenshots/1.png" width="10%">
+    <img src="./googlePlayAssets/screenshots/2.png" width="10%">
+    <img src="./googlePlayAssets/screenshots/3.png" width="10%">
+    <img src="./googlePlayAssets/screenshots/4.png" width="10%">
+    <img src="./googlePlayAssets/screenshots/5.png" width="10%">
+    <img src="./googlePlayAssets/screenshots/6.png" width="10%">
+    <img src="./googlePlayAssets/screenshots/7.png" width="10%">
 </div>
 
 ##
