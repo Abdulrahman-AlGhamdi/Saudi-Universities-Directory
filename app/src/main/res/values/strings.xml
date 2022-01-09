@@ -28,10 +28,8 @@
     <!-- Settings Preference Strings -->
     <string name="preference_application_configuration">Application Configuration</string>
     <string name="preference_about">About</string>
-    <string name="preference_dark_mode_title">Dark Mode</string>
-    <string name="preference_dark_mode_key" translatable="false">dark mode key</string>
-    <string name="preference_dark_mode_summary_on">Dark mode is enabled</string>
-    <string name="preference_dark_mode_summary_off">Dark mode is disabled</string>
+    <string name="preference_theme_title">Theme</string>
+    <string name="preference_theme_key" translatable="false">theme</string>
     <string name="preference_language_title">Language</string>
     <string name="preference_language_key" translatable="false">language key</string>
     <string name="preference_language_summary_on">Arabic</string>

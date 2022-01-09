@@ -1,5 +1,8 @@
 package com.ss.universitiesdirectory.utils
 
+import android.content.Context
+import android.content.res.Configuration.UI_MODE_NIGHT_MASK
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
@@ -42,4 +45,8 @@ fun View.showSnackBar(
 fun NavController.navigateTo(action: NavDirections, fragmentId: Int) {
     if (this.currentDestination == this.graph.findNode(fragmentId))
         this.navigate(action)
+}
+
+fun Context.isDarkThemeOn(): Boolean {
+    return resources.configuration.uiMode and UI_MODE_NIGHT_MASK == UI_MODE_NIGHT_YES
 }

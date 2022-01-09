@@ -2,12 +2,13 @@ package com.ss.universitiesdirectory.ui.settings
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.ss.universitiesdirectory.BuildConfig
 import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.utils.LanguageHelper
+import com.ss.universitiesdirectory.utils.navigateTo
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
@@ -19,13 +20,14 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun onPreferenceClick() {
-        val darkMode  = findPreference(getString(R.string.preference_dark_mode_key)) as? Preference
+        val theme     = findPreference(getString(R.string.preference_theme_key)) as? Preference
         val contactMe = findPreference(getString(R.string.preference_contact_me_key)) as? Preference
         val language  = findPreference(getString(R.string.preference_language_key)) as? Preference
 
-        darkMode?.setOnPreferenceChangeListener { _, newValue ->
-            if (newValue as Boolean) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        theme?.setOnPreferenceClickListener {
+            val directions = SettingsFragmentDirections
+            val actions    = directions.actionSettingsFragmentToThemeFragment()
+            findNavController().navigateTo(actions, R.id.settingsFragment)
             true
         }
 

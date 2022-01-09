@@ -73,6 +73,15 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.ss.universitiesdirectory.ui.settings.SettingsFragment"
-        android:label="@string/fragment_settings" />
+        android:label="@string/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_themeFragment"
+            app:destination="@id/themeFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/themeFragment"
+        android:name="com.ss.universitiesdirectory.ui.theme.ThemeFragment"
+        android:label="fragment_theme"
+        tools:layout="@layout/fragment_theme" />
 
 </navigation>
