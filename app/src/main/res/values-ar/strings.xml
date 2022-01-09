@@ -28,9 +28,7 @@
     <!-- Settings Preference Strings -->
     <string name="preference_application_configuration">إعدادات التطبيق</string>
     <string name="preference_about">حول</string>
-    <string name="preference_dark_mode_title">الوضع الليلي</string>
-    <string name="preference_dark_mode_summary_on">الوضع الليلي مفعل</string>
-    <string name="preference_dark_mode_summary_off">الوضع الليلي غير مفعل</string>
+    <string name="preference_theme_title">النمط</string>
     <string name="preference_language_title">اللغة</string>
     <string name="preference_language_summary_on">عربي</string>
     <string name="preference_language_summary_off">إنجليزي</string>
