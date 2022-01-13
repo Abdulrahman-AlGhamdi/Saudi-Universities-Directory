@@ -21,19 +21,19 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        init()
+        startSplash()
         endSplash()
     }
 
-    private fun init() {
-        binding.logo.animation = AnimationUtils.loadAnimation(context, R.anim.from_bottom_centered)
-        binding.appBrand.animation = AnimationUtils.loadAnimation(context, R.anim.from_bottom)
+    private fun startSplash() {
+        binding.logo.animation  = AnimationUtils.loadAnimation(context, R.anim.from_bottom_centered)
+        binding.title.animation = AnimationUtils.loadAnimation(context, R.anim.from_bottom)
     }
 
     private fun endSplash() = lifecycleScope.launch(Dispatchers.Main) {
         delay(1100)
         val directions = SplashFragmentDirections
-        val action = directions.actionSplashFragmentToUniversitiesFragment()
+        val action     = directions.actionSplashFragmentToUniversitiesFragment()
         findNavController().navigateTo(action, R.id.splashFragment)
     }
 }

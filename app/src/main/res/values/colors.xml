@@ -14,9 +14,9 @@
     <color name="white">#FFFFFF</color>
 
     // Social Media Colors
-    <color name="twitter">#3fa9f5</color>
-    <color name="youtube">#e81c24</color>
+    <color name="twitter">#1da1f2</color>
+    <color name="youtube">#ED1D24</color>
     <color name="snapchat">#fffc00</color>
-    <color name="facebook">#3b5999</color>
-    <color name="instagram">#cc066e</color>
+    <color name="facebook">#1877f2</color>
+    <color name="instagram">#C837AB</color>
 </resources>
