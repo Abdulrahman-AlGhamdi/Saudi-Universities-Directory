@@ -9,9 +9,7 @@ import kotlinx.coroutines.flow.flowOn
 import java.util.*
 import javax.inject.Inject
 
-class UniversitiesRepository @Inject constructor(
-    private val apiService: ApiService
-) {
+class UniversitiesRepository @Inject constructor(private val apiService: ApiService) {
 
     fun getAllUniversities(region: String) = flow {
         this.emit(Loading)

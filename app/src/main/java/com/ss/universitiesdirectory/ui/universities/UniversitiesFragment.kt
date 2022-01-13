@@ -66,14 +66,16 @@ class UniversitiesFragment : Fragment(R.layout.fragment_universities) {
     private fun getUniversities() = lifecycleScope.launch(Dispatchers.Main) {
         viewModel.universitiesState.collect {
             when (it) {
+                UniversitiesState.Idle -> Unit
                 UniversitiesState.Loading -> {
-                    binding.progress.visibility = View.VISIBLE
+                    binding.progress.visibility         = View.VISIBLE
                     binding.universitiesList.visibility = View.GONE
                 }
                 is UniversitiesState.Successful -> {
                     setHasOptionsMenu(true)
-                    binding.progress.visibility = View.GONE
+                    binding.progress.visibility         = View.GONE
                     binding.universitiesList.visibility = View.VISIBLE
+
                     if (viewModel.universities.isNullOrEmpty()) viewModel.universities.addAll(it.universities)
                     binding.universitiesList.adapter = UniversitiesAdapter(viewModel.universities)
                 }

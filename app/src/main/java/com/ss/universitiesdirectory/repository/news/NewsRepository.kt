@@ -4,29 +4,33 @@ import android.content.Context
 import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.model.NewsModel
 import com.ss.universitiesdirectory.utils.connectTo
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
-import java.io.BufferedInputStream
+import java.io.InputStream
+import javax.inject.Inject
 import javax.net.ssl.HttpsURLConnection
 
-class NewsRepository(private val context: Context) {
+class NewsRepository @Inject constructor(@ApplicationContext private val context: Context) {
 
     fun downloadRssData(address: String) = flow {
-        emit(NewsStatus.NewsLoading)
+        this.emit(NewsStatus.NewsLoading)
         val connection = connectTo(address)
+
         if (!connection.toString().lowercase().startsWith("error")) {
             val httpsConnection = connection as HttpsURLConnection
             if (httpsConnection.responseCode == HttpsURLConnection.HTTP_OK) {
-                emit(NewsStatus.NewsList(parseRssData(BufferedInputStream(httpsConnection.inputStream))))
+                val newsList = parseRssData(httpsConnection.inputStream)
+                this.emit(NewsStatus.NewsList(newsList))
             }
-            else emit(NewsStatus.NewsFailed(httpsConnection.responseMessage))
-        } else emit(NewsStatus.NewsFailed(context.getString(R.string.connection_failed)))
+            else this.emit(NewsStatus.NewsFailed(httpsConnection.responseMessage))
+        } else this.emit(NewsStatus.NewsFailed(context.getString(R.string.connection_failed)))
     }.flowOn(Dispatchers.IO)
 
-    private fun parseRssData(inputStream: BufferedInputStream) : List<NewsModel> {
+    private fun parseRssData(inputStream: InputStream) : List<NewsModel> {
         val parser = XmlPullParserFactory.newInstance().newPullParser()
         parser.setInput(inputStream, null)
 
