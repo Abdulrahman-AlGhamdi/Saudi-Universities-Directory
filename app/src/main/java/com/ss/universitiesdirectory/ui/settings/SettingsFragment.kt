@@ -2,15 +2,19 @@ package com.ss.universitiesdirectory.ui.settings
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.ss.universitiesdirectory.BuildConfig
 import com.ss.universitiesdirectory.R
-import com.ss.universitiesdirectory.utils.LanguageHelper
 import com.ss.universitiesdirectory.utils.navigateTo
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SettingsFragment : PreferenceFragmentCompat() {
+
+    private val viewModel by viewModels<SettingsViewModel>()
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_preferences, rootKey)
@@ -32,17 +36,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
 
         language?.setOnPreferenceChangeListener { _, newValue ->
-            if (newValue as Boolean) LanguageHelper.changeCurrentLanguage(requireActivity(), "ar")
-            else LanguageHelper.changeCurrentLanguage(requireActivity(), "en")
+            viewModel.setAppLanguage(newValue as Boolean)
             true
         }
 
         contactMe?.setOnPreferenceClickListener {
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("Abdulrahman.SS.AlGhamdi@Gmail.Com"))
-            intent.putExtra(Intent.EXTRA_SUBJECT, "${requireContext().packageName}: suggestion/issue email")
-            intent.type = "message/rfc822"
-            startActivity(Intent.createChooser(intent, "Sending Email"))
+            viewModel.sendEmail()
             true
         }
     }

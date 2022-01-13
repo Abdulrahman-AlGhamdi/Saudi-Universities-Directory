@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ss.universitiesdirectory.R
-import com.ss.universitiesdirectory.databinding.RawUniversityHeaderBinding
-import com.ss.universitiesdirectory.databinding.RawUniversityItemBinding
+import com.ss.universitiesdirectory.databinding.ItemUniversityNameBinding
+import com.ss.universitiesdirectory.databinding.ItemUniversityRegionBinding
 import com.ss.universitiesdirectory.model.UniversityModel
 import com.ss.universitiesdirectory.utils.navigateTo
 
@@ -15,8 +15,8 @@ class UniversitiesAdapter(
     private val universityList: List<UniversityModel>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    inner class HeaderViewHolder(
-        private val binding: RawUniversityHeaderBinding
+    inner class RegionViewHolder(
+        private val binding: ItemUniversityRegionBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: UniversityModel) {
@@ -28,8 +28,8 @@ class UniversitiesAdapter(
         }
     }
 
-    inner class ItemViewHolder(
-        private val binding: RawUniversityItemBinding
+    inner class UniversityViewHolder(
+        private val binding: ItemUniversityNameBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: UniversityModel) {
@@ -45,18 +45,18 @@ class UniversitiesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater         = LayoutInflater.from(parent.context)
-        val headerViewHolder = RawUniversityHeaderBinding.inflate(inflater, parent, false)
-        val itemViewHolder   = RawUniversityItemBinding.inflate(inflater, parent, false)
+        val headerViewHolder = ItemUniversityRegionBinding.inflate(inflater, parent, false)
+        val itemViewHolder   = ItemUniversityNameBinding.inflate(inflater, parent, false)
 
         return when (viewType) {
-            LIST -> ItemViewHolder(itemViewHolder)
-            else -> HeaderViewHolder(headerViewHolder)
+            LIST -> UniversityViewHolder(itemViewHolder)
+            else -> RegionViewHolder(headerViewHolder)
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is HeaderViewHolder) holder.bind(universityList[position])
-        else if (holder is ItemViewHolder) holder.bind(universityList[position])
+        if (holder is RegionViewHolder) holder.bind(universityList[position])
+        else if (holder is UniversityViewHolder) holder.bind(universityList[position])
     }
 
     override fun getItemCount() = universityList.size

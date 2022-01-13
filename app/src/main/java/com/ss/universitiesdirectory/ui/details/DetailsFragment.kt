@@ -66,37 +66,33 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
         if (university.twitter.isNotEmpty()) {
             binding.communicationHeader.visibility = View.VISIBLE
             binding.twitter.visibility = View.VISIBLE
-            binding.twitter.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.twitter)))
-            }
+            binding.twitter.setOnClickListener { openSocialMedia(university.twitter) }
         }
         if (university.facebook.isNotEmpty()) {
             binding.communicationHeader.visibility = View.VISIBLE
             binding.facebook.visibility = View.VISIBLE
-            binding.facebook.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.facebook)))
-            }
+            binding.facebook.setOnClickListener { openSocialMedia(university.facebook) }
         }
         if (university.youtube.isNotEmpty()) {
             binding.communicationHeader.visibility = View.VISIBLE
             binding.youtube.visibility = View.VISIBLE
-            binding.youtube.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.youtube)))
-            }
+            binding.youtube.setOnClickListener { openSocialMedia(university.youtube) }
         }
         if (university.instagram.isNotEmpty()) {
             binding.communicationHeader.visibility = View.VISIBLE
             binding.instagram.visibility = View.VISIBLE
-            binding.instagram.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.instagram)))
-            }
+            binding.instagram.setOnClickListener { openSocialMedia(university.instagram) }
         }
         if (university.snapchat.isNotEmpty()) {
-            binding.communicationHeader.visibility = View.VISIBLE
             binding.snapchat.visibility = View.VISIBLE
-            binding.snapchat.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(university.snapchat)))
-            }
+            binding.communicationHeader.visibility = View.VISIBLE
+            binding.snapchat.setOnClickListener { openSocialMedia(university.snapchat) }
         }
+    }
+
+    private fun openSocialMedia(stringUri: String) {
+        val intent  = Intent(Intent.ACTION_VIEW, Uri.parse(stringUri))
+        val chooser = Intent.createChooser(intent, "Open app")
+        startActivity(chooser)
     }
 }
