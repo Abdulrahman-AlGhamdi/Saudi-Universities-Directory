@@ -1,8 +1,8 @@
 package com.ss.universitiesdirectory.ui.splash
 
-import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -26,12 +26,12 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
     }
 
     private fun init() {
-        val vectorDrawable = binding.splashLogo.drawable as AnimatedVectorDrawable
-        vectorDrawable.start()
+        binding.logo.animation = AnimationUtils.loadAnimation(context, R.anim.from_bottom_centered)
+        binding.appBrand.animation = AnimationUtils.loadAnimation(context, R.anim.from_bottom)
     }
 
     private fun endSplash() = lifecycleScope.launch(Dispatchers.Main) {
-        delay(3500)
+        delay(1100)
         val directions = SplashFragmentDirections
         val action = directions.actionSplashFragmentToUniversitiesFragment()
         findNavController().navigateTo(action, R.id.splashFragment)
