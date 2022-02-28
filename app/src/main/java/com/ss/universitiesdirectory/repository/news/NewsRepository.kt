@@ -2,7 +2,7 @@ package com.ss.universitiesdirectory.repository.news
 
 import android.content.Context
 import com.ss.universitiesdirectory.R
-import com.ss.universitiesdirectory.model.NewsModel
+import com.ss.universitiesdirectory.data.model.news.NewsModel
 import com.ss.universitiesdirectory.utils.connectTo
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers

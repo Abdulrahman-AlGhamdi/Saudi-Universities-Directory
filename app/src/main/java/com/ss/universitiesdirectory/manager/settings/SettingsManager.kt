@@ -1,4 +1,4 @@
-package com.ss.universitiesdirectory.repository.settings
+package com.ss.universitiesdirectory.manager.settings
 
 import android.content.Context
 import android.content.Intent
@@ -6,7 +6,7 @@ import com.ss.universitiesdirectory.utils.LanguageHelper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class SettingsRepository @Inject constructor(@ApplicationContext private val context: Context) {
+class SettingsManager @Inject constructor(@ApplicationContext private val context: Context) {
 
     fun setAppLanguage(isArabic: Boolean) {
         if (isArabic) LanguageHelper.changeCurrentLanguage(context, "ar")
@@ -14,7 +14,7 @@ class SettingsRepository @Inject constructor(@ApplicationContext private val con
     }
 
     fun sendEmail() {
-        val email   = "Abdulrahman.SS.AlGhamdi@Gmail.Com"
+        val email = EMAIL_ADDRESS
         val subject = "${context.packageName}: suggestion/issue email"
 
         val intent = Intent.createChooser(Intent(Intent.ACTION_SEND).apply {
@@ -26,5 +26,9 @@ class SettingsRepository @Inject constructor(@ApplicationContext private val con
         }
 
         context.startActivity(intent)
+    }
+
+    private companion object SettingsConstants {
+        private const val EMAIL_ADDRESS = "Abdulrahman.SS.AlGhamdi@Gmail.Com"
     }
 }

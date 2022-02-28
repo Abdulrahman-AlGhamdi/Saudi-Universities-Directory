@@ -1,6 +1,6 @@
-package com.ss.universitiesdirectory.repository.common
+package com.ss.universitiesdirectory.data.remote
 
-import com.ss.universitiesdirectory.model.UniversityModel
+import com.ss.universitiesdirectory.data.model.univeristy.UniversityModel
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -44,7 +44,7 @@
             app:destination="@id/newsFragment" />
         <argument
             android:name="university"
-            app:argType="com.ss.universitiesdirectory.model.UniversityModel" />
+            app:argType="com.ss.universitiesdirectory.data.model.univeristy.UniversityModel" />
     </fragment>
 
     <fragment
@@ -78,6 +78,7 @@
             android:id="@+id/action_settingsFragment_to_themeFragment"
             app:destination="@id/themeFragment" />
     </fragment>
+
     <dialog
         android:id="@+id/themeFragment"
         android:name="com.ss.universitiesdirectory.ui.theme.ThemeFragment"
