@@ -6,7 +6,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.databinding.RawNewsItemBinding
-import com.ss.universitiesdirectory.model.NewsModel
+import com.ss.universitiesdirectory.data.model.news.NewsModel
 import com.ss.universitiesdirectory.utils.navigateTo
 
 class NewsAdapter(

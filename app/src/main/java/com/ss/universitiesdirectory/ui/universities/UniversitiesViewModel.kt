@@ -1,7 +1,7 @@
 package com.ss.universitiesdirectory.ui.universities
 
 import androidx.lifecycle.ViewModel
-import com.ss.universitiesdirectory.model.UniversityModel
+import com.ss.universitiesdirectory.data.model.univeristy.UniversityModel
 import com.ss.universitiesdirectory.repository.universities.UniversitiesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

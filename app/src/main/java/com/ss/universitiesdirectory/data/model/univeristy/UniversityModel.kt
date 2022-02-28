@@ -1,4 +1,4 @@
-package com.ss.universitiesdirectory.model
+package com.ss.universitiesdirectory.data.model.univeristy
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

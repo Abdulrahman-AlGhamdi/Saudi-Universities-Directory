@@ -1,4 +1,4 @@
-package com.ss.universitiesdirectory.model
+package com.ss.universitiesdirectory.data.model.news
 
 data class NewsModel(
     var title       : String = "",

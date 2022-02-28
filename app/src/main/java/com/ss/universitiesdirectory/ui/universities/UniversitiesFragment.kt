@@ -13,8 +13,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ss.universitiesdirectory.R
+import com.ss.universitiesdirectory.data.model.univeristy.UniversityModel
+import com.ss.universitiesdirectory.data.remote.ResponseStatus
 import com.ss.universitiesdirectory.databinding.FragmentUniversitiesBinding
-import com.ss.universitiesdirectory.repository.universities.UniversitiesRepository.UniversitiesState
 import com.ss.universitiesdirectory.utils.navigateTo
 import com.ss.universitiesdirectory.utils.showSnackBar
 import com.ss.universitiesdirectory.utils.viewBinding
@@ -51,19 +52,19 @@ class UniversitiesFragment : Fragment(R.layout.fragment_universities) {
         universitiesJob = lifecycleScope.launch(Dispatchers.Main) {
             viewModel.universitiesState.collect {
                 when (it) {
-                    UniversitiesState.Loading -> {
+                    ResponseStatus.Progress -> {
                         binding.progress.visibility         = View.VISIBLE
                         binding.universitiesList.visibility = View.GONE
                     }
-                    is UniversitiesState.Successful -> {
+                    is ResponseStatus.Success<*> -> {
                         setHasOptionsMenu(true)
                         binding.progress.visibility         = View.GONE
                         binding.universitiesList.visibility = View.VISIBLE
 
-                        if (viewModel.universities.isNullOrEmpty()) viewModel.universities.addAll(it.universities)
+                        if (viewModel.universities.isNullOrEmpty()) viewModel.universities.addAll(it.data as List<UniversityModel>)
                         binding.universitiesList.adapter = UniversitiesAdapter(viewModel.universities)
                     }
-                    is UniversitiesState.Failed -> requireView().showSnackBar(it.message)
+                    is ResponseStatus.Failed -> requireView().showSnackBar(it.message)
                     else -> Unit
                 }
             }
