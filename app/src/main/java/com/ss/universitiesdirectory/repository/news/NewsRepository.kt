@@ -27,7 +27,7 @@ class NewsRepository @Inject constructor(@ApplicationContext private val context
                 this.emit(NewsStatus.NewsList(newsList))
             }
             else this.emit(NewsStatus.NewsFailed(httpsConnection.responseMessage))
-        } else this.emit(NewsStatus.NewsFailed(context.getString(R.string.connection_failed)))
+        } else this.emit(NewsStatus.NewsFailed(context.getString(R.string.network_error_title)))
     }.flowOn(Dispatchers.IO)
 
     private fun parseRssData(inputStream: InputStream) : List<NewsModel> {

@@ -37,7 +37,7 @@
     <string name="preference_version_summary">%1$s (%2$d)</string>
     <string name="preference_version_title">اصدار التطبيق</string>
 
-    <!-- Error Strings -->
-    <string name="connection_failed">فشل الإتصال</string>
-
+    <!-- Network Error Strings -->
+    <string name="network_error_title">خطأ في الاتصال</string>
+    <string name="network_error_message">يبدو أنك فقدت الاتصال بالإنترنت، يرجى إعادة الاتصال بالإنترنت</string>
 </resources>

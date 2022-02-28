@@ -3,22 +3,24 @@ package com.ss.universitiesdirectory.repository.universities
 import com.ss.universitiesdirectory.model.UniversityModel
 import com.ss.universitiesdirectory.repository.common.ApiService
 import com.ss.universitiesdirectory.repository.universities.UniversitiesRepository.UniversitiesState.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import java.util.*
 import javax.inject.Inject
 
 class UniversitiesRepository @Inject constructor(private val apiService: ApiService) {
 
-    fun getAllUniversities(region: String) = flow {
-        this.emit(Loading)
+    private var _universitiesState = MutableStateFlow<UniversitiesState>(Idle)
+    val universitiesState = _universitiesState.asStateFlow()
+
+    suspend fun getAllUniversities(region: String = "") {
+        _universitiesState.value = Loading
         val language = Locale.getDefault().language
         val response = apiService.getAllUniversities(language, region)
 
-        if (!response.isSuccessful) this.emit(Failed(response.message()))
-        else response.body()?.let { this.emit(Successful(it)) }
-    }.flowOn(Dispatchers.IO)
+        if (!response.isSuccessful) _universitiesState.value = Failed(response.message())
+        else response.body()?.let { _universitiesState.value = Successful(it) }
+    }
 
     sealed class UniversitiesState {
         object Idle                                                    : UniversitiesState()

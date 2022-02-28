@@ -1,7 +1,5 @@
 package com.ss.universitiesdirectory.ui.universities
 
-import android.content.Context.CONNECTIVITY_SERVICE
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -22,6 +20,7 @@ import com.ss.universitiesdirectory.utils.showSnackBar
 import com.ss.universitiesdirectory.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -29,7 +28,8 @@ import kotlinx.coroutines.launch
 class UniversitiesFragment : Fragment(R.layout.fragment_universities) {
 
     private val binding by viewBinding(FragmentUniversitiesBinding::bind)
-    private val viewModel: UniversitiesViewModel by viewModels()
+    private val viewModel by viewModels<UniversitiesViewModel>()
+    private lateinit var universitiesJob: Job
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,41 +45,27 @@ class UniversitiesFragment : Fragment(R.layout.fragment_universities) {
         val itemDecoration = DividerItemDecoration(requireContext(), layoutManager.orientation)
         binding.universitiesList.layoutManager = layoutManager
         binding.universitiesList.addItemDecoration(itemDecoration)
-
-        val manager = requireActivity().getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
-        val capabilities = manager.getNetworkCapabilities(manager.activeNetwork)
-        if (capabilities != null) checkNetwork(isConnected = true) else checkNetwork(isConnected = false)
     }
 
-    private fun checkNetwork(isConnected: Boolean) = if (isConnected) {
-        binding.noNetwork.visibility = View.GONE
-        binding.progress.visibility  = View.VISIBLE
-        if (viewModel.universities.isNullOrEmpty()) viewModel.getAllUniversities()
-        else binding.universitiesList.adapter = UniversitiesAdapter(viewModel.universities)
-        Unit
-    } else {
-        binding.progress.visibility  = View.GONE
-        binding.noNetwork.visibility = View.VISIBLE
-        binding.noNetworkButton.setOnClickListener { init() }
-    }
+    private fun getUniversities() {
+        universitiesJob = lifecycleScope.launch(Dispatchers.Main) {
+            viewModel.universitiesState.collect {
+                when (it) {
+                    UniversitiesState.Loading -> {
+                        binding.progress.visibility         = View.VISIBLE
+                        binding.universitiesList.visibility = View.GONE
+                    }
+                    is UniversitiesState.Successful -> {
+                        setHasOptionsMenu(true)
+                        binding.progress.visibility         = View.GONE
+                        binding.universitiesList.visibility = View.VISIBLE
 
-    private fun getUniversities() = lifecycleScope.launch(Dispatchers.Main) {
-        viewModel.universitiesState.collect {
-            when (it) {
-                UniversitiesState.Idle -> Unit
-                UniversitiesState.Loading -> {
-                    binding.progress.visibility         = View.VISIBLE
-                    binding.universitiesList.visibility = View.GONE
+                        if (viewModel.universities.isNullOrEmpty()) viewModel.universities.addAll(it.universities)
+                        binding.universitiesList.adapter = UniversitiesAdapter(viewModel.universities)
+                    }
+                    is UniversitiesState.Failed -> requireView().showSnackBar(it.message)
+                    else -> Unit
                 }
-                is UniversitiesState.Successful -> {
-                    setHasOptionsMenu(true)
-                    binding.progress.visibility         = View.GONE
-                    binding.universitiesList.visibility = View.VISIBLE
-
-                    if (viewModel.universities.isNullOrEmpty()) viewModel.universities.addAll(it.universities)
-                    binding.universitiesList.adapter = UniversitiesAdapter(viewModel.universities)
-                }
-                is UniversitiesState.Failed -> requireView().showSnackBar(it.message)
             }
         }
     }
@@ -105,7 +91,7 @@ class UniversitiesFragment : Fragment(R.layout.fragment_universities) {
                 return false
             }
 
-            override fun onQueryTextSubmit(query: String): Boolean { return false }
+            override fun onQueryTextSubmit(query: String): Boolean = false
         })
     }
 
@@ -116,5 +102,10 @@ class UniversitiesFragment : Fragment(R.layout.fragment_universities) {
             findNavController().navigateTo(action, R.id.universitiesFragment)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroyView() {
+        if (::universitiesJob.isInitialized) universitiesJob.cancel()
+        super.onDestroyView()
     }
 }
