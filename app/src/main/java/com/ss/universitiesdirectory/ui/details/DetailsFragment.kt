@@ -12,14 +12,17 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.compose.rememberAsyncImagePainter
@@ -64,75 +67,43 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                             modifier = Modifier.padding(bottom = 8.dp)
                         )
                         if (university.website.isNotEmpty()) {
-                            Button(
-                                modifier = Modifier.fillMaxWidth(),
-                                colors = ButtonDefaults.buttonColors(backgroundColor = WebsiteColor),
-                                onClick = {
-                                    val action =
-                                        directions.actionDetailsFragmentToWebsiteFragment(university.website)
-                                    findNavController().navigateTo(action, R.id.detailsFragment)
-                                }
-                            ) {
-                                Text(text = getString(R.string.website), color = Color.White)
-                            }
+                            UniversityInformationNavigate(
+                                action = directions.actionDetailsFragmentToWebsiteFragment(university.website),
+                                message = R.string.website,
+                                backgroundColor = WebsiteColor
+                            )
                         }
                         if (university.colleges.isNotEmpty()) {
-                            Button(
-                                modifier = Modifier.fillMaxWidth(),
-                                colors = ButtonDefaults.buttonColors(backgroundColor = CollegesColor),
-                                onClick = {
-                                    val action =
-                                        directions.actionDetailsFragmentToWebsiteFragment(university.colleges)
-                                    findNavController().navigateTo(action, R.id.detailsFragment)
-                                }
-                            ) {
-                                Text(text = getString(R.string.colleges), color = Color.White)
-                            }
+                            UniversityInformationNavigate(
+                                action = directions.actionDetailsFragmentToWebsiteFragment(
+                                    university.colleges
+                                ),
+                                message = R.string.colleges,
+                                backgroundColor = CollegesColor
+                            )
                         }
                         if (university.news.isNotEmpty()) {
-                            Button(
-                                modifier = Modifier.fillMaxWidth(),
-                                colors = ButtonDefaults.buttonColors(backgroundColor = NewsColor),
-                                onClick = {
-                                    val action =
-                                        directions.actionDetailsFragmentToNewsFragment(university.news)
-                                    findNavController().navigateTo(action, R.id.detailsFragment)
-                                }
-                            ) {
-                                Text(text = getString(R.string.news), color = Color.White)
-                            }
+                            UniversityInformationNavigate(
+                                action = directions.actionDetailsFragmentToNewsFragment(
+                                    university.news
+                                ),
+                                message = R.string.news,
+                                backgroundColor = NewsColor
+                            )
                         }
                         if (university.application.isNotEmpty()) {
-                            Button(
-                                modifier = Modifier.fillMaxWidth(),
-                                colors = ButtonDefaults.buttonColors(backgroundColor = ApplicationColor),
-                                onClick = {
-                                    startActivity(
-                                        Intent(
-                                            Intent.ACTION_VIEW,
-                                            Uri.parse(university.application)
-                                        )
-                                    )
-                                }
-                            ) {
-                                Text(text = getString(R.string.application), color = Color.White)
-                            }
+                            UniversityInformationIntent(
+                                action = university.application,
+                                message = R.string.application,
+                                backgroundColor = ApplicationColor
+                            )
                         }
                         if (university.location.isNotEmpty()) {
-                            Button(
-                                modifier = Modifier.fillMaxWidth(),
-                                colors = ButtonDefaults.buttonColors(backgroundColor = LocationColor),
-                                onClick = {
-                                    startActivity(
-                                        Intent(
-                                            Intent.ACTION_VIEW,
-                                            Uri.parse(university.location)
-                                        )
-                                    )
-                                }
-                            ) {
-                                Text(text = getString(R.string.location), color = Color.White)
-                            }
+                            UniversityInformationIntent(
+                                action = university.location,
+                                message = R.string.location,
+                                backgroundColor = LocationColor
+                            )
                         }
                         Text(
                             text = getString(R.string.communication),
@@ -140,96 +111,87 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(vertical = 8.dp)
                         )
-                        Row(modifier = Modifier.padding(horizontal = 16.dp)) {
+                        Row {
                             if (university.instagram.isNotEmpty()) {
-                                Button(
-                                    onClick = { openSocialMedia(university.instagram) },
-                                    colors = ButtonDefaults.buttonColors(backgroundColor = InstagramColor),
-                                    modifier = Modifier
-                                        .weight(weight = 1f)
-                                        .fillMaxWidth()
-                                        .height(50.dp)
-                                        .padding(horizontal = 4.dp)
-                                ) {
-                                    Icon(
-                                        painter = painterResource(id = R.drawable.icon_instagram),
-                                        contentDescription = null,
-                                        tint = White
-                                    )
-                                }
+                                SocialMedia(
+                                    modifier = Modifier.weight(weight = 1f),
+                                    socialMedia = university.instagram,
+                                    icon = painterResource(id = R.drawable.icon_instagram),
+                                    color = InstagramColor
+                                )
                             }
                             if (university.twitter.isNotEmpty()) {
-                                Button(
-                                    onClick = { openSocialMedia(university.twitter) },
-                                    colors = ButtonDefaults.buttonColors(backgroundColor = TwitterColor),
-                                    modifier = Modifier
-                                        .weight(weight = 1f)
-                                        .fillMaxWidth()
-                                        .height(50.dp)
-                                        .padding(horizontal = 4.dp)
-                                ) {
-                                    Icon(
-                                        painter = painterResource(id = R.drawable.icon_twitter),
-                                        contentDescription = null,
-                                        tint = White
-                                    )
-                                }
+                                SocialMedia(
+                                    modifier = Modifier.weight(weight = 1f),
+                                    socialMedia = university.twitter,
+                                    icon = painterResource(id = R.drawable.icon_twitter),
+                                    color = TwitterColor
+                                )
                             }
                             if (university.youtube.isNotEmpty()) {
-                                Button(
-                                    onClick = { openSocialMedia(university.youtube) },
-                                    colors = ButtonDefaults.buttonColors(backgroundColor = YoutubeColor),
-                                    modifier = Modifier
-                                        .weight(weight = 1f)
-                                        .fillMaxWidth()
-                                        .height(50.dp)
-                                        .padding(horizontal = 4.dp)
-                                ) {
-                                    Icon(
-                                        painter = painterResource(id = R.drawable.icon_youtube),
-                                        contentDescription = null,
-                                        tint = White
-                                    )
-                                }
+                                SocialMedia(
+                                    modifier = Modifier.weight(weight = 1f),
+                                    socialMedia = university.youtube,
+                                    icon = painterResource(id = R.drawable.icon_youtube),
+                                    color = YoutubeColor
+                                )
                             }
                             if (university.facebook.isNotEmpty()) {
-                                Button(
-                                    onClick = { openSocialMedia(university.facebook) },
-                                    colors = ButtonDefaults.buttonColors(backgroundColor = FacebookColor),
-                                    modifier = Modifier
-                                        .weight(weight = 1f)
-                                        .fillMaxWidth()
-                                        .height(50.dp)
-                                        .padding(horizontal = 4.dp)
-                                ) {
-                                    Icon(
-                                        painter = painterResource(id = R.drawable.icon_facebook),
-                                        contentDescription = null,
-                                        tint = White
-                                    )
-                                }
+                                SocialMedia(
+                                    modifier = Modifier.weight(weight = 1f),
+                                    socialMedia = university.facebook,
+                                    icon = painterResource(id = R.drawable.icon_facebook),
+                                    color = FacebookColor
+                                )
                             }
                             if (university.snapchat.isNotEmpty()) {
-                                Button(
-                                    onClick = { openSocialMedia(university.snapchat) },
-                                    colors = ButtonDefaults.buttonColors(backgroundColor = SnapchatColor),
-                                    modifier = Modifier
-                                        .weight(weight = 1f)
-                                        .fillMaxWidth()
-                                        .height(50.dp)
-                                        .padding(horizontal = 4.dp)
-                                ) {
-                                    Icon(
-                                        painter = painterResource(id = R.drawable.icon_snapchat),
-                                        contentDescription = null,
-                                        tint = White
-                                    )
-                                }
+                                SocialMedia(
+                                    modifier = Modifier.weight(weight = 1f),
+                                    socialMedia = university.snapchat,
+                                    icon = painterResource(id = R.drawable.icon_snapchat),
+                                    color = SnapchatColor
+                                )
                             }
                         }
                     }
                 }
             }
+        }
+    }
+
+    @Composable
+    fun UniversityInformationNavigate(action: NavDirections, message: Int, backgroundColor: Color) {
+        Button(
+            onClick = { findNavController().navigateTo(action, R.id.detailsFragment) },
+            modifier = Modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor)
+        ) {
+            Text(text = getString(message), color = Color.White)
+        }
+    }
+
+    @Composable
+    fun UniversityInformationIntent(action: String, message: Int, backgroundColor: Color) {
+        Button(
+            onClick = { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(action))) },
+            modifier = Modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor)
+        ) {
+            Text(text = getString(message), color = Color.White)
+        }
+    }
+
+    @Composable
+    private fun SocialMedia(modifier: Modifier, socialMedia: String, icon: Painter, color: Color) {
+        Button(
+            onClick = { openSocialMedia(socialMedia) },
+            colors = ButtonDefaults.buttonColors(backgroundColor = color),
+            modifier = modifier
+                .fillMaxWidth()
+                .height(40.dp)
+                .padding(horizontal = 4.dp),
+        ) {
+            Icon(painter = icon, contentDescription = null, tint = Color.White)
         }
     }
 
