@@ -66,6 +66,8 @@ dependencies {
     implementation "androidx.navigation:navigation-compose:$nav_version"
     // Compose Hilt
     implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
+    // Compose Coil
+    implementation("io.coil-kt:coil-compose:2.0.0-rc01")
 
     // Life Cycle
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
