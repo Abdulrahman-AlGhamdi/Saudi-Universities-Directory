@@ -42,6 +42,6 @@
     <string name="preference_version_title">Application Version</string>
 
     <!-- Network Error Strings -->
-    <string name="network_error_title">Connection Error</string>
+    <string name="connection_error">Connection Error</string>
     <string name="network_error_message">Seems like you lost connectivity to the internet, please reconnect to the internet</string>
 </resources>

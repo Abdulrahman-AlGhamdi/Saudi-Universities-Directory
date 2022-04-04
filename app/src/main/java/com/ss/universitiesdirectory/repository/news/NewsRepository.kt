@@ -1,13 +1,13 @@
 package com.ss.universitiesdirectory.repository.news
 
 import android.content.Context
-import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.data.model.news.NewsModel
 import com.ss.universitiesdirectory.utils.connectTo
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.withContext
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
 import java.io.InputStream
@@ -16,21 +16,23 @@ import javax.net.ssl.HttpsURLConnection
 
 class NewsRepository @Inject constructor(@ApplicationContext private val context: Context) {
 
-    fun downloadRssData(address: String) = flow {
-        this.emit(NewsStatus.NewsLoading)
+    private val _newsStatus = MutableStateFlow<NewsStatus>(NewsStatus.NewsLoading)
+    val newsStatus = _newsStatus.asStateFlow()
+
+    suspend fun downloadRssData(address: String) = withContext(Dispatchers.IO) {
+        _newsStatus.value = NewsStatus.NewsLoading
         val connection = connectTo(address)
 
-        if (!connection.toString().lowercase().startsWith("error")) {
+        try {
             val httpsConnection = connection as HttpsURLConnection
-            if (httpsConnection.responseCode == HttpsURLConnection.HTTP_OK) {
-                val newsList = parseRssData(httpsConnection.inputStream)
-                this.emit(NewsStatus.NewsList(newsList))
-            }
-            else this.emit(NewsStatus.NewsFailed(httpsConnection.responseMessage))
-        } else this.emit(NewsStatus.NewsFailed(context.getString(R.string.network_error_title)))
-    }.flowOn(Dispatchers.IO)
+            val newsList = parseRssData(httpsConnection.inputStream)
+            _newsStatus.value = NewsStatus.NewsList(newsList)
+        } catch (exception: Exception) {
+            exception.localizedMessage?.let { _newsStatus.value = NewsStatus.NewsFailed(it) }
+        }
+    }
 
-    private fun parseRssData(inputStream: InputStream) : List<NewsModel> {
+    private fun parseRssData(inputStream: InputStream): List<NewsModel> {
         val parser = XmlPullParserFactory.newInstance().newPullParser()
         parser.setInput(inputStream, null)
 

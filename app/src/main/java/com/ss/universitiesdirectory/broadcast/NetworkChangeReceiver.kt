@@ -30,7 +30,7 @@ class NetworkChangeReceiver : BroadcastReceiver() {
         if (!::coroutineScope.isInitialized) coroutineScope = CoroutineScope(Dispatchers.IO)
 
         if (!::alertDialog.isInitialized) alertDialog = MaterialAlertDialogBuilder(context).apply {
-            this.setTitle(context.getString(R.string.network_error_title))
+            this.setTitle(context.getString(R.string.connection_error))
             this.setMessage(context.getString(R.string.network_error_message))
             this.setCancelable(false)
         }.create()

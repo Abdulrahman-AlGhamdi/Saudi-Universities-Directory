@@ -38,6 +38,6 @@
     <string name="preference_version_title">اصدار التطبيق</string>
 
     <!-- Network Error Strings -->
-    <string name="network_error_title">خطأ في الاتصال</string>
+    <string name="connection_error">خطأ في الاتصال</string>
     <string name="network_error_message">يبدو أنك فقدت الاتصال بالإنترنت، يرجى إعادة الاتصال بالإنترنت</string>
 </resources>
