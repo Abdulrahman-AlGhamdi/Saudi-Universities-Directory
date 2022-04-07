@@ -34,7 +34,7 @@ class ThemeFragment : DialogFragment(R.layout.fragment_theme) {
         binding.composeView.apply {
             this.setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             this.setContent {
-                var selected = remember { sharedPreferences.getBoolean("theme", false) }
+                var selected = remember { sharedPreferences.getBoolean("isDarkTheme", false) }
 
                 Column(modifier = Modifier.padding(start = 24.dp, end = 24.dp, bottom = 16.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -64,7 +64,7 @@ class ThemeFragment : DialogFragment(R.layout.fragment_theme) {
     }
 
     private fun setTheme(darkMode: Boolean) {
-        sharedPreferences.edit().putBoolean("theme", darkMode).apply()
+        sharedPreferences.edit().putBoolean("isDarkTheme", darkMode).apply()
 
         if (darkMode) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
