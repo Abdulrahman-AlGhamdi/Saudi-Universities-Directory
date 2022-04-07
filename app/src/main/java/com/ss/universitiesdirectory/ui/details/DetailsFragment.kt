@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -59,12 +60,14 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                             text = getString(R.string.about),
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(bottom = 8.dp)
+                            modifier = Modifier.padding(bottom = 8.dp),
+                            color = if (isSystemInDarkTheme()) White else Black
                         )
                         Text(
                             text = university.about,
                             fontSize = 15.sp,
-                            modifier = Modifier.padding(bottom = 8.dp)
+                            modifier = Modifier.padding(bottom = 8.dp),
+                            color = if (isSystemInDarkTheme()) White else Black
                         )
                         if (university.website.isNotEmpty()) {
                             UniversityInformationNavigate(
@@ -109,7 +112,8 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                             text = getString(R.string.communication),
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(vertical = 8.dp)
+                            modifier = Modifier.padding(vertical = 8.dp),
+                            color = if (isSystemInDarkTheme()) White else Black
                         )
                         Row {
                             if (university.instagram.isNotEmpty()) {

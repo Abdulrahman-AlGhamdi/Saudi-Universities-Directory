@@ -3,6 +3,7 @@ package com.ss.universitiesdirectory.ui.news
 import android.os.Bundle
 import android.view.View
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,7 +29,9 @@ import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.data.model.news.NewsModel
 import com.ss.universitiesdirectory.databinding.FragmentNewsBinding
 import com.ss.universitiesdirectory.repository.news.NewsRepository.NewsStatus
+import com.ss.universitiesdirectory.ui.theme.Black
 import com.ss.universitiesdirectory.ui.theme.PrimaryColor
+import com.ss.universitiesdirectory.ui.theme.White
 import com.ss.universitiesdirectory.utils.navigateTo
 import com.ss.universitiesdirectory.utils.showSnackBar
 import com.ss.universitiesdirectory.utils.viewBinding
@@ -81,6 +84,7 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         fontWeight = FontWeight.Bold,
+                        color = if (isSystemInDarkTheme()) White else Black
                     )
                 }
                 Divider()
