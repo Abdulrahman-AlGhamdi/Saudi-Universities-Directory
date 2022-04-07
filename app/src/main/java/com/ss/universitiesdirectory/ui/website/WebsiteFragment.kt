@@ -4,13 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.webkit.WebResourceRequest
+import android.view.*
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.ss.universitiesdirectory.R
@@ -25,21 +24,32 @@ class WebsiteFragment : Fragment(R.layout.fragment_website) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setHasOptionsMenu(true)
-        showWebsite()
-    }
 
-    private fun showWebsite() {
-        binding.website.settings.javaScriptEnabled = true
-        binding.website.loadUrl(argument.url)
-
-        binding.website.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
-                view.loadUrl(request.url.toString())
-                return super.shouldOverrideUrlLoading(view, request)
+        binding.composeView.apply {
+            this.setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+            this.setContent {
+                WebViewPage(url = argument.url)
             }
         }
+    }
+
+    @Composable
+    fun WebViewPage(url: String) {
+        AndroidView(factory = {
+            WebView(it).apply {
+                this.webViewClient = WebViewClient()
+                this.settings.javaScriptEnabled = true
+                this.layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
+
+                loadUrl(url)
+            }
+        }, update = {
+            it.loadUrl(url)
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -48,7 +58,8 @@ class WebsiteFragment : Fragment(R.layout.fragment_website) {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_website) startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(argument.url)))
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(argument.url))
+        if (item.itemId == R.id.menu_website) startActivity(intent)
         return super.onOptionsItemSelected(item)
     }
 }
