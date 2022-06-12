@@ -195,7 +195,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                 .height(40.dp)
                 .padding(horizontal = 4.dp),
         ) {
-            Icon(painter = icon, contentDescription = null, tint = Color.White)
+            Icon(painter = icon, contentDescription = null, tint = Color.Unspecified)
         }
     }
 
