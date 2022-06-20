@@ -5,22 +5,17 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.widget.SearchView
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Divider
-import androidx.compose.material.Snackbar
-import androidx.compose.material.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -32,6 +27,8 @@ import com.ss.universitiesdirectory.data.model.univeristy.UniversityModel
 import com.ss.universitiesdirectory.data.remote.ResponseStatus
 import com.ss.universitiesdirectory.databinding.FragmentUniversitiesBinding
 import com.ss.universitiesdirectory.ui.theme.Black
+import com.ss.universitiesdirectory.ui.theme.Gray
+import com.ss.universitiesdirectory.ui.theme.PrimaryColor
 import com.ss.universitiesdirectory.ui.theme.White
 import com.ss.universitiesdirectory.utils.navigateTo
 import com.ss.universitiesdirectory.utils.viewBinding
@@ -46,6 +43,7 @@ class UniversitiesFragment : Fragment(R.layout.fragment_universities) {
     private val directions = UniversitiesFragmentDirections
     private lateinit var universitiesJob: Job
 
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -54,23 +52,42 @@ class UniversitiesFragment : Fragment(R.layout.fragment_universities) {
         binding.composeView.apply {
             this.setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             this.setContent {
-                GetAllUniversities()
+                Scaffold(
+                    topBar = { UniversitiesTopBar() },
+                    content = { GetAllUniversities(it) }
+                )
             }
         }
     }
 
     @Composable
-    fun GetAllUniversities() {
-        viewModel.universitiesState.collectAsState().apply {
-            when (val state = this.value) {
-                ResponseStatus.Progress -> Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center,
-                    content = { CircularProgressIndicator() }
-                )
-                is ResponseStatus.Success<*> -> UniversitiesList(state.data as List<UniversityModel>)
-                is ResponseStatus.Failed -> Snackbar(content = { Text(text = state.message) })
-                else -> Unit
+    fun UniversitiesTopBar() = CenterAlignedTopAppBar(
+        title = { Text(text = getString(R.string.fragment_universities)) },
+        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+            containerColor = PrimaryColor,
+            titleContentColor = White,
+            navigationIconContentColor = White,
+            actionIconContentColor = White
+        )
+    )
+
+    @Composable
+    fun GetAllUniversities(paddingValues: PaddingValues) {
+        Box(
+            modifier = Modifier
+                .padding(paddingValues)
+                .fillMaxSize()
+        ) {
+            viewModel.universitiesState.collectAsState().apply {
+                when (val state = this.value) {
+                    ResponseStatus.Progress -> CircularProgressIndicator(
+                        color = PrimaryColor,
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                    is ResponseStatus.Success<*> -> UniversitiesList(state.data as List<UniversityModel>)
+                    is ResponseStatus.Failed -> Snackbar(content = { Text(text = state.message) })
+                    else -> Unit
+                }
             }
         }
     }
@@ -86,7 +103,7 @@ class UniversitiesFragment : Fragment(R.layout.fragment_universities) {
         items(list, key = { it.id }) { university ->
             if (university.province) UniversityHeader(university)
             else UniversityItem(university)
-            Divider()
+            Divider(color = Gray)
         }
     }
 

@@ -9,10 +9,10 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -71,7 +71,9 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                         )
                         if (university.website.isNotEmpty()) {
                             UniversityInformationNavigate(
-                                action = directions.actionDetailsFragmentToWebsiteFragment(university.website),
+                                action = directions.actionDetailsFragmentToWebsiteFragment(
+                                    university.website
+                                ),
                                 message = R.string.website,
                                 backgroundColor = WebsiteColor
                             )
@@ -168,7 +170,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
         Button(
             onClick = { findNavController().navigateTo(action, R.id.detailsFragment) },
             modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor)
+            colors = ButtonDefaults.buttonColors(contentColor = backgroundColor)
         ) {
             Text(text = getString(message), color = Color.White)
         }
@@ -179,7 +181,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
         Button(
             onClick = { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(action))) },
             modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor)
+            colors = ButtonDefaults.buttonColors(contentColor = backgroundColor)
         ) {
             Text(text = getString(message), color = Color.White)
         }
@@ -189,7 +191,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     private fun SocialMedia(modifier: Modifier, socialMedia: String, icon: Painter, color: Color) {
         Button(
             onClick = { openSocialMedia(socialMedia) },
-            colors = ButtonDefaults.buttonColors(backgroundColor = color),
+            colors = ButtonDefaults.buttonColors(contentColor = color),
             modifier = modifier
                 .fillMaxWidth()
                 .height(40.dp)

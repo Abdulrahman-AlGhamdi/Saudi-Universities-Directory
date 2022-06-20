@@ -4,12 +4,17 @@ import androidx.compose.ui.graphics.Color
 
 // Application Colors
 val PrimaryColor = Color(0xFF4e342e)
-val DarkPrimaryColor = Color(0xFF260e04)
-val AccentColor = Color(0xFE7b5e57)
+val PrimaryDarkColor = Color(0xFF260e04)
+val SecondaryColor = Color(0xFF625b71)
+val TertiaryColor = Color(0xFE7b5e57)
+
+val Purple80 = Color(0xFFD0BCFF)
+val PurpleGrey80 = Color(0xFFCCC2DC)
+val Pink80 = Color(0xFFEFB8C8)
 
 val Black = Color(0xFF000000)
 val White = Color(0xFFFFFFFF)
-val DarkBackgroundColor = Color(0x00121212)
+val Gray = Color(0x4D808080)
 
 // University Information Colors
 val WebsiteColor = Color(0xFFe84c3d)

@@ -10,8 +10,9 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.RadioButton
-import androidx.compose.material.Text
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,6 +28,7 @@ class ThemeFragment : DialogFragment(R.layout.fragment_theme) {
     private lateinit var binding: FragmentThemeBinding
     private lateinit var sharedPreferences: SharedPreferences
 
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = FragmentThemeBinding.inflate(LayoutInflater.from(requireContext()))
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
