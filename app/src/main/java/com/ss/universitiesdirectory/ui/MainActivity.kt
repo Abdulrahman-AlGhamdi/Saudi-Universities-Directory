@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         navController = findNavController(R.id.fragment_container)
-        val configuration = AppBarConfiguration(setOf(R.id.splashFragment, R.id.universitiesFragment))
-        setupActionBarWithNavController(navController, configuration)
     }
 
     override fun onResume() {
