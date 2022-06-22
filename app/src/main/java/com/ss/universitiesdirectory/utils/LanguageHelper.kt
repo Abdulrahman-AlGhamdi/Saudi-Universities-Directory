@@ -9,7 +9,7 @@ import java.util.*
 
 object LanguageHelper {
 
-    private const val CURRENT_LANGUAGE = "current language"
+    const val CURRENT_LANGUAGE = "current language"
 
     fun onBaseAttach(context: Context): Context {
         val preference = PreferenceManager.getDefaultSharedPreferences(context)

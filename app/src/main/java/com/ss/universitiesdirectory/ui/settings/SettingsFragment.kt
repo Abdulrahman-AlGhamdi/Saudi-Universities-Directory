@@ -1,7 +1,7 @@
 package com.ss.universitiesdirectory.ui.settings
 
-import android.os.Bundle
-import android.view.View
+import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -10,135 +10,194 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.compose.ui.window.DialogProperties
+import androidx.navigation.NavHostController
+import androidx.preference.PreferenceManager
 import com.ss.universitiesdirectory.BuildConfig
-import com.ss.universitiesdirectory.R
-import com.ss.universitiesdirectory.databinding.FragmentSettingsBinding
 import com.ss.universitiesdirectory.ui.theme.Black
 import com.ss.universitiesdirectory.ui.theme.Gray
 import com.ss.universitiesdirectory.ui.theme.PrimaryColor
 import com.ss.universitiesdirectory.ui.theme.White
-import com.ss.universitiesdirectory.utils.navigateTo
-import com.ss.universitiesdirectory.utils.viewBinding
-import dagger.hilt.android.AndroidEntryPoint
+import com.ss.universitiesdirectory.utils.LanguageHelper
+import java.util.*
 
-@AndroidEntryPoint
-class SettingsFragment : Fragment(R.layout.fragment_settings) {
+private lateinit var vm: SettingsViewModel
+private lateinit var nv: NavHostController
+private lateinit var sp: SharedPreferences
 
-    private val binding by viewBinding(FragmentSettingsBinding::bind)
-    private val viewModel by viewModels<SettingsViewModel>()
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+fun SettingsScreen(navController: NavHostController, viewModel: SettingsViewModel) {
+    val context = LocalContext.current
+    nv = navController
+    vm = viewModel
+    sp = PreferenceManager.getDefaultSharedPreferences(context)
 
-    @OptIn(ExperimentalMaterial3Api::class)
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    Scaffold(
+        topBar = { SettingsTopBar() },
+        content = { SettingsContent(it) },
+        snackbarHost = {}
+    )
+}
 
-        binding.composeView.apply {
-            this.setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
-            this.setContent {
-                Scaffold(
-                    topBar = { SettingsTopBar { findNavController().popBackStack() } },
-                    content = { SettingsContent(it) },
-                    snackbarHost = {}
-                )
-            }
+@Composable
+private fun SettingsTopBar() = CenterAlignedTopAppBar(
+    title = { Text(text = "Settings") },
+    navigationIcon = {
+        IconButton(onClick = { nv.popBackStack() }) {
+            Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
         }
-    }
+    },
+    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+        containerColor = PrimaryColor,
+        titleContentColor = White,
+        navigationIconContentColor = White,
+        actionIconContentColor = White
+    )
+)
 
-    @Composable
-    private fun SettingsTopBar(onPopUpCallback: () -> Unit) = CenterAlignedTopAppBar(
-        title = { Text(text = getString(R.string.fragment_settings)) },
-        navigationIcon = {
-            IconButton(onClick = onPopUpCallback) {
-                Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
-            }
-        },
-        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-            containerColor = PrimaryColor,
-            titleContentColor = White,
-            navigationIconContentColor = White,
-            actionIconContentColor = White
-        )
+@Composable
+fun SettingsContent(paddingValues: PaddingValues) = Column(Modifier.padding(paddingValues)) {
+    SettingsHeader(icon = Icons.Default.Settings, text = "Application Configuration")
+    SettingsItem(title = "Theme", onItemClick = { vm.openThemeDialog = true })
+    SettingsItem(title = "Language", onItemClick = { vm.openLanguageDialog = true })
+    Divider(color = Gray)
+    SettingsHeader(icon = Icons.Default.Info, text = "About")
+    SettingsItem(
+        title = "Contact Me",
+        description = "Any suggestions or issues please don't hesitate to contact me"
+    ) { vm.sendEmail() }
+
+    SettingsItem(
+        title = "Application Version",
+        isClickable = false,
+        description = "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
     )
 
-    @Composable
-    fun SettingsContent(paddingValues: PaddingValues) = Column(Modifier.padding(paddingValues)) {
-        SettingsHeader(
-            icon = Icons.Default.Settings,
-            text = getString(R.string.preference_application_configuration)
-        )
-        SettingsItem(title = getString(R.string.preference_theme_title)) {
-            val directions = SettingsFragmentDirections
-            val actions = directions.actionSettingsFragmentToThemeFragment()
-            findNavController().navigateTo(actions, R.id.settingsFragment)
-        }
-        SettingsItem(title = getString(R.string.preference_language_title)) {
-            val directions = SettingsFragmentDirections
-            val actions = directions.actionSettingsFragmentToThemeFragment()
-            findNavController().navigateTo(actions, R.id.settingsFragment)
-        }
-        Divider(color = Gray)
-        SettingsHeader(
-            icon = Icons.Default.Info,
-            text = getString(R.string.preference_about)
-        )
-        SettingsItem(
-            title = getString(R.string.preference_contact_me_title),
-            description = getString(R.string.preference_contact_me_summary)
-        ) { viewModel.sendEmail() }
+    if (vm.openThemeDialog) ThemeDialog()
+    if (vm.openLanguageDialog) LanguageDialog()
+}
 
-        SettingsItem(
-            title = getString(R.string.preference_version_title),
-            isClickable = false,
-            description = getString(
-                R.string.preference_version_summary,
-                BuildConfig.VERSION_NAME,
-                BuildConfig.VERSION_CODE
-            )
-        )
-    }
+@Composable
+fun SettingsHeader(icon: ImageVector, tint: Color = PrimaryColor, text: String) = Row(
+    modifier = Modifier.padding(top = 24.dp, start = 24.dp, end = 24.dp)
+) {
+    Icon(imageVector = icon, contentDescription = null, tint = tint)
+    Text(text = text, color = tint, modifier = Modifier.padding(start = 32.dp))
+}
 
-    @Composable
-    fun SettingsHeader(icon: ImageVector, tint: Color = PrimaryColor, text: String) = Row(
-        modifier = Modifier.padding(top = 24.dp, start = 24.dp, end = 24.dp)
-    ) {
-        Icon(imageVector = icon, contentDescription = null, tint = tint)
-        Text(text = text, color = tint, modifier = Modifier.padding(start = 32.dp))
-    }
-
-    @Composable
-    fun SettingsItem(
-        title: String,
-        titleColor: Color = Black,
-        description: String? = null,
-        descriptionColor: Color = Color.Gray,
-        isClickable: Boolean = true,
-        onItemClick: () -> Unit = {}
-    ) = Column(
-        modifier = Modifier
-            .then(if (isClickable) Modifier.clickable { onItemClick() } else Modifier)
-            .fillMaxWidth()
-            .padding(24.dp)
-    ) {
+@Composable
+fun SettingsItem(
+    title: String,
+    titleColor: Color = Black,
+    description: String? = null,
+    descriptionColor: Color = Color.Gray,
+    isClickable: Boolean = true,
+    onItemClick: () -> Unit = {}
+) = Column(
+    modifier = Modifier
+        .then(if (isClickable) Modifier.clickable { onItemClick() } else Modifier)
+        .fillMaxWidth()
+        .padding(24.dp)
+) {
+    Text(
+        text = title,
+        color = titleColor,
+        fontSize = 16.sp,
+        modifier = Modifier.padding(start = 56.dp)
+    )
+    description?.let {
         Text(
-            text = title,
-            color = titleColor,
-            fontSize = 16.sp,
-            modifier = Modifier.padding(start = 56.dp)
+            text = description,
+            color = descriptionColor,
+            modifier = Modifier.padding(top = 8.dp, start = 56.dp)
         )
-        description?.let {
-            Text(
-                text = description,
-                color = descriptionColor,
-                modifier = Modifier.padding(top = 8.dp, start = 56.dp)
-            )
-        }
     }
+}
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+fun ThemeDialog() {
+    var selected = remember { sp.getBoolean("isDarkTheme", false) }
+
+    AlertDialog(
+        onDismissRequest = { vm.openThemeDialog = false },
+        properties = DialogProperties(dismissOnBackPress = false),
+        title = { Text(text = "UI Mode") },
+        confirmButton = {
+            Button(onClick = { vm.openThemeDialog = false }, modifier = Modifier.fillMaxWidth()) {
+                Text(text = "DISMISS")
+            }
+        },
+        text = {
+            Column(modifier = Modifier.padding(start = 24.dp, end = 24.dp)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    RadioButton(selected = !selected, enabled = selected, onClick = {
+                        setTheme(darkMode = false)
+                        selected = false
+                    })
+                    Text(text = "Light", color = Black, fontSize = 16.sp)
+                }
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    RadioButton(selected = selected, enabled = !selected, onClick = {
+                        setTheme(darkMode = true)
+                        selected = true
+                    })
+                    Text(text = "Dark", color = Black, fontSize = 16.sp)
+                }
+            }
+        }
+    )
+}
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+fun LanguageDialog() {
+    val language = sp.getString(LanguageHelper.CURRENT_LANGUAGE, Locale.getDefault().language)
+    var selected = remember { language == "ar" }
+
+    AlertDialog(
+        onDismissRequest = { vm.openLanguageDialog = false },
+        properties = DialogProperties(dismissOnBackPress = false),
+        title = { Text(text = "UI Mode") },
+        confirmButton = {
+            Button(onClick = { vm.openLanguageDialog = false }, modifier = Modifier.fillMaxWidth()) {
+                Text(text = "DISMISS")
+            }
+        },
+        text = {
+            Column(modifier = Modifier.padding(start = 24.dp, end = 24.dp)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    RadioButton(selected = !selected, enabled = selected, onClick = {
+                        vm.setAppLanguage(isArabic = false)
+                        selected = false
+                    })
+                    Text(text = "English", color = Black, fontSize = 16.sp)
+                }
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    RadioButton(selected = selected, enabled = !selected, onClick = {
+                        vm.setAppLanguage(isArabic = true)
+                        selected = true
+                    })
+                    Text(text = "Arabic", color = Black, fontSize = 16.sp)
+                }
+            }
+        }
+    )
+}
+
+private fun setTheme(darkMode: Boolean) {
+    sp.edit().putBoolean("isDarkTheme", darkMode).apply()
+
+    if (darkMode) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+    else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+    vm.openThemeDialog = false
 }

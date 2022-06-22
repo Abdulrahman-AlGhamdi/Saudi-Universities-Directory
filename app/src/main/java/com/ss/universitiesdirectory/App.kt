@@ -3,7 +3,6 @@ package com.ss.universitiesdirectory
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
-import com.ss.universitiesdirectory.utils.isDarkThemeOn
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp

@@ -32,7 +32,7 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 @Composable
-fun AnimationsComposeTheme(
+fun SaudiUniversitiesComposeTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
