@@ -35,8 +35,8 @@ class UniversitiesViewModel @Inject constructor(
     var listOfUniversities by mutableStateOf(universities)
 
     fun searchList(query: String = "") {
-        listOfUniversities = universities.filter {
-            it.name.lowercase().contains(query.lowercase())
-        }
+        listOfUniversities = if (query.isNotBlank()) universities.filter {
+            if (!it.province) it.name.lowercase().startsWith(query.lowercase()) else false
+        } else universities
     }
 }
