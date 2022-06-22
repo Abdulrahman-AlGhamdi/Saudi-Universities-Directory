@@ -1,9 +1,7 @@
 package com.ss.universitiesdirectory.repository.news
 
-import android.content.Context
 import com.ss.universitiesdirectory.data.model.news.NewsModel
 import com.ss.universitiesdirectory.utils.connectTo
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,7 +12,7 @@ import java.io.InputStream
 import javax.inject.Inject
 import javax.net.ssl.HttpsURLConnection
 
-class NewsRepository @Inject constructor(@ApplicationContext private val context: Context) {
+class NewsRepository @Inject constructor() {
 
     private val _newsStatus = MutableStateFlow<NewsStatus>(NewsStatus.NewsLoading)
     val newsStatus = _newsStatus.asStateFlow()

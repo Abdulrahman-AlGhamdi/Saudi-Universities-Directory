@@ -1,209 +1,204 @@
 package com.ss.universitiesdirectory.ui.details
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
-import android.view.View
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.fragment.app.Fragment
-import androidx.navigation.NavDirections
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
+import androidx.core.content.ContextCompat.startActivity
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.ss.universitiesdirectory.R
-import com.ss.universitiesdirectory.databinding.FragmentDetailsBinding
+import com.ss.universitiesdirectory.data.model.univeristy.UniversityModel
 import com.ss.universitiesdirectory.ui.theme.*
-import com.ss.universitiesdirectory.utils.navigateTo
-import com.ss.universitiesdirectory.utils.viewBinding
 
-class DetailsFragment : Fragment(R.layout.fragment_details) {
+private lateinit var nc: NavHostController
 
-    private val binding by viewBinding(FragmentDetailsBinding::bind)
-    private val argument by navArgs<DetailsFragmentArgs>()
-    private val directions = DetailsFragmentDirections
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+fun DetailsScreen(navController: NavHostController, university: UniversityModel) {
+    nc = navController
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val university = argument.university
+    Scaffold(
+        topBar = { DetailsTopBar() },
+        content = { DetailsContent(it, university) }
+    )
+}
 
-        binding.composeView.apply {
-            this.setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
-            this.setContent {
-                Column(modifier = Modifier.padding(all = 16.dp)) {
-                    Image(
-                        painter = rememberAsyncImagePainter(model = university.logo),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(200.dp)
+@Composable
+private fun DetailsTopBar() = CenterAlignedTopAppBar(
+    title = { Text(text = "Details") },
+    navigationIcon = {
+        IconButton(onClick = { nc.popBackStack() }) {
+            Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
+        }
+    },
+    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+        containerColor = PrimaryColor,
+        titleContentColor = White,
+        navigationIconContentColor = White,
+        actionIconContentColor = White
+    )
+)
+
+@Composable
+private fun DetailsContent(paddingValues: PaddingValues, university: UniversityModel) {
+    val context = LocalContext.current
+
+    Column(modifier = Modifier.padding(paddingValues)) {
+        Image(
+            painter = rememberAsyncImagePainter(model = university.logo),
+            contentDescription = null,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp)
+        )
+
+        Column(Modifier.verticalScroll(state = rememberScrollState())) {
+            Text(
+                text = "About University:",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 8.dp),
+                color = if (isSystemInDarkTheme()) White else Black
+            )
+            Text(
+                text = university.about,
+                fontSize = 15.sp,
+                modifier = Modifier.padding(bottom = 8.dp),
+                color = if (isSystemInDarkTheme()) White else Black
+            )
+            if (university.website.isNotEmpty()) UniversitiesButton(
+                message = "Website",
+                backgroundColor = WebsiteColor,
+                onClickCallBack = {
+                    nc.currentBackStackEntry?.savedStateHandle?.set("url", university.website)
+                    nc.navigate(route = "website")
+                }
+            )
+            if (university.colleges.isNotEmpty()) UniversitiesButton(
+                message = "Colleges",
+                backgroundColor = CollegesColor,
+                onClickCallBack = {
+                    nc.currentBackStackEntry?.savedStateHandle?.set("url", university.colleges)
+                    nc.navigate(route = "website")
+                }
+            )
+            if (university.news.isNotEmpty()) UniversitiesButton(
+                message = "News",
+                backgroundColor = NewsColor,
+                onClickCallBack = {
+                    nc.currentBackStackEntry?.savedStateHandle?.set("address", university.news)
+                    nc.navigate(route = "news")
+                }
+            )
+            if (university.application.isNotEmpty()) {
+                UniversitiesButton(
+                    message = "Application",
+                    backgroundColor = ApplicationColor,
+                    onClickCallBack = { openAppAsIntent(context, university.application) }
+                )
+            }
+            if (university.location.isNotEmpty()) UniversitiesButton(
+                message = "Location",
+                backgroundColor = LocationColor,
+                onClickCallBack = { openAppAsIntent(context, university.location) }
+            )
+            Text(
+                text = "Communication:",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(vertical = 8.dp),
+                color = if (isSystemInDarkTheme()) White else Black
+            )
+            Row {
+                if (university.instagram.isNotEmpty()) SocialMedia(
+                    modifier = Modifier.weight(weight = 1f),
+                    icon = painterResource(id = R.drawable.icon_instagram),
+                    color = InstagramColor,
+                    onClickCallBack = { openAppAsIntent(context, university.instagram) }
+                )
+                if (university.twitter.isNotEmpty()) {
+                    SocialMedia(
+                        modifier = Modifier.weight(weight = 1f),
+                        icon = painterResource(id = R.drawable.icon_twitter),
+                        color = TwitterColor,
+                        onClickCallBack = { openAppAsIntent(context, university.twitter) }
                     )
-
-                    Column(Modifier.verticalScroll(state = rememberScrollState())) {
-                        Text(
-                            text = getString(R.string.about),
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(bottom = 8.dp),
-                            color = if (isSystemInDarkTheme()) White else Black
-                        )
-                        Text(
-                            text = university.about,
-                            fontSize = 15.sp,
-                            modifier = Modifier.padding(bottom = 8.dp),
-                            color = if (isSystemInDarkTheme()) White else Black
-                        )
-                        if (university.website.isNotEmpty()) {
-                            UniversityInformationNavigate(
-                                action = directions.actionDetailsFragmentToWebsiteFragment(
-                                    university.website
-                                ),
-                                message = R.string.website,
-                                backgroundColor = WebsiteColor
-                            )
-                        }
-                        if (university.colleges.isNotEmpty()) {
-                            UniversityInformationNavigate(
-                                action = directions.actionDetailsFragmentToWebsiteFragment(
-                                    university.colleges
-                                ),
-                                message = R.string.colleges,
-                                backgroundColor = CollegesColor
-                            )
-                        }
-                        if (university.news.isNotEmpty()) {
-                            UniversityInformationNavigate(
-                                action = directions.actionDetailsFragmentToNewsFragment(
-                                    university.news
-                                ),
-                                message = R.string.news,
-                                backgroundColor = NewsColor
-                            )
-                        }
-                        if (university.application.isNotEmpty()) {
-                            UniversityInformationIntent(
-                                action = university.application,
-                                message = R.string.application,
-                                backgroundColor = ApplicationColor
-                            )
-                        }
-                        if (university.location.isNotEmpty()) {
-                            UniversityInformationIntent(
-                                action = university.location,
-                                message = R.string.location,
-                                backgroundColor = LocationColor
-                            )
-                        }
-                        Text(
-                            text = getString(R.string.communication),
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(vertical = 8.dp),
-                            color = if (isSystemInDarkTheme()) White else Black
-                        )
-                        Row {
-                            if (university.instagram.isNotEmpty()) {
-                                SocialMedia(
-                                    modifier = Modifier.weight(weight = 1f),
-                                    socialMedia = university.instagram,
-                                    icon = painterResource(id = R.drawable.icon_instagram),
-                                    color = InstagramColor
-                                )
-                            }
-                            if (university.twitter.isNotEmpty()) {
-                                SocialMedia(
-                                    modifier = Modifier.weight(weight = 1f),
-                                    socialMedia = university.twitter,
-                                    icon = painterResource(id = R.drawable.icon_twitter),
-                                    color = TwitterColor
-                                )
-                            }
-                            if (university.youtube.isNotEmpty()) {
-                                SocialMedia(
-                                    modifier = Modifier.weight(weight = 1f),
-                                    socialMedia = university.youtube,
-                                    icon = painterResource(id = R.drawable.icon_youtube),
-                                    color = YoutubeColor
-                                )
-                            }
-                            if (university.facebook.isNotEmpty()) {
-                                SocialMedia(
-                                    modifier = Modifier.weight(weight = 1f),
-                                    socialMedia = university.facebook,
-                                    icon = painterResource(id = R.drawable.icon_facebook),
-                                    color = FacebookColor
-                                )
-                            }
-                            if (university.snapchat.isNotEmpty()) {
-                                SocialMedia(
-                                    modifier = Modifier.weight(weight = 1f),
-                                    socialMedia = university.snapchat,
-                                    icon = painterResource(id = R.drawable.icon_snapchat),
-                                    color = SnapchatColor
-                                )
-                            }
-                        }
-                    }
+                }
+                if (university.youtube.isNotEmpty()) {
+                    SocialMedia(
+                        modifier = Modifier.weight(weight = 1f),
+                        icon = painterResource(id = R.drawable.icon_youtube),
+                        color = YoutubeColor,
+                        onClickCallBack = { openAppAsIntent(context, university.youtube) }
+                    )
+                }
+                if (university.facebook.isNotEmpty()) {
+                    SocialMedia(
+                        modifier = Modifier.weight(weight = 1f),
+                        icon = painterResource(id = R.drawable.icon_facebook),
+                        color = FacebookColor,
+                        onClickCallBack = { openAppAsIntent(context, university.facebook) }
+                    )
+                }
+                if (university.snapchat.isNotEmpty()) {
+                    SocialMedia(
+                        modifier = Modifier.weight(weight = 1f),
+                        icon = painterResource(id = R.drawable.icon_snapchat),
+                        color = SnapchatColor,
+                        onClickCallBack = { openAppAsIntent(context, university.snapchat) }
+                    )
                 }
             }
         }
     }
+}
 
-    @Composable
-    fun UniversityInformationNavigate(action: NavDirections, message: Int, backgroundColor: Color) {
-        Button(
-            onClick = { findNavController().navigateTo(action, R.id.detailsFragment) },
-            modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(contentColor = backgroundColor)
-        ) {
-            Text(text = getString(message), color = Color.White)
-        }
+@Composable
+fun UniversitiesButton(message: String, backgroundColor: Color, onClickCallBack: () -> Unit) =
+    Button(
+        onClick = onClickCallBack,
+        modifier = Modifier.fillMaxWidth(),
+        colors = ButtonDefaults.buttonColors(contentColor = backgroundColor)
+    ) {
+        Text(text = message, color = Color.White)
     }
 
-    @Composable
-    fun UniversityInformationIntent(action: String, message: Int, backgroundColor: Color) {
-        Button(
-            onClick = { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(action))) },
-            modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(contentColor = backgroundColor)
-        ) {
-            Text(text = getString(message), color = Color.White)
-        }
-    }
+@Composable
+private fun SocialMedia(
+    modifier: Modifier,
+    icon: Painter,
+    color: Color,
+    onClickCallBack: () -> Unit
+) = Button(
+    onClick = onClickCallBack,
+    colors = ButtonDefaults.buttonColors(contentColor = color),
+    modifier = modifier
+        .fillMaxWidth()
+        .height(40.dp)
+        .padding(horizontal = 4.dp),
+) {
+    Icon(painter = icon, contentDescription = null, tint = Color.Unspecified)
+}
 
-    @Composable
-    private fun SocialMedia(modifier: Modifier, socialMedia: String, icon: Painter, color: Color) {
-        Button(
-            onClick = { openSocialMedia(socialMedia) },
-            colors = ButtonDefaults.buttonColors(contentColor = color),
-            modifier = modifier
-                .fillMaxWidth()
-                .height(40.dp)
-                .padding(horizontal = 4.dp),
-        ) {
-            Icon(painter = icon, contentDescription = null, tint = Color.Unspecified)
-        }
-    }
-
-    private fun openSocialMedia(stringUri: String) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(stringUri))
-        val chooser = Intent.createChooser(intent, "Open app")
-        startActivity(chooser)
-    }
+private fun openAppAsIntent(context: Context, stringUri: String) {
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(stringUri))
+    val chooser = Intent.createChooser(intent, "Open app")
+    startActivity(context, chooser, null)
 }

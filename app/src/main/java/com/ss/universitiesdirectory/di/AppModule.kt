@@ -2,8 +2,8 @@ package com.ss.universitiesdirectory.di
 
 import android.content.Context
 import com.ss.universitiesdirectory.data.remote.ApiService
-import com.ss.universitiesdirectory.repository.news.NewsRepository
 import com.ss.universitiesdirectory.manager.settings.SettingsManager
+import com.ss.universitiesdirectory.repository.news.NewsRepository
 import com.ss.universitiesdirectory.repository.universities.UniversitiesRepository
 import dagger.Module
 import dagger.Provides
@@ -24,9 +24,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNewsRepository(
-        @ApplicationContext context: Context
-    ): NewsRepository = NewsRepository(context)
+    fun provideNewsRepository(): NewsRepository = NewsRepository()
 
     @Provides
     @Singleton
