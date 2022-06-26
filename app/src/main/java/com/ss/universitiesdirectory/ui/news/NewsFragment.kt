@@ -17,7 +17,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.ss.universitiesdirectory.data.model.news.NewsModel
-import com.ss.universitiesdirectory.repository.news.NewsRepository.NewsStatus
+import com.ss.universitiesdirectory.repository.news.NewsRepositoryImpl.NewsStatus
 import com.ss.universitiesdirectory.ui.theme.Gray
 import com.ss.universitiesdirectory.ui.theme.PrimaryColor
 import com.ss.universitiesdirectory.ui.theme.White
