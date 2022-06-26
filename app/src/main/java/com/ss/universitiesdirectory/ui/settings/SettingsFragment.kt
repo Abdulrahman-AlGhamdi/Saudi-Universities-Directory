@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Info
@@ -18,7 +19,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavHostController
 import androidx.preference.PreferenceManager
 import com.ss.universitiesdirectory.BuildConfig
@@ -129,10 +129,14 @@ fun ThemeDialog() {
 
     AlertDialog(
         onDismissRequest = { vm.openThemeDialog = false },
-        properties = DialogProperties(dismissOnBackPress = false),
+        shape = RoundedCornerShape(16.dp),
         title = { Text(text = "UI Mode") },
         confirmButton = {
-            Button(onClick = { vm.openThemeDialog = false }, modifier = Modifier.fillMaxWidth()) {
+            Button(
+                onClick = { vm.openThemeDialog = false },
+                shape = RoundedCornerShape(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
                 Text(text = "DISMISS")
             }
         },
@@ -165,10 +169,14 @@ fun LanguageDialog() {
 
     AlertDialog(
         onDismissRequest = { vm.openLanguageDialog = false },
-        properties = DialogProperties(dismissOnBackPress = false),
+        shape = RoundedCornerShape(16.dp),
         title = { Text(text = "UI Mode") },
         confirmButton = {
-            Button(onClick = { vm.openLanguageDialog = false }, modifier = Modifier.fillMaxWidth()) {
+            Button(
+                onClick = { vm.openLanguageDialog = false },
+                shape = RoundedCornerShape(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
                 Text(text = "DISMISS")
             }
         },

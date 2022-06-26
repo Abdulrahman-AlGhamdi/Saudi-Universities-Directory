@@ -26,7 +26,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.ss.universitiesdirectory.data.model.univeristy.UniversityModel
-import com.ss.universitiesdirectory.data.remote.ResponseStatus
+import com.ss.universitiesdirectory.data.remote.ResponseState
 import com.ss.universitiesdirectory.ui.theme.Black
 import com.ss.universitiesdirectory.ui.theme.Gray
 import com.ss.universitiesdirectory.ui.theme.PrimaryColor
@@ -49,18 +49,15 @@ fun UniversitiesScreen(navController: NavHostController, viewModel: Universities
     Box(modifier = Modifier.fillMaxSize()) {
         viewModel.universitiesState.collectAsState().let {
             when (val state = it.value) {
-                is ResponseStatus.Success<*> -> {
-                    viewModel.universities = state.data as List<UniversityModel>
-                    viewModel.listOfUniversities = viewModel.universities
-                }
-                ResponseStatus.Progress -> CircularProgressIndicator(
+                is ResponseState.Progress -> CircularProgressIndicator(
                     color = PrimaryColor,
                     modifier = Modifier.align(Alignment.Center)
                 )
-                is ResponseStatus.Failed -> viewModel.coroutineScope.launch {
-                    viewModel.snackBarHost.currentSnackbarData?.dismiss()
-                    viewModel.snackBarHost.showSnackbar(state.message)
+                is ResponseState.Success -> state.data?.let {
+                    viewModel.universities = state.data
+                    viewModel.listOfUniversities = viewModel.universities
                 }
+                is ResponseState.Error -> state.message?.let { it1 -> showSnackBar(it1) }
                 else -> Unit
             }
         }
@@ -174,3 +171,8 @@ private fun UniversityItem(navController: NavHostController, university: Univers
         .fillMaxWidth()
         .padding(16.dp)
 )
+
+private fun showSnackBar(message: String) = vm.coroutineScope.launch {
+    vm.snackBarHost.currentSnackbarData?.dismiss()
+    vm.snackBarHost.showSnackbar(message)
+}
