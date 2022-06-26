@@ -30,29 +30,28 @@ import com.ss.universitiesdirectory.utils.LanguageHelper
 import java.util.*
 
 private lateinit var vm: SettingsViewModel
-private lateinit var nv: NavHostController
 private lateinit var sp: SharedPreferences
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun SettingsScreen(navController: NavHostController, viewModel: SettingsViewModel) {
     val context = LocalContext.current
-    nv = navController
+
     vm = viewModel
     sp = PreferenceManager.getDefaultSharedPreferences(context)
 
     Scaffold(
-        topBar = { SettingsTopBar() },
+        topBar = { SettingsTopBar(navController) },
         content = { SettingsContent(it) },
         snackbarHost = {}
     )
 }
 
 @Composable
-private fun SettingsTopBar() = CenterAlignedTopAppBar(
+private fun SettingsTopBar(navController: NavHostController) = CenterAlignedTopAppBar(
     title = { Text(text = "Settings") },
     navigationIcon = {
-        IconButton(onClick = { nv.popBackStack() }) {
+        IconButton(onClick = { navController.popBackStack() }) {
             Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
         }
     },

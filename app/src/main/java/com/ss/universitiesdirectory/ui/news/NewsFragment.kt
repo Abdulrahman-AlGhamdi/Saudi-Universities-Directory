@@ -23,29 +23,26 @@ import com.ss.universitiesdirectory.ui.theme.PrimaryColor
 import com.ss.universitiesdirectory.ui.theme.White
 import kotlinx.coroutines.launch
 
-private lateinit var nc: NavHostController
 private lateinit var vm: NewsViewModel
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun NewsScreen(navController: NavHostController, viewModel: NewsViewModel, address: String) {
-    nc = navController
     vm = viewModel
-
     vm.getUniversityNews(address)
 
     Scaffold(
-        topBar = { NewsTopBar() },
-        content = { NewsContent(it) },
+        topBar = { NewsTopBar(navController) },
+        content = { NewsContent(it, navController) },
         snackbarHost = { SnackbarHost(hostState = vm.snackBarHost) }
     )
 }
 
 @Composable
-private fun NewsTopBar() = CenterAlignedTopAppBar(
+private fun NewsTopBar(navController: NavHostController) = CenterAlignedTopAppBar(
     title = { Text(text = "News") },
     navigationIcon = {
-        IconButton(onClick = { nc.popBackStack() }) {
+        IconButton(onClick = { navController.popBackStack() }) {
             Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
         }
     },
@@ -58,7 +55,7 @@ private fun NewsTopBar() = CenterAlignedTopAppBar(
 )
 
 @Composable
-private fun NewsContent(paddingValues: PaddingValues) = Box(
+private fun NewsContent(paddingValues: PaddingValues, navController: NavHostController) = Box(
     modifier = Modifier
         .padding(paddingValues)
         .fillMaxSize()
@@ -73,19 +70,19 @@ private fun NewsContent(paddingValues: PaddingValues) = Box(
                 color = PrimaryColor,
                 modifier = Modifier.align(Alignment.Center)
             )
-            is NewsStatus.NewsList -> NewsList(state.newsList)
+            is NewsStatus.NewsList -> NewsList(navController, state.newsList)
         }
     }
 }
 
 @Composable
-fun NewsList(newsList: List<NewsModel>) = LazyColumn {
+fun NewsList(navController: NavHostController, newsList: List<NewsModel>) = LazyColumn {
     items(newsList) { news ->
         Column(
             modifier = Modifier
                 .clickable {
-                    nc.currentBackStackEntry?.savedStateHandle?.set("url", news.link)
-                    nc.navigate(route = "website")
+                    navController.currentBackStackEntry?.savedStateHandle?.set("url", news.link)
+                    navController.navigate(route = "website")
                 }
                 .fillMaxWidth()
                 .padding(16.dp)
