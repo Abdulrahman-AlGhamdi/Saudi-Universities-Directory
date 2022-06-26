@@ -37,7 +37,6 @@
     <img src="./googlePlayAssets/screenshots/4.png" width="10%">
     <img src="./googlePlayAssets/screenshots/5.png" width="10%">
     <img src="./googlePlayAssets/screenshots/6.png" width="10%">
-    <img src="./googlePlayAssets/screenshots/7.png" width="10%">
 </div>
 
 ##

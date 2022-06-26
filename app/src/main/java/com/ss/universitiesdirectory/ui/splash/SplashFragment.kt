@@ -4,8 +4,10 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -14,6 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.ui.theme.Black
@@ -23,12 +28,22 @@ import com.ss.universitiesdirectory.ui.theme.White
 fun SplashScreen(navController: NavHostController) {
     val scale = remember { Animatable(0f) }
 
-    Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
         Image(
             painter = painterResource(id = R.drawable.icon_university),
             contentDescription = null,
             modifier = Modifier.scale(scale.value),
             colorFilter = ColorFilter.tint(color = if (isSystemInDarkTheme()) White else Black)
+        )
+        Text(
+            text = stringResource(id = R.string.app_name),
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.scale(scale.value)
         )
     }
 
