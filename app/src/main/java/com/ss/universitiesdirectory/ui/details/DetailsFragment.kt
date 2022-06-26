@@ -7,6 +7,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -60,15 +61,12 @@ private fun DetailsContent(
     navController: NavHostController,
     context: Context,
     university: UniversityModel
-) = Column(
-    modifier = Modifier
-        .padding(paddingValues)
-        .padding(16.dp)
-) {
+) = Column(modifier = Modifier.padding(paddingValues)) {
     Image(
         painter = rememberAsyncImagePainter(model = university.logo),
         contentDescription = null,
         modifier = Modifier
+            .padding(top = 16.dp, start = 16.dp, end = 16.dp)
             .fillMaxWidth()
             .height(200.dp)
     )
@@ -78,13 +76,13 @@ private fun DetailsContent(
             text = "About University:",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(bottom = 8.dp),
+            modifier = Modifier.padding(top = 24.dp, bottom = 8.dp, start = 16.dp, end = 16.dp),
             color = if (isSystemInDarkTheme()) White else Black
         )
         Text(
             text = university.about,
             fontSize = 15.sp,
-            modifier = Modifier.padding(bottom = 8.dp),
+            modifier = Modifier.padding(bottom = 16.dp, start = 16.dp, end = 16.dp),
             color = if (isSystemInDarkTheme()) White else Black
         )
         if (university.website.isNotEmpty()) UniversitiesButton(
@@ -136,10 +134,10 @@ private fun DetailsContent(
             text = "Communication:",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(vertical = 16.dp),
+            modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp),
             color = if (isSystemInDarkTheme()) White else Black
         )
-        Row {
+        Row(modifier = Modifier.padding(16.dp)) {
             if (university.instagram.isNotEmpty()) SocialMedia(
                 modifier = Modifier.weight(weight = 1f),
                 icon = painterResource(id = R.drawable.icon_instagram),
@@ -186,8 +184,11 @@ private fun DetailsContent(
 fun UniversitiesButton(message: String, backgroundColor: Color, onClickCallBack: () -> Unit) =
     Button(
         onClick = onClickCallBack,
-        modifier = Modifier.fillMaxWidth(),
-        colors = ButtonDefaults.buttonColors(containerColor = backgroundColor)
+        colors = ButtonDefaults.buttonColors(containerColor = backgroundColor),
+        shape = RoundedCornerShape(8.dp),
+        modifier = Modifier
+            .padding(horizontal = 16.dp)
+            .fillMaxWidth()
     ) {
         Text(text = message, color = Color.White)
     }
@@ -201,6 +202,7 @@ private fun SocialMedia(
 ) = Button(
     onClick = onClickCallBack,
     colors = ButtonDefaults.buttonColors(containerColor = color),
+    shape = RoundedCornerShape(8.dp),
     modifier = modifier
         .fillMaxWidth()
         .height(40.dp)
