@@ -19,8 +19,9 @@ object AppModule {
     @Provides
     @Singleton
     fun provideUniversities(
+        @ApplicationContext context: Context,
         apiService: ApiService
-    ): UniversitiesRepository = UniversitiesRepository(apiService)
+    ): UniversitiesRepository = UniversitiesRepository(context, apiService)
 
     @Provides
     @Singleton
