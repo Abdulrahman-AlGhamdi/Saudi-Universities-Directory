@@ -23,26 +23,26 @@ import androidx.navigation.NavHostController
 import com.ss.universitiesdirectory.ui.theme.PrimaryColor
 import com.ss.universitiesdirectory.ui.theme.White
 
-private lateinit var nc: NavHostController
-private lateinit var context: Context
-
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun WebsiteScreen(navController: NavHostController, websiteUrl: String) {
-    nc = navController
-    context = LocalContext.current
+    val context = LocalContext.current
 
     Scaffold(
-        topBar = { WebsiteTopBar(websiteUrl) },
+        topBar = { WebsiteTopBar(navController, context, websiteUrl) },
         content = { WebsiteContent(it, websiteUrl) }
     )
 }
 
 @Composable
-private fun WebsiteTopBar(websiteUrl: String) = CenterAlignedTopAppBar(
+private fun WebsiteTopBar(
+    navController: NavHostController,
+    context: Context,
+    websiteUrl: String
+) = CenterAlignedTopAppBar(
     title = { Text(text = "Website") },
     navigationIcon = {
-        IconButton(onClick = { nc.popBackStack() }) {
+        IconButton(onClick = { navController.popBackStack() }) {
             Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
         }
     },

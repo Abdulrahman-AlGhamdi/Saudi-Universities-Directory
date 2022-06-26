@@ -33,39 +33,16 @@ import com.ss.universitiesdirectory.ui.theme.PrimaryColor
 import com.ss.universitiesdirectory.ui.theme.White
 import kotlinx.coroutines.launch
 
-private lateinit var nv: NavHostController
+private lateinit var vm: UniversitiesViewModel
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun UniversitiesScreen(navController: NavHostController, viewModel: UniversitiesViewModel) {
-    nv = navController
+    vm = viewModel
 
     Scaffold(
-        topBar = {
-            UniversitiesTopBar(
-                searchText = viewModel.searchText,
-                isSearching = viewModel.isSearching,
-                isSearchingCallback = {
-                    viewModel.searchText = ""
-                    viewModel.searchList("")
-                    viewModel.isSearching = !viewModel.isSearching
-                },
-                searchChangeCallback = {
-                    viewModel.searchText = it
-                    viewModel.searchList(it)
-                }
-            )
-        },
-        content = { paddingValues ->
-            UniversitiesContent(
-                paddingValues = paddingValues,
-                listOfUniversities = viewModel.listOfUniversities,
-                onUniversityClick = {
-                    navController.currentBackStackEntry?.savedStateHandle?.set("university", it)
-                    nv.navigate(route = "details")
-                }
-            )
-        },
+        topBar = { UniversitiesTopBar(navController = navController) },
+        content = { UniversitiesContent(paddingValues = it, navController = navController) },
         snackbarHost = { SnackbarHost(hostState = viewModel.snackBarHost) }
     )
 
@@ -91,25 +68,19 @@ fun UniversitiesScreen(navController: NavHostController, viewModel: Universities
 }
 
 @Composable
-private fun UniversitiesTopBar(
-    searchText: String,
-    isSearching: Boolean,
-    isSearchingCallback: () -> Unit,
-    searchChangeCallback: (String) -> Unit
-) = if (isSearching) UniversitiesSearchTopBar(
-    searchText = searchText,
-    searchChangeCallback = searchChangeCallback,
-    isSearchingCallback = isSearchingCallback
-) else UniversitiesDefaultTopBar(isSearchingCallback = isSearchingCallback)
+private fun UniversitiesTopBar(navController: NavHostController) {
+    if (vm.isSearching) UniversitiesSearchTopBar()
+    else UniversitiesDefaultTopBar(navController = navController)
+}
 
 @Composable
-private fun UniversitiesDefaultTopBar(isSearchingCallback: () -> Unit) = CenterAlignedTopAppBar(
+private fun UniversitiesDefaultTopBar(navController: NavHostController) = CenterAlignedTopAppBar(
     title = { Text(text = "Universities") },
     actions = {
-        IconButton(onClick = isSearchingCallback) {
+        IconButton(onClick = { vm.isSearching = !vm.isSearching }) {
             Icon(imageVector = Icons.Default.Search, contentDescription = null)
         }
-        IconButton(onClick = { nv.navigate(route = "settings") }) {
+        IconButton(onClick = { navController.navigate(route = "settings") }) {
             Icon(imageVector = Icons.Default.Settings, contentDescription = null)
         }
     },
@@ -122,22 +93,25 @@ private fun UniversitiesDefaultTopBar(isSearchingCallback: () -> Unit) = CenterA
 )
 
 @Composable
-private fun UniversitiesSearchTopBar(
-    searchText: String,
-    searchChangeCallback: (String) -> Unit,
-    isSearchingCallback: () -> Unit
-) {
+private fun UniversitiesSearchTopBar() {
     val focusRequester = remember { FocusRequester() }
 
     TextField(
-        value = searchText,
-        onValueChange = { searchChangeCallback(it) },
+        value = vm.searchText,
+        onValueChange = {
+            vm.searchText = it
+            vm.searchList(it)
+        },
         shape = RoundedCornerShape(0.dp),
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
         leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = null) },
         trailingIcon = {
-            IconButton(onClick = isSearchingCallback) {
+            IconButton(onClick = {
+                vm.searchText = ""
+                vm.searchList("")
+                vm.isSearching = !vm.isSearching
+            }) {
                 Icon(imageVector = Icons.Default.Close, contentDescription = null)
             }
         },
@@ -164,19 +138,18 @@ private fun UniversitiesSearchTopBar(
 @OptIn(ExperimentalFoundationApi::class)
 private fun UniversitiesContent(
     paddingValues: PaddingValues,
-    listOfUniversities: List<UniversityModel>,
-    onUniversityClick: (UniversityModel) -> Unit
-) = Box(modifier = Modifier.padding(paddingValues)) {
-    LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
-        items(
-            items = listOfUniversities,
-            key = { it.name },
-        ) {
-            Box(modifier = Modifier.animateItemPlacement()) {
-                if (it.province) UniversityHeader(it, Modifier.align(Alignment.Center))
-                else UniversityItem(it, onUniversityClick)
-                Divider(color = Gray)
-            }
+    navController: NavHostController
+) = LazyColumn(
+    horizontalAlignment = Alignment.CenterHorizontally,
+    modifier = Modifier
+        .padding(paddingValues)
+        .fillMaxSize()
+) {
+    items(items = vm.listOfUniversities, key = { it.name }) {
+        Box(modifier = Modifier.animateItemPlacement()) {
+            if (it.province) UniversityHeader(it, Modifier.align(Alignment.Center))
+            else UniversityItem(navController, it)
+            Divider(color = Gray)
         }
     }
 }
@@ -190,14 +163,14 @@ private fun UniversityHeader(province: UniversityModel, modifier: Modifier) = Te
 )
 
 @Composable
-private fun UniversityItem(
-    university: UniversityModel,
-    onUniversityClick: (UniversityModel) -> Unit
-) = Text(
+private fun UniversityItem(navController: NavHostController, university: UniversityModel) = Text(
     text = university.name,
     color = Color.Gray,
     modifier = Modifier
-        .clickable { onUniversityClick(university) }
+        .clickable {
+            navController.currentBackStackEntry?.savedStateHandle?.set("university", university)
+            navController.navigate(route = "details")
+        }
         .fillMaxWidth()
         .padding(16.dp)
 )
