@@ -21,10 +21,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.data.model.univeristy.UniversityModel
 import com.ss.universitiesdirectory.data.remote.ResponseState
 import com.ss.universitiesdirectory.ui.theme.Black
@@ -72,7 +76,12 @@ private fun UniversitiesTopBar(navController: NavHostController) {
 
 @Composable
 private fun UniversitiesDefaultTopBar(navController: NavHostController) = CenterAlignedTopAppBar(
-    title = { Text(text = "Universities") },
+    title = {
+        Text(
+            text = stringResource(id = R.string.universities_fragment),
+            fontFamily = FontFamily(Font(R.font.quest_regular))
+        )
+    },
     actions = {
         IconButton(onClick = { vm.isSearching = !vm.isSearching }) {
             Icon(imageVector = Icons.Default.Search, contentDescription = null)
@@ -99,6 +108,7 @@ private fun UniversitiesSearchTopBar() {
             vm.searchText = it
             vm.searchList(it)
         },
+        placeholder = { Text(text = stringResource(id = R.string.universities_search)) },
         shape = RoundedCornerShape(0.dp),
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),

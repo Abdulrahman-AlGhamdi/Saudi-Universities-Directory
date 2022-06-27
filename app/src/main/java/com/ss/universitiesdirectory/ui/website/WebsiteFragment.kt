@@ -17,9 +17,13 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavHostController
+import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.ui.theme.PrimaryColor
 import com.ss.universitiesdirectory.ui.theme.White
 
@@ -40,7 +44,12 @@ private fun WebsiteTopBar(
     context: Context,
     websiteUrl: String
 ) = CenterAlignedTopAppBar(
-    title = { Text(text = "Website") },
+    title = {
+        Text(
+            text = stringResource(id = R.string.website_fragment),
+            fontFamily = FontFamily(Font(R.font.quest_regular))
+        )
+    },
     navigationIcon = {
         IconButton(onClick = { navController.popBackStack() }) {
             Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)

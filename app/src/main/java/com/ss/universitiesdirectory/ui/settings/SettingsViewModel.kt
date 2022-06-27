@@ -14,9 +14,8 @@ class SettingsViewModel @Inject constructor(
 ) : ViewModel() {
 
     var openThemeDialog by mutableStateOf(false)
-    var openLanguageDialog by mutableStateOf(false)
 
-    fun setAppLanguage(isArabic: Boolean) = settingsRepository.setAppLanguage(isArabic)
+    fun setAppMode(isDarkMode: Boolean) = settingsRepository.setAppTheme(isDarkMode)
 
     fun sendEmail() = settingsRepository.sendEmail()
 }

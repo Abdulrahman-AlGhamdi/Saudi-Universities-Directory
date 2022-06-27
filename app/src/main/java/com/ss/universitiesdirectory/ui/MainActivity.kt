@@ -1,6 +1,5 @@
 package com.ss.universitiesdirectory.ui
 
-import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -21,7 +20,6 @@ import com.ss.universitiesdirectory.ui.theme.SaudiUniversitiesComposeTheme
 import com.ss.universitiesdirectory.ui.universities.UniversitiesScreen
 import com.ss.universitiesdirectory.ui.universities.UniversitiesViewModel
 import com.ss.universitiesdirectory.ui.website.WebsiteScreen
-import com.ss.universitiesdirectory.utils.LanguageHelper
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -78,9 +76,5 @@ class MainActivity : ComponentActivity() {
                 SettingsScreen(navController, viewModel)
             })
         }
-    }
-
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(LanguageHelper.onBaseAttach(newBase))
     }
 }
