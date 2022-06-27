@@ -53,6 +53,7 @@ fun SplashScreen(navController: NavHostController) {
             animationSpec = tween(durationMillis = 1000)
         )
 
+        navController.popBackStack()
         navController.navigate(route = "universities")
     }
 }

@@ -12,10 +12,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.data.model.news.NewsModel
 import com.ss.universitiesdirectory.repository.news.NewsRepositoryImpl.NewsStatus
 import com.ss.universitiesdirectory.ui.theme.Gray
@@ -40,7 +44,12 @@ fun NewsScreen(navController: NavHostController, viewModel: NewsViewModel, addre
 
 @Composable
 private fun NewsTopBar(navController: NavHostController) = CenterAlignedTopAppBar(
-    title = { Text(text = "News") },
+    title = {
+        Text(
+            text = stringResource(id = R.string.news_fragment),
+            fontFamily = FontFamily(Font(R.font.quest_regular))
+        )
+    },
     navigationIcon = {
         IconButton(onClick = { navController.popBackStack() }) {
             Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)

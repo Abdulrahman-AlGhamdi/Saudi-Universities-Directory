@@ -3,45 +3,44 @@
     <!-- Application Name -->
     <string name="app_name">Universities Directory</string>
 
-    <!-- Fragments Names -->
-    <string name="fragment_universities">Universities</string>
-    <string name="fragment_details">Details</string>
-    <string name="fragment_website">Website</string>
-    <string name="fragment_news">News</string>
-    <string name="fragment_settings">Settings</string>
+    <!-- Universities Strings -->
+    <string name="universities_fragment">Universities</string>
+    <string name="universities_search">Search</string>
 
     <!-- Details Strings -->
-    <string name="news">News</string>
-    <string name="website">Website</string>
-    <string name="colleges">Colleges</string>
-    <string name="location">Location</string>
-    <string name="about">About University:</string>
-    <string name="application">Application</string>
-    <string name="communication">Communication:</string>
-    <string name="search">Search</string>
-    <string name="settings">Settings</string>
-    <string name="no_result_found">No Result Found</string>
-    <string name="message">Made with %1$s Abdulrahman Al-Ghamdi</string>
-    <string name="no_internet_connection">No internet connection</string>
-    <string name="retry">Retry…</string>
+    <string name="details_fragment">Details</string>
+    <string name="details_about">About University:</string>
+    <string name="details_website">Website</string>
+    <string name="details_colleges">Colleges</string>
+    <string name="details_news">News</string>
+    <string name="details_location">Location</string>
+    <string name="details_application">Application</string>
+    <string name="details_communication">Communication:</string>
 
-    <!-- Settings Preference Strings -->
-    <string name="preference_application_configuration">Application Configuration</string>
-    <string name="preference_about">About</string>
-    <string name="preference_theme_title">Theme</string>
-    <string name="preference_theme_key" translatable="false">theme</string>
-    <string name="preference_language_title">Language</string>
-    <string name="preference_language_key" translatable="false">language key</string>
-    <string name="preference_language_summary_on">Arabic</string>
-    <string name="preference_language_summary_off">English</string>
-    <string name="preference_contact_me_key" translatable="false">contact me</string>
-    <string name="preference_contact_me_title">Contact Me</string>
-    <string name="preference_contact_me_summary">Any suggestions or issues please don\'t hesitate to contact me</string>
-    <string name="preference_version_key" translatable="false">version key</string>
-    <string name="preference_version_summary">%1$s (%2$d)</string>
-    <string name="preference_version_title">Application Version</string>
+    <!-- Settings Strings -->
+    <string name="settings_fragment">Settings</string>
+    <string name="settings_configuration">Application Configuration</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_language_arabic">Arabic</string>
+    <string name="settings_language_english">English</string>
+    <string name="settings_about">About</string>
+    <string name="settings_contact_title">Contact Me</string>
+    <string name="settings_contact_message">Any suggestions or issues please don\'t hesitate to contact me</string>
+    <string name="settings_version_title">Application Version</string>
+    <string name="settings_version_message">%1$s (%2$d)</string>
+    <string name="settings_dismiss">Dismiss</string>
+
+    <!-- Website Strings -->
+    <string name="website_fragment">Website</string>
+
+    <!-- News Strings -->
+    <string name="news_fragment">News</string>
 
     <!-- Network Error Strings -->
-    <string name="connection_error">Connection Error</string>
-    <string name="network_error_message">Seems like you lost connectivity to the internet, please reconnect to the internet</string>
+    <string name="connection_title">No internet connection</string>
+    <string name="connection_message">Seems like you lost connectivity to the internet, please reconnect to the internet</string>
+    <string name="connection_retry">Retry…</string>
 </resources>

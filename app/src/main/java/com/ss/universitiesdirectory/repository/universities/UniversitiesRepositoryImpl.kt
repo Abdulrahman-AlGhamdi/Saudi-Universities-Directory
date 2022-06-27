@@ -31,7 +31,7 @@ class UniversitiesRepositoryImpl @Inject constructor(
             else response.body()?.let { _universitiesState.value = Success(it) }
 
         } catch (exception: UnknownHostException) {
-            _universitiesState.value = Error(context.getString(R.string.network_error_message))
+            _universitiesState.value = Error(context.getString(R.string.connection_message))
         } catch (exception: Exception) {
             exception.localizedMessage?.let { _universitiesState.value = Error(it) }
             exception.printStackTrace()

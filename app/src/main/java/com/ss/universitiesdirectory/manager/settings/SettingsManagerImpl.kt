@@ -2,7 +2,9 @@ package com.ss.universitiesdirectory.manager.settings
 
 import android.content.Context
 import android.content.Intent
-import com.ss.universitiesdirectory.utils.LanguageHelper
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.preference.PreferenceManager
+import com.ss.universitiesdirectory.utils.Constant
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -10,9 +12,12 @@ class SettingsManagerImpl @Inject constructor(
     @ApplicationContext private val context: Context
 ) : SettingsManager {
 
-    override fun setAppLanguage(isArabic: Boolean) {
-        if (isArabic) LanguageHelper.changeCurrentLanguage(context, "ar")
-        else LanguageHelper.changeCurrentLanguage(context, "en")
+    override fun setAppTheme(isDarkMode: Boolean) {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        sharedPreferences.edit().putBoolean(Constant.PREFERENCE_THEME_KEY, isDarkMode).apply()
+
+        if (isDarkMode) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 
     override fun sendEmail() {

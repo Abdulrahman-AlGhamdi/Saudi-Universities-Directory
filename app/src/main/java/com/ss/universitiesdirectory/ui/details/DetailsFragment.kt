@@ -18,6 +18,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -41,7 +44,12 @@ fun DetailsScreen(navController: NavHostController, university: UniversityModel)
 
 @Composable
 private fun DetailsTopBar(navController: NavHostController) = CenterAlignedTopAppBar(
-    title = { Text(text = "Details") },
+    title = {
+        Text(
+            text = stringResource(id = R.string.details_fragment),
+            fontFamily = FontFamily(Font(R.font.quest_regular))
+        )
+    },
     navigationIcon = {
         IconButton(onClick = { navController.popBackStack() }) {
             Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
@@ -73,7 +81,7 @@ private fun DetailsContent(
 
     Column(Modifier.verticalScroll(state = rememberScrollState())) {
         Text(
-            text = "About University:",
+            text = stringResource(id = R.string.details_about),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(top = 24.dp, bottom = 8.dp, start = 16.dp, end = 16.dp),
@@ -86,7 +94,7 @@ private fun DetailsContent(
             color = if (isSystemInDarkTheme()) White else Black
         )
         if (university.website.isNotEmpty()) UniversitiesButton(
-            message = "Website",
+            message = stringResource(id = R.string.details_website),
             backgroundColor = WebsiteColor,
             onClickCallBack = {
                 navController.currentBackStackEntry
@@ -97,7 +105,7 @@ private fun DetailsContent(
             }
         )
         if (university.colleges.isNotEmpty()) UniversitiesButton(
-            message = "Colleges",
+            message = stringResource(id = R.string.details_colleges),
             backgroundColor = CollegesColor,
             onClickCallBack = {
                 navController.currentBackStackEntry
@@ -108,7 +116,7 @@ private fun DetailsContent(
             }
         )
         if (university.news.isNotEmpty()) UniversitiesButton(
-            message = "News",
+            message = stringResource(id = R.string.details_news),
             backgroundColor = NewsColor,
             onClickCallBack = {
                 navController.currentBackStackEntry
@@ -120,18 +128,18 @@ private fun DetailsContent(
         )
         if (university.application.isNotEmpty()) {
             UniversitiesButton(
-                message = "Application",
+                message = stringResource(id = R.string.details_application),
                 backgroundColor = ApplicationColor,
                 onClickCallBack = { openAppAsIntent(context, university.application) }
             )
         }
         if (university.location.isNotEmpty()) UniversitiesButton(
-            message = "Location",
+            message = stringResource(id = R.string.details_location),
             backgroundColor = LocationColor,
             onClickCallBack = { openAppAsIntent(context, university.location) }
         )
         Text(
-            text = "Communication:",
+            text = stringResource(id = R.string.details_communication),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp),
