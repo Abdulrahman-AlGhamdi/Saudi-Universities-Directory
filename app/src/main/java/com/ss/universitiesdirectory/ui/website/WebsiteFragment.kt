@@ -39,6 +39,7 @@ fun WebsiteScreen(navController: NavHostController, websiteUrl: String) {
 }
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 private fun WebsiteTopBar(
     navController: NavHostController,
     context: Context,

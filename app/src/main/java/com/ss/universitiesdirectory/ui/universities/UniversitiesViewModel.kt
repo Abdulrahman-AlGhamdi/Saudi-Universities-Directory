@@ -28,14 +28,15 @@ class UniversitiesViewModel @Inject constructor(
     val universitiesState = universitiesRepository.universitiesState
 
     val snackBarHost = SnackbarHostState()
-    val coroutineScope = CoroutineScope(Dispatchers.Main)
+    var errorMessage by mutableStateOf("")
     var isSearching by mutableStateOf(false)
     var searchText by mutableStateOf("")
+
     var universities by mutableStateOf(listOf<UniversityModel>())
-    var listOfUniversities by mutableStateOf(universities)
+    var universitiesSearchedList by mutableStateOf(universities)
 
     fun searchList(query: String = "") {
-        listOfUniversities = if (query.isNotBlank()) universities.filter {
+        universitiesSearchedList = if (query.isNotBlank()) universities.filter {
             if (!it.province) it.name.lowercase().contains(query.lowercase()) else false
         } else universities
     }

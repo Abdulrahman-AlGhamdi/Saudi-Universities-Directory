@@ -43,6 +43,7 @@ fun DetailsScreen(navController: NavHostController, university: UniversityModel)
 }
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 private fun DetailsTopBar(navController: NavHostController) = CenterAlignedTopAppBar(
     title = {
         Text(
