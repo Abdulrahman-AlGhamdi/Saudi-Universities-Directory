@@ -50,6 +50,7 @@ fun SettingsScreen(navController: NavHostController, viewModel: SettingsViewMode
 }
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 private fun SettingsTopBar(navController: NavHostController) = CenterAlignedTopAppBar(
     title = {
         Text(

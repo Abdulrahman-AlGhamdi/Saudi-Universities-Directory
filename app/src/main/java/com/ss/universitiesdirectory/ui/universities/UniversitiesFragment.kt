@@ -35,18 +35,45 @@ import com.ss.universitiesdirectory.ui.theme.Black
 import com.ss.universitiesdirectory.ui.theme.Gray
 import com.ss.universitiesdirectory.ui.theme.PrimaryColor
 import com.ss.universitiesdirectory.ui.theme.White
-import kotlinx.coroutines.launch
-
-private lateinit var vm: UniversitiesViewModel
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun UniversitiesScreen(navController: NavHostController, viewModel: UniversitiesViewModel) {
-    vm = viewModel
+    val onUniversityClick: (UniversityModel) -> Unit = {
+        navController.currentBackStackEntry?.savedStateHandle?.set("university", it)
+        navController.navigate(route = "details")
+    }
+
+    val isSearchingCallback: (Boolean) -> Unit = {
+        viewModel.isSearching = it
+    }
+
+    val onSearchChangeCallback: (String) -> Unit = {
+        viewModel.searchText = it
+        viewModel.searchList(it)
+    }
+
+    val onSettingsClick: () -> Unit = {
+        navController.navigate(route = "settings")
+    }
 
     Scaffold(
-        topBar = { UniversitiesTopBar(navController = navController) },
-        content = { UniversitiesContent(paddingValues = it, navController = navController) },
+        topBar = {
+            UniversitiesTopBar(
+                isSearching = viewModel.isSearching,
+                isSearchingCallback = isSearchingCallback,
+                searchText = viewModel.searchText,
+                onSearchChangeCallback = onSearchChangeCallback,
+                onSettingsClick = onSettingsClick
+            )
+        },
+        content = { paddingValues ->
+            UniversitiesContent(
+                paddingValues = paddingValues,
+                universitiesList = viewModel.universitiesSearchedList,
+                onUniversityClick = onUniversityClick
+            )
+        },
         snackbarHost = { SnackbarHost(hostState = viewModel.snackBarHost) }
     )
 
@@ -59,23 +86,46 @@ fun UniversitiesScreen(navController: NavHostController, viewModel: Universities
                 )
                 is ResponseState.Success -> state.data?.let {
                     viewModel.universities = state.data
-                    viewModel.listOfUniversities = viewModel.universities
+                    viewModel.universitiesSearchedList = viewModel.universities
                 }
-                is ResponseState.Error -> state.message?.let { it1 -> showSnackBar(it1) }
+                is ResponseState.Error -> state.message?.let { it1 -> viewModel.errorMessage = it1 }
                 else -> Unit
             }
         }
     }
+
+    LaunchedEffect(key1 = viewModel.errorMessage, block = {
+        if (viewModel.errorMessage == "") return@LaunchedEffect
+        viewModel.snackBarHost.currentSnackbarData?.dismiss()
+        viewModel.snackBarHost.showSnackbar(viewModel.errorMessage)
+    })
 }
 
 @Composable
-private fun UniversitiesTopBar(navController: NavHostController) {
-    if (vm.isSearching) UniversitiesSearchTopBar()
-    else UniversitiesDefaultTopBar(navController = navController)
+private fun UniversitiesTopBar(
+    isSearching: Boolean,
+    isSearchingCallback: (Boolean) -> Unit,
+    searchText: String,
+    onSearchChangeCallback: (String) -> Unit,
+    onSettingsClick: () -> Unit
+) {
+    if (isSearching) UniversitiesSearchTopBar(
+        searchText = searchText,
+        isSearchingCallback = isSearchingCallback,
+        onSearchChangeCallback = onSearchChangeCallback
+    )
+    else UniversitiesDefaultTopBar(
+        onSettingsClick = onSettingsClick,
+        isSearchingCallback = isSearchingCallback
+    )
 }
 
 @Composable
-private fun UniversitiesDefaultTopBar(navController: NavHostController) = CenterAlignedTopAppBar(
+@OptIn(ExperimentalMaterial3Api::class)
+private fun UniversitiesDefaultTopBar(
+    isSearchingCallback: (Boolean) -> Unit,
+    onSettingsClick: () -> Unit
+) = CenterAlignedTopAppBar(
     title = {
         Text(
             text = stringResource(id = R.string.universities_fragment),
@@ -83,10 +133,10 @@ private fun UniversitiesDefaultTopBar(navController: NavHostController) = Center
         )
     },
     actions = {
-        IconButton(onClick = { vm.isSearching = !vm.isSearching }) {
+        IconButton(onClick = { isSearchingCallback(true) }) {
             Icon(imageVector = Icons.Default.Search, contentDescription = null)
         }
-        IconButton(onClick = { navController.navigate(route = "settings") }) {
+        IconButton(onClick = onSettingsClick) {
             Icon(imageVector = Icons.Default.Settings, contentDescription = null)
         }
     },
@@ -99,15 +149,17 @@ private fun UniversitiesDefaultTopBar(navController: NavHostController) = Center
 )
 
 @Composable
-private fun UniversitiesSearchTopBar() {
+@OptIn(ExperimentalMaterial3Api::class)
+private fun UniversitiesSearchTopBar(
+    searchText: String,
+    isSearchingCallback: (Boolean) -> Unit,
+    onSearchChangeCallback: (String) -> Unit
+) {
     val focusRequester = remember { FocusRequester() }
 
     TextField(
-        value = vm.searchText,
-        onValueChange = {
-            vm.searchText = it
-            vm.searchList(it)
-        },
+        value = searchText,
+        onValueChange = { onSearchChangeCallback(it) },
         placeholder = { Text(text = stringResource(id = R.string.universities_search)) },
         shape = RoundedCornerShape(0.dp),
         singleLine = true,
@@ -115,9 +167,8 @@ private fun UniversitiesSearchTopBar() {
         leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = null) },
         trailingIcon = {
             IconButton(onClick = {
-                vm.searchText = ""
-                vm.searchList("")
-                vm.isSearching = !vm.isSearching
+                onSearchChangeCallback("")
+                isSearchingCallback(false)
             }) {
                 Icon(imageVector = Icons.Default.Close, contentDescription = null)
             }
@@ -145,17 +196,16 @@ private fun UniversitiesSearchTopBar() {
 @OptIn(ExperimentalFoundationApi::class)
 private fun UniversitiesContent(
     paddingValues: PaddingValues,
-    navController: NavHostController
+    universitiesList: List<UniversityModel>,
+    onUniversityClick: (UniversityModel) -> Unit
 ) = LazyColumn(
     horizontalAlignment = Alignment.CenterHorizontally,
-    modifier = Modifier
-        .padding(paddingValues)
-        .fillMaxSize()
+    modifier = Modifier.padding(paddingValues)
 ) {
-    items(items = vm.listOfUniversities, key = { it.name }) {
+    items(items = universitiesList, key = { it.name }) {
         Box(modifier = Modifier.animateItemPlacement()) {
             if (it.province) UniversityHeader(it, Modifier.align(Alignment.Center))
-            else UniversityItem(navController, it)
+            else UniversityItem(it, onUniversityClick)
             Divider(color = Gray)
         }
     }
@@ -170,19 +220,14 @@ private fun UniversityHeader(province: UniversityModel, modifier: Modifier) = Te
 )
 
 @Composable
-private fun UniversityItem(navController: NavHostController, university: UniversityModel) = Text(
+private fun UniversityItem(
+    university: UniversityModel,
+    onUniversityClick: (UniversityModel) -> Unit
+) = Text(
     text = university.name,
     color = Color.Gray,
     modifier = Modifier
-        .clickable {
-            navController.currentBackStackEntry?.savedStateHandle?.set("university", university)
-            navController.navigate(route = "details")
-        }
+        .clickable { onUniversityClick(university) }
         .fillMaxWidth()
         .padding(16.dp)
 )
-
-private fun showSnackBar(message: String) = vm.coroutineScope.launch {
-    vm.snackBarHost.currentSnackbarData?.dismiss()
-    vm.snackBarHost.showSnackbar(message)
-}

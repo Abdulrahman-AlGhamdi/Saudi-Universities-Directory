@@ -43,6 +43,7 @@ fun NewsScreen(navController: NavHostController, viewModel: NewsViewModel, addre
 }
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 private fun NewsTopBar(navController: NavHostController) = CenterAlignedTopAppBar(
     title = {
         Text(
