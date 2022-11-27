@@ -11,8 +11,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ss.universitiesdirectory.data.model.univeristy.UniversityModel
 import com.ss.universitiesdirectory.ui.details.DetailsScreen
-import com.ss.universitiesdirectory.ui.news.NewsScreen
-import com.ss.universitiesdirectory.ui.news.NewsViewModel
 import com.ss.universitiesdirectory.ui.settings.SettingsScreen
 import com.ss.universitiesdirectory.ui.settings.SettingsViewModel
 import com.ss.universitiesdirectory.ui.splash.SplashScreen
@@ -53,15 +51,6 @@ class MainActivity : ComponentActivity() {
                     ?.get<UniversityModel>("university")
 
                 university?.let { DetailsScreen(navController, university) }
-            })
-            composable(route = "news", content = {
-                val viewModel = hiltViewModel<NewsViewModel>()
-                val address = navController
-                    .previousBackStackEntry
-                    ?.savedStateHandle
-                    ?.get<String>("address")
-
-                address?.let { NewsScreen(navController, viewModel, address) }
             })
             composable(route = "website", content = {
                 val websiteUrl = navController

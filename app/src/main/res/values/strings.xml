@@ -12,7 +12,6 @@
     <string name="details_about">About University:</string>
     <string name="details_website">Website</string>
     <string name="details_colleges">Colleges</string>
-    <string name="details_news">News</string>
     <string name="details_location">Location</string>
     <string name="details_application">Application</string>
     <string name="details_communication">Communication:</string>
@@ -35,9 +34,6 @@
 
     <!-- Website Strings -->
     <string name="website_fragment">Website</string>
-
-    <!-- News Strings -->
-    <string name="news_fragment">News</string>
 
     <!-- Network Error Strings -->
     <string name="connection_title">No internet connection</string>

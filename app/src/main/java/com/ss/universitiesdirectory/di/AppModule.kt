@@ -1,7 +1,6 @@
 package com.ss.universitiesdirectory.di
 
 import com.ss.universitiesdirectory.data.remote.ApiService
-import com.ss.universitiesdirectory.data.remote.ApiService.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,14 +11,14 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
+object AppModule {
 
     @Provides
     @Singleton
     fun provideApiService(): ApiService = Retrofit
         .Builder()
         .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl(BASE_URL)
+        .baseUrl(ApiService.BASE_URL)
         .build()
         .create(ApiService::class.java)
 }
