@@ -13,7 +13,6 @@ data class UniversityModel(
     val location    : String = "",
     val website     : String = "",
     val application : String = "",
-    val news        : String = "",
     val region      : String = "",
     val snapchat    : String = "",
     val instagram   : String = "",

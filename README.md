@@ -15,7 +15,6 @@
     <tr><td align="center">2</td><td>A simple history of each university and when it was established.</td></tr>
     <tr><td align="center">3</td><td>University location if you want to go to university using (Google Maps).</td></tr>
     <tr><td align="center">4</td><td>Colleges affiliated with the university (if available).</td></tr>
-    <tr><td align="center">5</td><td>News of the University (if available).</td></tr>
     <tr><td align="center">6</td><td>The official electronic services application of the university for its students (if available).</td></tr>
     <tr><td align="center">7</td><td>Communicate with the university through social media accounts.</td></tr>
 </table>
@@ -36,7 +35,6 @@
     <img src="./googlePlayAssets/screenshots/3.png" width="10%">
     <img src="./googlePlayAssets/screenshots/4.png" width="10%">
     <img src="./googlePlayAssets/screenshots/5.png" width="10%">
-    <img src="./googlePlayAssets/screenshots/6.png" width="10%">
 </div>
 
 ##

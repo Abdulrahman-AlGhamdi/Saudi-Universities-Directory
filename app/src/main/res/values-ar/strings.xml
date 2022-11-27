@@ -12,7 +12,6 @@
     <string name="details_about">عن الجامعة:</string>
     <string name="details_website">الموقع</string>
     <string name="details_colleges">الكليات</string>
-    <string name="details_news">الأخبار</string>
     <string name="details_location">الخريطة</string>
     <string name="details_application">التطبيق</string>
     <string name="details_communication">التواصل:</string>
@@ -35,9 +34,6 @@
 
     <!-- Website Strings -->
     <string name="website_fragment">الموقع</string>
-
-    <!-- News Strings -->
-    <string name="news_fragment">أخبار</string>
 
     <!-- Network Error Strings -->
     <string name="connection_title">خطأ في الاتصال</string>

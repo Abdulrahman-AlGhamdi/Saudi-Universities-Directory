@@ -116,17 +116,6 @@ private fun DetailsContent(
                 navController.navigate(route = "website")
             }
         )
-        if (university.news.isNotEmpty()) UniversitiesButton(
-            message = stringResource(id = R.string.details_news),
-            backgroundColor = NewsColor,
-            onClickCallBack = {
-                navController.currentBackStackEntry
-                    ?.savedStateHandle
-                    ?.set("address", university.news)
-
-                navController.navigate(route = "news")
-            }
-        )
         if (university.application.isNotEmpty()) {
             UniversitiesButton(
                 message = stringResource(id = R.string.details_application),
