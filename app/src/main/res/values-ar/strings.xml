@@ -29,7 +29,7 @@
     <string name="settings_contact_title">تواصل معي</string>
     <string name="settings_contact_message">أي اقتراحات او مشاكل من فضلك لا تتردد في التواصل معي</string>
     <string name="settings_version_title">اصدار التطبيق</string>
-    <string name="settings_version_message">%1$s (%2$d)</string>
+    <string name="settings_version_message">%1$d (%2$s)</string>
     <string name="settings_dismiss">إالغاء</string>
 
     <!-- Website Strings -->

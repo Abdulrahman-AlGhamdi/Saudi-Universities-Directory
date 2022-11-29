@@ -11,8 +11,10 @@ interface ApiService {
     @GET("api/v1/universities/{language}")
     suspend fun getAllUniversities(
         @Path("language") language: String,
-        @Query("region") region: String
+        @Query("region") region: String,
     ): Response<List<UniversityModel>>
 
-    companion object { const val BASE_URL = "https://saudiuniversitiesdirectory.herokuapp.com/" }
+    companion object {
+        const val BASE_URL = "https://saudiuniversitiesdirectory.herokuapp.com/"
+    }
 }

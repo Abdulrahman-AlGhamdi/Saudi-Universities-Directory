@@ -28,7 +28,6 @@ class UniversitiesViewModel @Inject constructor(
     val universitiesState = universitiesRepository.universitiesState
 
     val snackBarHost = SnackbarHostState()
-    var errorMessage by mutableStateOf("")
     var isSearching by mutableStateOf(false)
     var searchText by mutableStateOf("")
 
