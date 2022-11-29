@@ -29,7 +29,7 @@
     <string name="settings_contact_title">Contact Me</string>
     <string name="settings_contact_message">Any suggestions or issues please don\'t hesitate to contact me</string>
     <string name="settings_version_title">Application Version</string>
-    <string name="settings_version_message">%1$s (%2$d)</string>
+    <string name="settings_version_message">%1$d (%2$s)</string>
     <string name="settings_dismiss">Dismiss</string>
 
     <!-- Website Strings -->

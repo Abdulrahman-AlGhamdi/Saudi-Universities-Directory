@@ -3,10 +3,12 @@ package com.ss.universitiesdirectory.ui.splash
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -21,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.ss.universitiesdirectory.R
+import com.ss.universitiesdirectory.ui.main.Screen
 import com.ss.universitiesdirectory.ui.theme.Black
 import com.ss.universitiesdirectory.ui.theme.White
 
@@ -31,7 +34,7 @@ fun SplashScreen(navController: NavHostController) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)
     ) {
         Image(
             painter = painterResource(id = R.drawable.icon_university),
@@ -43,7 +46,8 @@ fun SplashScreen(navController: NavHostController) {
             text = stringResource(id = R.string.app_name),
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.scale(scale.value)
+            modifier = Modifier.scale(scale.value),
+            color = if (isSystemInDarkTheme()) White else Black
         )
     }
 
@@ -54,6 +58,6 @@ fun SplashScreen(navController: NavHostController) {
         )
 
         navController.popBackStack()
-        navController.navigate(route = "universities")
+        navController.navigate(route = Screen.UniversitiesScreen.route)
     }
 }

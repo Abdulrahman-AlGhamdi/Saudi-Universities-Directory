@@ -6,7 +6,6 @@ import android.net.Uri
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -17,81 +16,58 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavHostController
 import com.ss.universitiesdirectory.R
-import com.ss.universitiesdirectory.ui.theme.PrimaryColor
-import com.ss.universitiesdirectory.ui.theme.White
+import com.ss.universitiesdirectory.ui.main.DefaultTopAppBar
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-fun WebsiteScreen(navController: NavHostController, websiteUrl: String) {
-    val context = LocalContext.current
-
+fun WebsiteScreen(
+    navController: NavHostController,
+    websiteUrl: String?,
+    context: Context = LocalContext.current,
+) {
     Scaffold(
-        topBar = { WebsiteTopBar(navController, context, websiteUrl) },
-        content = { WebsiteContent(it, websiteUrl) }
+        topBar = {
+            DefaultTopAppBar(
+                title = R.string.website_fragment,
+                navigationIcon = Icons.Default.ArrowBack,
+                onNavigationClick = { navController.popBackStack() },
+                actions = {
+                    IconButton(onClick = {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrl))
+                        startActivity(context, intent, null)
+                    }) {
+                        Icon(imageVector = Icons.Default.ExitToApp, contentDescription = null)
+                    }
+                }
+            )
+        },
+        content = { paddingValues ->
+            websiteUrl?.let { WebsiteContent(paddingValues, websiteUrl) }
+        }
     )
 }
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
-private fun WebsiteTopBar(
-    navController: NavHostController,
-    context: Context,
-    websiteUrl: String
-) = CenterAlignedTopAppBar(
-    title = {
-        Text(
-            text = stringResource(id = R.string.website_fragment),
-            fontFamily = FontFamily(Font(R.font.quest_regular))
-        )
-    },
-    navigationIcon = {
-        IconButton(onClick = { navController.popBackStack() }) {
-            Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
-        }
-    },
-    actions = {
-        IconButton(onClick = {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrl))
-            startActivity(context, intent, null)
-        }) {
-            Icon(imageVector = Icons.Default.ExitToApp, contentDescription = null)
-        }
-    },
-    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-        containerColor = PrimaryColor,
-        titleContentColor = White,
-        navigationIconContentColor = White,
-        actionIconContentColor = White
-    )
-)
+private fun WebsiteContent(paddingValues: PaddingValues, websiteUrl: String) = AndroidView(
+    factory = {
+        WebView(it).apply {
+            this.webViewClient = WebViewClient()
+            this.settings.javaScriptEnabled = true
+            this.layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
 
-@Composable
-private fun WebsiteContent(paddingValues: PaddingValues, websiteUrl: String) = Box(
+            loadUrl(websiteUrl)
+        }
+    }, update = {
+        it.loadUrl(websiteUrl)
+    },
     modifier = Modifier
         .padding(paddingValues)
         .fillMaxSize()
-) {
-    AndroidView(
-        factory = {
-            WebView(it).apply {
-                this.webViewClient = WebViewClient()
-                this.settings.javaScriptEnabled = true
-                this.layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT
-                )
-
-                loadUrl(websiteUrl)
-            }
-        }, update = {
-            it.loadUrl(websiteUrl)
-        }
-    )
-}
+)
