@@ -4,21 +4,18 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.ss.universitiesdirectory.R
@@ -103,7 +100,7 @@ private fun UniversitiesTopBar(
     isSearchingCallback: (Boolean) -> Unit,
     searchText: String,
     onSearchChangeCallback: (String) -> Unit,
-    onSettingsClick: () -> Unit
+    onSettingsClick: () -> Unit,
 ) {
     if (isSearching) SearchTopAppBar(
         searchText = searchText,
@@ -126,7 +123,7 @@ private fun UniversitiesTopBar(
 @OptIn(ExperimentalFoundationApi::class)
 private fun UniversitiesContent(
     universitiesList: List<UniversityModel>,
-    onUniversityClick: (UniversityModel) -> Unit
+    onUniversityClick: (UniversityModel) -> Unit,
 ) = LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
     itemsIndexed(items = universitiesList, key = { _, item -> item.name }) { index, item ->
         Column(modifier = Modifier.animateItemPlacement()) {
@@ -153,7 +150,7 @@ private fun UniversityHeader(province: UniversityModel, modifier: Modifier) = Li
 @OptIn(ExperimentalMaterial3Api::class)
 private fun UniversityItem(
     university: UniversityModel,
-    onUniversityClick: (UniversityModel) -> Unit
+    onUniversityClick: (UniversityModel) -> Unit,
 ) = ListItem(
     headlineText = { Text(text = university.name) },
     modifier = Modifier.clickable { onUniversityClick(university) },
