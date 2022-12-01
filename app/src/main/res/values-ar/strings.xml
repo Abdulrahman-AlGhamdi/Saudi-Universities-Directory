@@ -3,41 +3,40 @@
     <!-- Application Name -->
     <string name="app_name">دليل الجامعات السعودية</string>
 
-    <!-- Fragments Names -->
-    <string name="fragment_universities">الجامعات</string>
-    <string name="fragment_details">تفاصيل</string>
-    <string name="fragment_website">الموقع</string>
-    <string name="fragment_news">أخبار</string>
-    <string name="fragment_settings">الإعدادات</string>
+    <!-- Universities Strings -->
+    <string name="universities_fragment">الجامعات</string>
+    <string name="universities_search">بحث</string>
 
-    <!-- Fragments Names -->
-    <string name="news">الأخبار</string>
-    <string name="website">الموقع</string>
-    <string name="colleges">الكليات</string>
-    <string name="location">الخريطة</string>
-    <string name="about">عن الجامعة:</string>
-    <string name="Application">التطبيق</string>
-    <string name="communication">التواصل:</string>
-    <string name="search">بحث</string>
-    <string name="settings">الإعدادات</string>
-    <string name="message">صنع بـ %1$s عبدالرحمن الغامدي</string>
-    <string name="no_result_found">لا توجد نتائج</string>
-    <string name="no_internet_connection">لا يوجد إتصال بالإنترنت</string>
-    <string name="retry">أعد المحاولة…</string>
+    <!-- Details Strings -->
+    <string name="details_fragment">تفاصيل</string>
+    <string name="details_about">عن الجامعة:</string>
+    <string name="details_website">الموقع</string>
+    <string name="details_colleges">الكليات</string>
+    <string name="details_location">الخريطة</string>
+    <string name="details_application">التطبيق</string>
+    <string name="details_communication">التواصل:</string>
 
-    <!-- Settings Preference Strings -->
-    <string name="preference_application_configuration">إعدادات التطبيق</string>
-    <string name="preference_about">حول</string>
-    <string name="preference_theme_title">النمط</string>
-    <string name="preference_language_title">اللغة</string>
-    <string name="preference_language_summary_on">عربي</string>
-    <string name="preference_language_summary_off">إنجليزي</string>
-    <string name="preference_contact_me_title">تواصل معي</string>
-    <string name="preference_contact_me_summary">أي اقتراحات او مشاكل من فضلك لا تتردد في التواصل معي</string>
-    <string name="preference_version_summary">%1$s (%2$d)</string>
-    <string name="preference_version_title">اصدار التطبيق</string>
+    <!-- Settings Strings -->
+    <string name="settings_fragment">الإعدادات</string>
+    <string name="settings_configuration">إعدادات التطبيق</string>
+    <string name="settings_theme">النمط</string>
+    <string name="settings_theme_light">النهاري</string>
+    <string name="settings_theme_dark">الليلي</string>
+    <string name="settings_language">اللغة</string>
+    <string name="settings_language_arabic">عربي</string>
+    <string name="settings_language_english">إنجليزي</string>
+    <string name="settings_about">حول</string>
+    <string name="settings_contact_title">تواصل معي</string>
+    <string name="settings_contact_message">أي اقتراحات او مشاكل من فضلك لا تتردد في التواصل معي</string>
+    <string name="settings_version_title">اصدار التطبيق</string>
+    <string name="settings_version_message">%1$d (%2$s)</string>
+    <string name="settings_dismiss">إالغاء</string>
+
+    <!-- Website Strings -->
+    <string name="website_fragment">الموقع</string>
 
     <!-- Network Error Strings -->
-    <string name="network_error_title">خطأ في الاتصال</string>
-    <string name="network_error_message">يبدو أنك فقدت الاتصال بالإنترنت، يرجى إعادة الاتصال بالإنترنت</string>
+    <string name="connection_title">خطأ في الاتصال</string>
+    <string name="connection_message">يبدو أنك فقدت الاتصال بالإنترنت، يرجى إعادة الاتصال بالإنترنت</string>
+    <string name="connection_retry">أعد المحاولة…</string>
 </resources>

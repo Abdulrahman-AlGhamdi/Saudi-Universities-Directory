@@ -1,53 +1,26 @@
 package com.ss.universitiesdirectory.ui
 
-import android.content.Context
-import android.content.IntentFilter
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.ss.universitiesdirectory.R
-import com.ss.universitiesdirectory.broadcast.NetworkChangeReceiver
-import com.ss.universitiesdirectory.databinding.ActivityMainBinding
-import com.ss.universitiesdirectory.utils.LanguageHelper
-import com.ss.universitiesdirectory.utils.viewBinding
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.ss.universitiesdirectory.ui.main.Navigation
+import com.ss.universitiesdirectory.ui.theme.SaudiUniversitiesComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
 
-    private val  binding by viewBinding(ActivityMainBinding::inflate)
-    private lateinit var navController: NavController
-    private val networkChangeReceiver = NetworkChangeReceiver()
-
+    @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
 
-        navController = findNavController(R.id.fragment_container)
-        val configuration = AppBarConfiguration(setOf(R.id.splashFragment, R.id.universitiesFragment))
-        setupActionBarWithNavController(navController, configuration)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        registerReceiver(networkChangeReceiver, IntentFilter().apply {
-            this.addAction("android.net.conn.CONNECTIVITY_CHANGE")
-        })
-    }
-
-    override fun onStop() {
-        super.onStop()
-        unregisterReceiver(networkChangeReceiver)
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
-    }
-
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(LanguageHelper.onBaseAttach(newBase))
+        setContent {
+            SaudiUniversitiesComposeTheme {
+                val navController = rememberAnimatedNavController()
+                Navigation(navController = navController)
+            }
+        }
     }
 }

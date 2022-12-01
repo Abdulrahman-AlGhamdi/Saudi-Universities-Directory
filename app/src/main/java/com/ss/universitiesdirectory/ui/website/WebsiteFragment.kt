@@ -1,54 +1,73 @@
 package com.ss.universitiesdirectory.ui.website
 
-import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.webkit.WebResourceRequest
+import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.content.ContextCompat.startActivity
+import androidx.navigation.NavHostController
 import com.ss.universitiesdirectory.R
-import com.ss.universitiesdirectory.databinding.FragmentWebsiteBinding
-import com.ss.universitiesdirectory.utils.viewBinding
+import com.ss.universitiesdirectory.ui.main.DefaultTopAppBar
 
-@SuppressLint("SetJavaScriptEnabled")
-class WebsiteFragment : Fragment(R.layout.fragment_website) {
-
-    private val binding by viewBinding(FragmentWebsiteBinding::bind)
-    private val argument by navArgs<WebsiteFragmentArgs>()
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        setHasOptionsMenu(true)
-        showWebsite()
-    }
-
-    private fun showWebsite() {
-        binding.website.settings.javaScriptEnabled = true
-        binding.website.loadUrl(argument.url)
-
-        binding.website.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
-                view.loadUrl(request.url.toString())
-                return super.shouldOverrideUrlLoading(view, request)
-            }
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+fun WebsiteScreen(
+    navController: NavHostController,
+    websiteUrl: String?,
+    context: Context = LocalContext.current,
+) {
+    Scaffold(
+        topBar = {
+            DefaultTopAppBar(
+                title = R.string.website_fragment,
+                navigationIcon = Icons.Default.ArrowBack,
+                onNavigationClick = { navController.popBackStack() },
+                actions = {
+                    IconButton(onClick = {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrl))
+                        startActivity(context, intent, null)
+                    }) {
+                        Icon(imageVector = Icons.Default.ExitToApp, contentDescription = null)
+                    }
+                }
+            )
+        },
+        content = { paddingValues ->
+            websiteUrl?.let { WebsiteContent(paddingValues, websiteUrl) }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_details, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_website) startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(argument.url)))
-        return super.onOptionsItemSelected(item)
-    }
+    )
 }
+
+@Composable
+private fun WebsiteContent(paddingValues: PaddingValues, websiteUrl: String) = AndroidView(
+    factory = {
+        WebView(it).apply {
+            this.webViewClient = WebViewClient()
+            this.settings.javaScriptEnabled = true
+            this.layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+
+            loadUrl(websiteUrl)
+        }
+    }, update = {
+        it.loadUrl(websiteUrl)
+    },
+    modifier = Modifier
+        .padding(paddingValues)
+        .fillMaxSize()
+)

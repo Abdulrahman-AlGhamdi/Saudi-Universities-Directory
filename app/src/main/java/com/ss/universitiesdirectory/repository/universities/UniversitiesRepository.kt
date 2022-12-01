@@ -1,24 +1,12 @@
 package com.ss.universitiesdirectory.repository.universities
 
-import com.ss.universitiesdirectory.data.remote.ApiService
-import com.ss.universitiesdirectory.data.remote.ResponseStatus
-import com.ss.universitiesdirectory.data.remote.ResponseStatus.*
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import java.util.*
-import javax.inject.Inject
+import com.ss.universitiesdirectory.data.model.univeristy.UniversityModel
+import com.ss.universitiesdirectory.data.remote.ResponseState
+import kotlinx.coroutines.flow.StateFlow
 
-class UniversitiesRepository @Inject constructor(private val apiService: ApiService) {
+interface UniversitiesRepository {
 
-    private var _universitiesState = MutableStateFlow<ResponseStatus>(Idle)
-    val universitiesState = _universitiesState.asStateFlow()
+    val universitiesState: StateFlow<ResponseState<List<UniversityModel>>>
 
-    suspend fun getAllUniversities(region: String = "") {
-        _universitiesState.value = Progress
-        val language = Locale.getDefault().language
-        val response = apiService.getAllUniversities(language, region)
-
-        if (!response.isSuccessful) _universitiesState.value = Failed(response.message())
-        else response.body()?.let { _universitiesState.value = Success(it) }
-    }
+    suspend fun getAllUniversities(region: String = "")
 }
