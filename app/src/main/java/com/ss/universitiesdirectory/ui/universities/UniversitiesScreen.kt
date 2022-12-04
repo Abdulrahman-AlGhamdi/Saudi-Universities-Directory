@@ -19,11 +19,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.ss.universitiesdirectory.R
-import com.ss.universitiesdirectory.data.model.univeristy.UniversityModel
-import com.ss.universitiesdirectory.data.remote.ResponseState
+import com.ss.universitiesdirectory.model.univeristy.UniversityModel
 import com.ss.universitiesdirectory.ui.main.DefaultTopAppBar
 import com.ss.universitiesdirectory.ui.main.Screen
 import com.ss.universitiesdirectory.ui.main.SearchTopAppBar
+import com.ss.universitiesdirectory.utils.ResponseState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

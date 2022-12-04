@@ -4,17 +4,14 @@ import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
-import com.ss.universitiesdirectory.data.model.univeristy.UniversityModel
+import com.ss.universitiesdirectory.model.univeristy.UniversityModel
 import com.ss.universitiesdirectory.ui.details.DetailsScreen
 import com.ss.universitiesdirectory.ui.settings.SettingsScreen
-import com.ss.universitiesdirectory.ui.settings.SettingsViewModel
 import com.ss.universitiesdirectory.ui.splash.SplashScreen
 import com.ss.universitiesdirectory.ui.universities.UniversitiesScreen
-import com.ss.universitiesdirectory.ui.universities.UniversitiesViewModel
 import com.ss.universitiesdirectory.ui.website.WebsiteScreen
 
 @Composable
@@ -31,8 +28,7 @@ fun Navigation(navController: NavHostController) = AnimatedNavHost(
         SplashScreen(navController)
     })
     composable(route = Screen.UniversitiesScreen.route, content = {
-        val viewModel = hiltViewModel<UniversitiesViewModel>()
-        UniversitiesScreen(navController, viewModel)
+        UniversitiesScreen(navController)
     })
     composable(route = Screen.DetailsScreen.route, content = {
         val university = navController
@@ -51,8 +47,7 @@ fun Navigation(navController: NavHostController) = AnimatedNavHost(
         WebsiteScreen(navController, websiteUrl)
     })
     composable(route = Screen.SettingsScreen.route, content = {
-        val viewModel = hiltViewModel<SettingsViewModel>()
-        SettingsScreen(navController, viewModel)
+        SettingsScreen(navController)
     })
 }
 

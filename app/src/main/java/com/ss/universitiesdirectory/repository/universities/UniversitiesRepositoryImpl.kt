@@ -1,40 +1,35 @@
 package com.ss.universitiesdirectory.repository.universities
 
-import android.content.Context
-import com.ss.universitiesdirectory.R
-import com.ss.universitiesdirectory.data.model.univeristy.UniversityModel
-import com.ss.universitiesdirectory.data.remote.ApiService
-import com.ss.universitiesdirectory.data.remote.ResponseState
-import com.ss.universitiesdirectory.data.remote.ResponseState.*
-import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import java.net.UnknownHostException
+import com.google.firebase.firestore.FirebaseFirestore
+import com.ss.universitiesdirectory.model.univeristy.UniversityModel
+import com.ss.universitiesdirectory.utils.ResponseState
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flowOn
 import java.util.*
 import javax.inject.Inject
 
-class UniversitiesRepositoryImpl @Inject constructor(
-    @ApplicationContext private val context: Context,
-    private val apiService: ApiService
-) : UniversitiesRepository {
+class UniversitiesRepositoryImpl @Inject constructor() : UniversitiesRepository {
 
-    private var _universitiesState = MutableStateFlow<ResponseState<List<UniversityModel>>>(Idle())
-    override val universitiesState = _universitiesState.asStateFlow()
+    private val database = FirebaseFirestore.getInstance()
 
-    override suspend fun getAllUniversities(region: String) {
-        try {
-            _universitiesState.value = Progress()
-            val language = Locale.getDefault().language
-            val response = apiService.getAllUniversities(language, region)
+    override suspend fun getUniversities() = callbackFlow<ResponseState<List<UniversityModel>>> {
+        this.trySend(ResponseState.Progress())
+        val language = Locale.getDefault().language.uppercase()
 
-            if (!response.isSuccessful) _universitiesState.value = Error(response.message())
-            else response.body()?.let { _universitiesState.value = Success(it) }
+        val reference = database.collection("Universities$language")
+        val task = reference.get()
 
-        } catch (exception: UnknownHostException) {
-            _universitiesState.value = Error(context.getString(R.string.connection_message))
-        } catch (exception: Exception) {
-            exception.localizedMessage?.let { _universitiesState.value = Error(it) }
-            exception.printStackTrace()
+        task.addOnSuccessListener {
+            this.trySend(ResponseState.Success(it.toObjects(UniversityModel::class.java)))
         }
-    }
+
+        task.addOnFailureListener {
+            it.localizedMessage?.let { m -> this.trySend(ResponseState.Error(m)) }
+            it.printStackTrace()
+        }
+
+        this.awaitClose()
+    }.flowOn(Dispatchers.IO)
 }
