@@ -18,19 +18,10 @@
 
     <!-- Settings Strings -->
     <string name="settings_fragment">الإعدادات</string>
-    <string name="settings_configuration">إعدادات التطبيق</string>
-    <string name="settings_theme">النمط</string>
-    <string name="settings_theme_light">النهاري</string>
-    <string name="settings_theme_dark">الليلي</string>
-    <string name="settings_language">اللغة</string>
-    <string name="settings_language_arabic">عربي</string>
-    <string name="settings_language_english">إنجليزي</string>
     <string name="settings_about">حول</string>
     <string name="settings_contact_title">تواصل معي</string>
     <string name="settings_contact_message">أي اقتراحات او مشاكل من فضلك لا تتردد في التواصل معي</string>
     <string name="settings_version_title">اصدار التطبيق</string>
-    <string name="settings_version_message">%1$d (%2$s)</string>
-    <string name="settings_dismiss">إالغاء</string>
 
     <!-- Website Strings -->
     <string name="website_fragment">الموقع</string>

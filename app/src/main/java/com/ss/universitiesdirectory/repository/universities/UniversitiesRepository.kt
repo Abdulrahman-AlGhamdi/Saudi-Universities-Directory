@@ -1,12 +1,10 @@
 package com.ss.universitiesdirectory.repository.universities
 
-import com.ss.universitiesdirectory.data.model.univeristy.UniversityModel
-import com.ss.universitiesdirectory.data.remote.ResponseState
-import kotlinx.coroutines.flow.StateFlow
+import com.ss.universitiesdirectory.model.univeristy.UniversityModel
+import com.ss.universitiesdirectory.utils.ResponseState
+import kotlinx.coroutines.flow.Flow
 
-interface UniversitiesRepository {
+sealed interface UniversitiesRepository {
 
-    val universitiesState: StateFlow<ResponseState<List<UniversityModel>>>
-
-    suspend fun getAllUniversities(region: String = "")
+    suspend fun getUniversities(): Flow<ResponseState<List<UniversityModel>>>
 }

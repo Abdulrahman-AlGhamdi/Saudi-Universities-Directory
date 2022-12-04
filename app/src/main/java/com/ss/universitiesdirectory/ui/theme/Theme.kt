@@ -1,13 +1,11 @@
 package com.ss.universitiesdirectory.ui.theme
 
-import android.content.Context
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val LightColorScheme = lightColorScheme(
@@ -52,21 +50,12 @@ private val DarkColorScheme = darkColorScheme(
 
 @Composable
 fun SaudiUniversitiesComposeTheme(
-    context: Context = LocalContext.current,
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicTheme: Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S,
     content: @Composable () -> Unit
 ) {
     val systemUiController = rememberSystemUiController()
-
-    val colorScheme = when {
-//        dynamicTheme && darkTheme -> dynamicDarkColorScheme(context)
-//        dynamicTheme && !darkTheme -> dynamicLightColorScheme(context)
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
+    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
 
     systemUiController.setSystemBarsColor(color = colorScheme.background, darkIcons = !darkTheme)
-
     MaterialTheme(colorScheme = colorScheme, typography = Typography, content = content)
 }

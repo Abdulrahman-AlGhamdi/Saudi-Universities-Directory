@@ -6,11 +6,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ss.universitiesdirectory.data.model.univeristy.UniversityModel
+import com.ss.universitiesdirectory.model.univeristy.UniversityModel
 import com.ss.universitiesdirectory.repository.universities.UniversitiesRepository
+import com.ss.universitiesdirectory.utils.ResponseState
+import com.ss.universitiesdirectory.utils.ResponseState.Idle
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,13 +21,20 @@ class UniversitiesViewModel @Inject constructor(
     private val universitiesRepository: UniversitiesRepository
 ) : ViewModel() {
 
+    private var _universitiesState = MutableStateFlow<ResponseState<List<UniversityModel>>>(Idle())
+    val universitiesState = _universitiesState.asStateFlow()
+
     init {
-        viewModelScope.launch(Dispatchers.IO) {
-            universitiesRepository.getAllUniversities()
-        }
+        getUniversities()
     }
 
-    val universitiesState = universitiesRepository.universitiesState
+    private fun getUniversities() {
+        viewModelScope.launch {
+            universitiesRepository.getUniversities().collect {
+                _universitiesState.value = it
+            }
+        }
+    }
 
     val snackBarHost = SnackbarHostState()
     var isSearching by mutableStateOf(false)

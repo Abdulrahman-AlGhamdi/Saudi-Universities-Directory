@@ -1,4 +1,4 @@
-package com.ss.universitiesdirectory.data.remote
+package com.ss.universitiesdirectory.utils
 
 sealed class ResponseState<T>(val data: T? = null, val message: String? = null) {
     class Idle<T> : ResponseState<T>()

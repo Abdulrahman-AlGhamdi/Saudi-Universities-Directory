@@ -26,7 +26,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.ss.universitiesdirectory.R
-import com.ss.universitiesdirectory.data.model.univeristy.UniversityModel
+import com.ss.universitiesdirectory.model.univeristy.UniversityModel
 import com.ss.universitiesdirectory.ui.main.DefaultTopAppBar
 import com.ss.universitiesdirectory.ui.theme.*
 
