@@ -1,6 +1,6 @@
 <div align="center"><img src="./googlePlayAssets/icon/icon.png" width="20%"></div>
 
-<h3 align="center">Saudi Universities Directory - Android</h3>
+<h3 align="center">Saudi Universities Directory</h3>
 
 <p align="center">
     Get to know the saudi public universities affiliated to the ministry of education which includes information about these universities and their specialties.
@@ -35,6 +35,7 @@
     <img src="./googlePlayAssets/screenshots/3.png" width="10%">
     <img src="./googlePlayAssets/screenshots/4.png" width="10%">
     <img src="./googlePlayAssets/screenshots/5.png" width="10%">
+    <img src="./googlePlayAssets/screenshots/6.png" width="10%">
 </div>
 
 ##
