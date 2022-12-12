@@ -33,7 +33,7 @@ fun SettingsScreen(
     },
     content = {
         Column(modifier = Modifier.padding(it)) {
-            About(onEmailClick = { viewModel.sendEmail() })
+            About(onEmailClick = { viewModel.openTwitter() })
         }
     }
 )

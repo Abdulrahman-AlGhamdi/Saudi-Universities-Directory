@@ -10,5 +10,5 @@ class SettingsViewModel @Inject constructor(
     private val settingsRepository: SettingsManager
 ) : ViewModel() {
 
-    fun sendEmail() = settingsRepository.sendEmail()
+    fun openTwitter() = settingsRepository.openTwitter()
 }

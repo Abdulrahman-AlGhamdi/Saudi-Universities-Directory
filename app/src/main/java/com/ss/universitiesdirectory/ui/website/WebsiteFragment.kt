@@ -1,5 +1,6 @@
 package com.ss.universitiesdirectory.ui.website
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -52,6 +53,7 @@ fun WebsiteScreen(
 }
 
 @Composable
+@SuppressLint("SetJavaScriptEnabled")
 private fun WebsiteContent(paddingValues: PaddingValues, websiteUrl: String) = AndroidView(
     factory = {
         WebView(it).apply {

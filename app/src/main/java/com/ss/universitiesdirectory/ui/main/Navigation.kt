@@ -36,7 +36,7 @@ fun Navigation(navController: NavHostController) = AnimatedNavHost(
             ?.savedStateHandle
             ?.get<UniversityModel>("university")
 
-        DetailsScreen(navController, university)
+        DetailsScreen(navController = navController, university = university)
     })
     composable(route = Screen.WebsiteScreen.route, content = {
         val websiteUrl = navController
@@ -47,7 +47,7 @@ fun Navigation(navController: NavHostController) = AnimatedNavHost(
         WebsiteScreen(navController, websiteUrl)
     })
     composable(route = Screen.SettingsScreen.route, content = {
-        SettingsScreen(navController)
+        SettingsScreen(navController = navController)
     })
 }
 

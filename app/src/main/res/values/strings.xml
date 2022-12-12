@@ -20,15 +20,9 @@
     <string name="settings_fragment">Settings</string>
     <string name="settings_about">About</string>
     <string name="settings_contact_title">Contact Me</string>
-    <string name="settings_contact_message">Any suggestions or issues please don\'t hesitate to contact me</string>
     <string name="settings_version_title">Application Version</string>
     <string name="settings_version_message" translatable="false">%1$d (%2$s)</string>
 
     <!-- Website Strings -->
     <string name="website_fragment">Website</string>
-
-    <!-- Network Error Strings -->
-    <string name="connection_title">No internet connection</string>
-    <string name="connection_message">Seems like you lost connectivity to the internet, please reconnect to the internet</string>
-    <string name="connection_retry">Retry…</string>
 </resources>
