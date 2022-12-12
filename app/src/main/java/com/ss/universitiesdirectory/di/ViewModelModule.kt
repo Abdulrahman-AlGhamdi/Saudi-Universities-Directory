@@ -1,5 +1,7 @@
 package com.ss.universitiesdirectory.di
 
+import com.ss.universitiesdirectory.manager.details.DetailsManager
+import com.ss.universitiesdirectory.manager.details.DetailsManagerImpl
 import com.ss.universitiesdirectory.manager.settings.SettingsManager
 import com.ss.universitiesdirectory.manager.settings.SettingsManagerImpl
 import com.ss.universitiesdirectory.repository.universities.UniversitiesRepository
@@ -16,13 +18,19 @@ abstract class ViewModelModule {
 
     @Binds
     @ViewModelScoped
-    abstract fun bindUniversities(
+    abstract fun bindUniversitiesRepository(
         universitiesRepositoryImpl: UniversitiesRepositoryImpl
     ): UniversitiesRepository
 
     @Binds
     @ViewModelScoped
-    abstract fun provideSettingsManager(
+    abstract fun bindDetailsManager(
+        detailsManagerImpl: DetailsManagerImpl
+    ): DetailsManager
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindSettingsManager(
         settingsManagerImpl: SettingsManagerImpl
     ): SettingsManager
 }

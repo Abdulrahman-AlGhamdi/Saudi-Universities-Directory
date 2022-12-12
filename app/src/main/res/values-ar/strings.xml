@@ -20,14 +20,8 @@
     <string name="settings_fragment">الإعدادات</string>
     <string name="settings_about">حول</string>
     <string name="settings_contact_title">تواصل معي</string>
-    <string name="settings_contact_message">أي اقتراحات او مشاكل من فضلك لا تتردد في التواصل معي</string>
     <string name="settings_version_title">اصدار التطبيق</string>
 
     <!-- Website Strings -->
     <string name="website_fragment">الموقع</string>
-
-    <!-- Network Error Strings -->
-    <string name="connection_title">خطأ في الاتصال</string>
-    <string name="connection_message">يبدو أنك فقدت الاتصال بالإنترنت، يرجى إعادة الاتصال بالإنترنت</string>
-    <string name="connection_retry">أعد المحاولة…</string>
 </resources>

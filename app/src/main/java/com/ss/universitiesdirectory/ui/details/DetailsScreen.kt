@@ -1,8 +1,5 @@
 package com.ss.universitiesdirectory.ui.details
 
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
@@ -16,26 +13,26 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.ContextCompat.startActivity
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.ss.universitiesdirectory.R
 import com.ss.universitiesdirectory.model.univeristy.UniversityModel
 import com.ss.universitiesdirectory.ui.main.DefaultTopAppBar
+import com.ss.universitiesdirectory.ui.main.Screen
 import com.ss.universitiesdirectory.ui.theme.*
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun DetailsScreen(
     navController: NavHostController,
+    viewModel: DetailsViewModel = hiltViewModel(),
     university: UniversityModel?,
-    context: Context = LocalContext.current,
 ) {
     Scaffold(
         topBar = {
@@ -60,8 +57,21 @@ fun DetailsScreen(
                     )
 
                     Column(modifier = Modifier.verticalScroll(state = rememberScrollState())) {
-                        DetailsContent(navController, context, university)
-                        SocialMediaContent(university, context)
+                        DetailsContent(
+                            university = university,
+                            onNavigation = {
+                                navController.currentBackStackEntry
+                                    ?.savedStateHandle
+                                    ?.set("url", it)
+
+                                navController.navigate(route = Screen.WebsiteScreen.route)
+                            },
+                            openApp = { viewModel.openApp(it) }
+                        )
+                        SocialMediaContent(
+                            university = university,
+                            openApp = { viewModel.openApp(it) }
+                        )
                     }
                 }
             }
@@ -70,7 +80,7 @@ fun DetailsScreen(
 }
 
 @Composable
-fun SocialMediaContent(university: UniversityModel, context: Context) {
+fun SocialMediaContent(university: UniversityModel, openApp: (String) -> Unit) {
     Text(
         text = stringResource(id = R.string.details_communication),
         fontSize = 20.sp,
@@ -84,40 +94,40 @@ fun SocialMediaContent(university: UniversityModel, context: Context) {
             modifier = Modifier.weight(weight = 1f),
             icon = painterResource(id = R.drawable.icon_instagram),
             color = InstagramColor,
-            onClickCallBack = { openAppAsIntent(context, university.instagram) }
+            onClickCallBack = { openApp(university.instagram) }
         )
         if (university.twitter.isNotEmpty()) SocialMedia(
             modifier = Modifier.weight(weight = 1f),
             icon = painterResource(id = R.drawable.icon_twitter),
             color = TwitterColor,
-            onClickCallBack = { openAppAsIntent(context, university.twitter) }
+            onClickCallBack = { openApp(university.twitter) }
         )
         if (university.youtube.isNotEmpty()) SocialMedia(
             modifier = Modifier.weight(weight = 1f),
             icon = painterResource(id = R.drawable.icon_youtube),
             color = YoutubeColor,
-            onClickCallBack = { openAppAsIntent(context, university.youtube) }
+            onClickCallBack = { openApp(university.youtube) }
         )
         if (university.facebook.isNotEmpty()) SocialMedia(
             modifier = Modifier.weight(weight = 1f),
             icon = painterResource(id = R.drawable.icon_facebook),
             color = FacebookColor,
-            onClickCallBack = { openAppAsIntent(context, university.facebook) }
+            onClickCallBack = { openApp(university.facebook) }
         )
         if (university.snapchat.isNotEmpty()) SocialMedia(
             modifier = Modifier.weight(weight = 1f),
             icon = painterResource(id = R.drawable.icon_snapchat),
             color = SnapchatColor,
-            onClickCallBack = { openAppAsIntent(context, university.snapchat) }
+            onClickCallBack = { openApp(university.snapchat) }
         )
     }
 }
 
 @Composable
 private fun DetailsContent(
-    navController: NavHostController,
-    context: Context,
     university: UniversityModel,
+    onNavigation: (String) -> Unit,
+    openApp: (String) -> Unit
 ) {
     Text(
         text = stringResource(id = R.string.details_about),
@@ -132,31 +142,19 @@ private fun DetailsContent(
     )
     if (university.website.isNotEmpty()) UniversitiesButton(
         message = stringResource(id = R.string.details_website),
-        onClickCallBack = {
-            navController.currentBackStackEntry
-                ?.savedStateHandle
-                ?.set("url", university.website)
-
-            navController.navigate(route = "website")
-        }
+        onClickCallBack = { onNavigation(university.website) }
     )
     if (university.colleges.isNotEmpty()) UniversitiesButton(
         message = stringResource(id = R.string.details_colleges),
-        onClickCallBack = {
-            navController.currentBackStackEntry
-                ?.savedStateHandle
-                ?.set("url", university.colleges)
-
-            navController.navigate(route = "website")
-        }
+        onClickCallBack = { onNavigation(university.website) }
     )
     if (university.application.isNotEmpty()) UniversitiesButton(
         message = stringResource(id = R.string.details_application),
-        onClickCallBack = { openAppAsIntent(context, university.application) }
+        onClickCallBack = { openApp(university.application) }
     )
     if (university.location.isNotEmpty()) UniversitiesButton(
         message = stringResource(id = R.string.details_location),
-        onClickCallBack = { openAppAsIntent(context, university.location) }
+        onClickCallBack = { openApp(university.location) }
     )
 }
 
@@ -187,10 +185,4 @@ private fun SocialMedia(
         tint = Color.Unspecified,
         modifier = Modifier.size(30.dp)
     )
-}
-
-private fun openAppAsIntent(context: Context, stringUri: String) {
-    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(stringUri))
-    val chooser = Intent.createChooser(intent, "Open app")
-    startActivity(context, chooser, null)
 }

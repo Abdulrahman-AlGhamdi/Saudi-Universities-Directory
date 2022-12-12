@@ -1,4 +1,4 @@
-package com.ss.universitiesdirectory.manager.settings
+package com.ss.universitiesdirectory.manager.details
 
 import android.content.Context
 import android.content.Intent
@@ -7,18 +7,14 @@ import androidx.core.content.ContextCompat
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class SettingsManagerImpl @Inject constructor(
+class DetailsManagerImpl @Inject constructor(
     @ApplicationContext private val context: Context
-) : SettingsManager {
+) : DetailsManager {
 
-    override fun openTwitter() {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(TWITTER_ACCOUNT))
+    override fun openApp(stringUri: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(stringUri))
         val chooser = Intent.createChooser(intent, "Open app")
         chooser.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         ContextCompat.startActivity(context, chooser, null)
-    }
-
-    private companion object SettingsConstants {
-        private const val TWITTER_ACCOUNT = "https://twitter.com/xghamdii"
     }
 }
