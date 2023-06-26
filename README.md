@@ -43,7 +43,7 @@
 <h3 align="center">License</h3>
 
 ```
-Copyright 2021 Abdulrahman Al-Ghamdi
+Copyright 2023 Abdulrahman Al-Ghamdi
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
