@@ -3,12 +3,12 @@
     <!-- Application Name -->
     <string name="app_name">Universities Directory</string>
 
-    <!-- Universities Strings -->
-    <string name="universities_fragment">Universities</string>
+    <!-- Universities Screen Strings -->
+    <string name="universities_screen">Universities</string>
     <string name="universities_search">Search</string>
 
-    <!-- Details Strings -->
-    <string name="details_fragment">Details</string>
+    <!-- Details Screen Strings -->
+    <string name="details_screen">Details</string>
     <string name="details_about">About University:</string>
     <string name="details_website">Website</string>
     <string name="details_colleges">Colleges</string>
@@ -16,13 +16,13 @@
     <string name="details_application">Application</string>
     <string name="details_communication">Communication:</string>
 
-    <!-- Settings Strings -->
-    <string name="settings_fragment">Settings</string>
+    <!-- Website Screen Strings -->
+    <string name="website_screen">Website</string>
+
+    <!-- Settings Screen Strings -->
+    <string name="settings_screen">Settings</string>
     <string name="settings_about">About</string>
     <string name="settings_contact_title">Contact Me</string>
     <string name="settings_version_title">Application Version</string>
     <string name="settings_version_message" translatable="false">%1$d (%2$s)</string>
-
-    <!-- Website Strings -->
-    <string name="website_fragment">Website</string>
 </resources>

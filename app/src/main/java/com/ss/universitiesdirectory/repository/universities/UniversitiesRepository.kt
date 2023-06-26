@@ -7,4 +7,6 @@ import kotlinx.coroutines.flow.Flow
 sealed interface UniversitiesRepository {
 
     suspend fun getUniversities(): Flow<ResponseState<List<UniversityModel>>>
+
+    fun getSearchList(query: String): Flow<ResponseState<List<UniversityModel>>>
 }

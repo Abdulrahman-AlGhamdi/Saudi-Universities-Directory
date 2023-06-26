@@ -3,12 +3,12 @@
     <!-- Application Name -->
     <string name="app_name">دليل الجامعات السعودية</string>
 
-    <!-- Universities Strings -->
-    <string name="universities_fragment">الجامعات</string>
+    <!-- Universities Screen Strings -->
+    <string name="universities_screen">الجامعات</string>
     <string name="universities_search">بحث</string>
 
-    <!-- Details Strings -->
-    <string name="details_fragment">تفاصيل</string>
+    <!-- Details Screen Strings -->
+    <string name="details_screen">تفاصيل</string>
     <string name="details_about">عن الجامعة:</string>
     <string name="details_website">الموقع</string>
     <string name="details_colleges">الكليات</string>
@@ -16,12 +16,12 @@
     <string name="details_application">التطبيق</string>
     <string name="details_communication">التواصل:</string>
 
-    <!-- Settings Strings -->
-    <string name="settings_fragment">الإعدادات</string>
+    <!-- Website Screen Strings -->
+    <string name="website_screen">الموقع</string>
+
+    <!-- Settings Screen Strings -->
+    <string name="settings_screen">الإعدادات</string>
     <string name="settings_about">حول</string>
     <string name="settings_contact_title">تواصل معي</string>
     <string name="settings_version_title">اصدار التطبيق</string>
-
-    <!-- Website Strings -->
-    <string name="website_fragment">الموقع</string>
 </resources>
