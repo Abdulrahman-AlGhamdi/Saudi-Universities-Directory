@@ -10,16 +10,16 @@ plugins {
 def versionMajor = 2
 def versionMinor = 2
 def versionPatch = 0
-def versionBuild = 0
+def versionBuild = 1
 
 android {
-    compileSdkVersion 33
+    compileSdk 33
     namespace 'com.ss.universitiesdirectory'
 
     defaultConfig {
         applicationId "com.ss.universitiesdirectory"
-        minSdkVersion 24
-        targetSdkVersion 33
+        minSdk 24
+        targetSdk 33
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 
@@ -82,8 +82,6 @@ dependencies {
     // Hilt
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
-    // Preferences
-    implementation 'androidx.preference:preference-ktx:1.2.0'
     // Firebase
     implementation platform('com.google.firebase:firebase-bom:31.1.0')
     implementation 'com.google.firebase:firebase-firestore-ktx'
