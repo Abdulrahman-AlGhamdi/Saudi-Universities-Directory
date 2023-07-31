@@ -1,14 +1,14 @@
 package com.ss.universitiesdirectory.screen.details
 
 import androidx.lifecycle.ViewModel
-import com.ss.universitiesdirectory.repository.details.DetailsManager
+import com.ss.universitiesdirectory.repository.details.DetailsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
-    private val detailsManager: DetailsManager
+    private val detailsRepository: DetailsRepository
 ) : ViewModel() {
 
-    fun openApp(stringUri: String) = detailsManager.openApp(stringUri)
+    fun openApp(stringUri: String) = detailsRepository.openApp(stringUri)
 }

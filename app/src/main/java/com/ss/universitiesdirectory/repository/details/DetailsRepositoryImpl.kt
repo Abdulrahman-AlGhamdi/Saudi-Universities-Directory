@@ -7,9 +7,9 @@ import androidx.core.content.ContextCompat
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class DetailsManagerImpl @Inject constructor(
+class DetailsRepositoryImpl @Inject constructor(
     @ApplicationContext private val context: Context
-) : DetailsManager {
+) : DetailsRepository {
 
     override fun openApp(stringUri: String) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(stringUri))

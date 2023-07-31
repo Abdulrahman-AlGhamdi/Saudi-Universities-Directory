@@ -13,6 +13,7 @@ class WebsiteRepositoryImpl @Inject constructor(
 
     override fun openWebsiteInBrowser(websiteUrl: String?) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrl))
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         ContextCompat.startActivity(context, intent, null)
     }
 }
