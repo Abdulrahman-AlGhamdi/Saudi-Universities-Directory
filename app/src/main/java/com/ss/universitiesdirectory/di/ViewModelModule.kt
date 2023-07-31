@@ -1,9 +1,9 @@
 package com.ss.universitiesdirectory.di
 
-import com.ss.universitiesdirectory.repository.details.DetailsManager
-import com.ss.universitiesdirectory.repository.details.DetailsManagerImpl
-import com.ss.universitiesdirectory.repository.settings.SettingsManager
-import com.ss.universitiesdirectory.repository.settings.SettingsManagerImpl
+import com.ss.universitiesdirectory.repository.details.DetailsRepository
+import com.ss.universitiesdirectory.repository.details.DetailsRepositoryImpl
+import com.ss.universitiesdirectory.repository.settings.SettingsRepository
+import com.ss.universitiesdirectory.repository.settings.SettingsRepositoryImpl
 import com.ss.universitiesdirectory.repository.universities.UniversitiesRepository
 import com.ss.universitiesdirectory.repository.universities.UniversitiesRepositoryImpl
 import com.ss.universitiesdirectory.repository.website.WebsiteRepository
@@ -27,8 +27,8 @@ abstract class ViewModelModule {
     @Binds
     @ViewModelScoped
     abstract fun bindDetailsRepository(
-        detailsManagerImpl: DetailsManagerImpl
-    ): DetailsManager
+        detailsRepositoryImpl: DetailsRepositoryImpl
+    ): DetailsRepository
 
     @Binds
     @ViewModelScoped
@@ -39,6 +39,6 @@ abstract class ViewModelModule {
     @Binds
     @ViewModelScoped
     abstract fun bindSettingsRepository(
-        settingsManagerImpl: SettingsManagerImpl
-    ): SettingsManager
+        settingsRepositoryImpl: SettingsRepositoryImpl
+    ): SettingsRepository
 }

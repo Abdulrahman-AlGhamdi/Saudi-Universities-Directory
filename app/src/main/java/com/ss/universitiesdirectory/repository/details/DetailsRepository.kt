@@ -1,6 +1,6 @@
 package com.ss.universitiesdirectory.repository.details
 
-sealed interface DetailsManager {
+sealed interface DetailsRepository {
 
     fun openApp(stringUri: String)
 }

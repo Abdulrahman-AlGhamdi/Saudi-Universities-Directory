@@ -7,9 +7,9 @@ import androidx.core.content.ContextCompat
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class SettingsManagerImpl @Inject constructor(
+class SettingsRepositoryImpl @Inject constructor(
     @ApplicationContext private val context: Context
-) : SettingsManager {
+) : SettingsRepository {
 
     override fun openTwitter() {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(TWITTER_ACCOUNT))

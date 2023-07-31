@@ -1,6 +1,6 @@
 package com.ss.universitiesdirectory.repository.settings
 
-sealed interface SettingsManager {
+sealed interface SettingsRepository {
 
     fun openTwitter()
 }

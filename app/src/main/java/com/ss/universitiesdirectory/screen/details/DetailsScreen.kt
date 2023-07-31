@@ -43,8 +43,7 @@ fun DetailsScreen(
     onAppClick: (String) -> Unit,
     onBackClick: () -> Unit
 ) {
-    DefaultScaffold(
-        topBar = { DetailsTopAppBar(onBackClick = onBackClick) }) {
+    DefaultScaffold(topBar = { DetailsTopAppBar(onBackClick = onBackClick) }) {
         university?.let {
             AsyncImage(
                 modifier = Modifier
